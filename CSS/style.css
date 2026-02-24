@@ -1,950 +1,174 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    user-select: none;
-}
+/* --- VARIABLES ET RESET --- */
+:root { --bg: #050505; --bg-alt: #080808; --accent-yellow: #ffde00; --accent-blue: #2621da; --text: #ffffff; --text-dim: #aaaaaa; --card-bg: #111; --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { background: var(--bg); font-family: 'Montserrat', sans-serif; color: var(--text); line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
 
-html {
-    scroll-behavior: smooth;
-    overflow-x: hidden; /* On le met ici plutôt que sur le body */
-}
+/* --- SECTION 1 : HERO & TRACKER --- */
+#hero { height: 100vh; position: relative; overflow: hidden; background: var(--bg); }
+#image-track { position: absolute; inset: 0; z-index: 1; }
+.track-image { width: 25vmin; position: absolute; top: 0; left: 0; pointer-events: none; opacity: 0; object-fit: cover; will-change: transform, opacity; transition: opacity 0.5s ease-out; transform: translate3d(-100%, -100%, 0); }
+#content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; color: #FFFFFF; pointer-events: none; display: flex; flex-direction: column; align-items: center; width: auto; }
+.text-lockup { text-align: center; color: #fff; }
+.line-1 { font-size: 9vw; font-weight: 900; line-height: 0.8; letter-spacing: -0.03em; margin: 0; }
+.line-2 { color: var(--accent-blue); font-size: 1.8vw; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8em; padding-left: 0.8em; margin-top: 20px; opacity: 1; }
+.scroll-indicator { margin-top: 15vh; font-size: 0.8rem; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; animation: bounce 2s infinite; }
 
-body {
-    background-color: #050505;
-    font-family: 'Montserrat', sans-serif;
-    color: #fff;
-}
+/* --- SECTION 2 : ALTERNANCE --- */
+#alternance { min-height: 90vh; background-color: #080808; display: flex; justify-content: center; align-items: center; padding: 5vw; position: relative; z-index: 200; overflow: hidden; border-top: 1px solid #1a1a1a; }
+.alt-container { display: flex; align-items: center; justify-content: space-between; gap: 8vw; max-width: 1400px; width: 100%; }
+.club-glow { position: absolute; width: 800px; height: 800px; background: radial-gradient(ellipse at 10% 120%, rgba(255, 222, 0, 0.15) 0%, rgba(255, 222, 0, 0.05) 50%, rgba(0,0,0,0) 80%); top: 70%; left: 30%; transform: translate(-50%, -50%); z-index: -1; pointer-events: none; filter: blur(80px); }
+.alt-logo { position: relative; top: -30px; max-width: 280px; width: 100%; height: auto; filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.8)); transition: transform 0.3s ease; z-index: 2; }
+.alt-logo:hover { transform: scale(1.05) rotate(-2deg); }
+#alternance h4 { color: var(--accent-yellow); font-size: 1.1rem; font-weight: 700; letter-spacing: 6px; margin-bottom: 20px; text-transform: uppercase; }
+#alternance h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 10px; text-transform: uppercase; color: #fff; }
+#alternance h3 { font-size: 1.8rem; font-weight: 400; color: #888; margin-bottom: 40px; font-style: italic; }
+#alternance p { font-size: 1.2rem; line-height: 1.6; color: #ccc; max-width: 600px; margin-bottom: 50px; border-left: 3px solid var(--accent-yellow); padding-left: 20px; }
+.btn-discover { display: inline-block; text-decoration: none; color: #fff; background-color: transparent; border: 2px solid #fff; padding: 18px 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; transition: all 0.3s ease; }
+.btn-discover:hover { background-color: var(--accent-yellow); border-color: var(--accent-yellow); color: #000; box-shadow: 0 0 30px rgba(255, 222, 0, 0.4); transform: translateY(-5px); }
 
-/* --- SECTION 1 : HERO (Slider Plein Écran) --- */
-#hero {
-    height: 100vh; /* IMPORTANT : Pleine hauteur */
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-#slider-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: grab;
-    display: flex;
-    align-items: center; 
-    pointer-events: none;
-}
-#slider-container:active { cursor: grabbing; }
-
-#image-strip {
-    display: flex;
-    height: 100vh; /* IMPORTANT : Images en pleine hauteur */
-    width: max-content;
-    transform: translateX(-15vw); 
-    will-change: transform;
-    pointer-events: auto;
-}
-
-.image-item {
-    height: 100%;
-    width: 40vw; /* Tu peux mettre 50vw ou 60vw si tu veux qu'on voit mieux les images 16:9 */
-    background-size: cover;
-    background-position: center;
-    filter: grayscale(100%);
-    opacity: 0.2; 
-    pointer-events: none;
-    transition: filter 0.1s linear, opacity 0.1s linear; 
-    margin-right: -1px; /* Astuce pour éviter la ligne noire */
-}
-
-/* --- Texte du Hero --- */
-#content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    color: #FFFFFF;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.text-lockup {
-    width: 75vw; 
-    text-align: center;
-}
-
-.line-1 {
-    font-size: 13vw;
-    line-height: 0.8;
-    margin: 0;
-    letter-spacing: -0.04em;
-    width: 100%;
-    display: block;
-    font-weight: 900;
-}
-
-.line-2 {
-    display: flex;
-    justify-content: space-between;
-    width: 99.5%;
-    margin: 0 auto;
-    font-size: 4vw;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.spacer { width: 4vw; }
-
-.scroll-indicator {
-    margin-top: 15vh;
-    font-size: 0.8rem;
-    opacity: 0.5;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-10px);}
-    60% {transform: translateY(-5px);}
-}
-
-
-/*  ------------------------------------------------------------------------------------------------------------------------------------
-   --- SECTION 2 : ALTERNANCE ---
- ------------------------------------------------------------------------------------------------------------------------------------*/
-#alternance {
-    min-height: 90vh;
-    background-color: #080808;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5vw;
-    position: relative;
-    z-index: 200;
-    overflow: hidden;
-    border-top: 1px solid #1a1a1a;
-}
-
-.alt-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    gap: 8vw;
-    max-width: 1400px;
-    width: 100%;
-}
-
-/* --- LOGO & LUMIÈRE --- */
-.logo-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-/* La lumière est maintenant BEAUCOUP plus grande que le logo */
-.club-glow {
-    position: absolute;
-    width: 800px;
-    height: 800px; /* Très grand pour une diffusion lente */
-
-    /* LA MODIFICATION EST ICI :
-       - at 0% 120% : Le cœur de la lumière est tout en bas à gauche, hors du cadre.
-       - rgba(..., 0.15) : L'opacité est très faible (15%) pour la subtilité.
-    */
-    background: radial-gradient(
-        ellipse at 10% 120%, 
-        rgba(255, 222, 0, 0.15) 0%,  /* Cœur jaune très pâle */
-        rgba(255, 222, 0, 0.05) 50%, /* Diffusion presque invisible */
-        rgba(0,0,0,0) 80%
-    );
-
-    /* Positionnement du bloc */
-    top: 70%; /* On le descend plus bas */
-    left: 30%; /* On le décale à gauche */
-    transform: translate(-50%, -50%);
-
-    z-index: -1;
-    pointer-events: none;
-
-    /* Un flou énorme pour rendre le tout très doux */
-    filter: blur(80px);
-}
-
-.alt-logo {
-    position: relative;
-    top: -30px;
-    max-width: 280px; /* Logo réduit pour laisser voir la lumière */
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.8)); /* Ombre pour détacher le logo de la lumière */
-    transition: transform 0.3s ease;
-    z-index: 2;
-}
-
-.alt-logo:hover {
-    transform: scale(1.05) rotate(-2deg);
-}
-
-/* --- TEXTE --- */
-.alt-text-content {
-    flex: 1.2;
-    text-align: left;
-    padding-right: 5vw;
-}
-
-#alternance h4 {
-    color: #ffde00;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 6px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-#alternance h2 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1.1; /* Espacement des lignes ajusté */
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    color: #fff;
-}
-
-#alternance h3 {
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: #888;
-    margin-bottom: 40px;
-    font-style: italic;
-}
-
-#alternance p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #ccc;
-    max-width: 600px;
-    margin-bottom: 50px;
-    border-left: 3px solid #ffde00;
-    padding-left: 20px;
-}
-
-/* --- BOUTON (Style "Outline" remis) --- */
-.btn-discover {
-    display: inline-block;
-    text-decoration: none;
-    
-    /* Retour au style transparent + bordure blanche */
-    color: #fff;
-    background-color: transparent; 
-    border: 2px solid #fff;
-    
-    padding: 18px 50px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.btn-discover:hover {
-    /* Au survol : Fond Jaune + Texte Noir */
-    background-color: #ffde00;
-    border-color: #ffde00;
-    color: #000;
-    box-shadow: 0 0 30px rgba(255, 222, 0, 0.4);
-    transform: translateY(-5px);
-}
-
-/* --- ANIMATIONS --- */
-.reveal-left, .reveal-up {
-    opacity: 0;
-    transition: all 1s ease-out;
-}
-.reveal-left { transform: translateX(-100px); }
-.reveal-up { transform: translateY(100px); }
-.reveal-active { opacity: 1; transform: translate(0, 0); }
-
-@media (max-width: 1024px) {
-    .alt-container {
-        flex-direction: column;
-        gap: 40px;
-        text-align: center;
-    }
-    .logo-wrapper { margin-bottom: 20px; }
-    .alt-text-content { padding: 0; text-align: center; }
-    #alternance p { border-left: none; margin: 0 auto 40px auto; }
-}
-
-/* --- LE TERRAIN COMPLET (Overlay) --- */
-
-.alt-text-content {
-    position: relative;
-    flex: 1.2;
-    text-align: left;
-    padding-right: 5vw;
-    z-index: 10;
-}
-
-.pitch-overlay {
-    position: absolute;
-    top: 50%;
-    left: 65%;
-    
-    /* C'est ici que j'ai réduit drastiquement la taille */
-    width: 40vw;  /* Avant c'était 60vw */
-    height: 30vw; /* Avant c'était 40vw */
-    
-    /* J'ai enlevé le "scale(1.5)" pour qu'il arrête de grossir */
-    transform: translate(-50%, -50%) rotate(-15deg);
-    
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.1; /* Tu peux monter à 0.15 si tu veux qu'on le voie mieux maintenant qu'il est petit */
-}
-
-/* Base pour toutes les lignes */
-.pitch-overlay div {
-    position: absolute;
-    border-color: #fff;
-    border-style: solid;
-    border-width: 2px;
-    box-sizing: border-box;
-}
-
-/* 1. Contour */
-.pitch-outline {
-    top: 0; left: 0; right: 0; bottom: 0;
-    border: 2px solid #fff;
-}
-
-/* 2. Ligne médiane */
-.pitch-midline {
-    top: 0; bottom: 0; left: 50%;
-    width: 0;
-    border-left: 2px solid #fff;
-}
-
-/* 3. Rond central */
-.pitch-center-circle {
-    top: 50%; left: 50%;
-    height: 30%; 
-    aspect-ratio: 1 / 1; /* GARANTIT UN ROND PARFAIT */
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid #fff;
-}
-
-.pitch-center-spot {
-    top: 50%; left: 50%;
-    width: 6px; height: 6px;
-    background: #fff;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    border: none !important;
-}
-
-/* --- ZONES (Surface & But) --- */
-.pitch-penalty-box {
-    top: 20%; bottom: 20%;
-    width: 16%;
-    border: 2px solid #fff;
-}
+/* --- TERRAIN OVERLAY --- */
+.pitch-overlay { position: absolute; top: 50%; left: 65%; width: 40vw; height: 30vw; transform: translate(-50%, -50%) rotate(-15deg); pointer-events: none; z-index: -1; opacity: 0.1; }
+.pitch-overlay div { position: absolute; border-color: #fff; border-style: solid; border-width: 2px; box-sizing: border-box; }
+.pitch-outline { top: 0; left: 0; right: 0; bottom: 0; border: 2px solid #fff; }
+.pitch-midline { top: 0; bottom: 0; left: 50%; width: 0; border-left: 2px solid #fff; }
+.pitch-center-circle { top: 50%; left: 50%; height: 30%; aspect-ratio: 1 / 1; border-radius: 50%; transform: translate(-50%, -50%); border: 2px solid #fff; }
+.pitch-center-spot { top: 50%; left: 50%; width: 6px; height: 6px; background: #fff; border-radius: 50%; transform: translate(-50%, -50%); border: none !important; }
+.pitch-penalty-box { top: 20%; bottom: 20%; width: 16%; border: 2px solid #fff; }
 .pitch-penalty-box.left { left: 0; border-left: none; }
 .pitch-penalty-box.right { right: 0; border-right: none; }
-
-.pitch-goal-box {
-    top: 36%; bottom: 36%;
-    width: 6%;
-    border: 2px solid #fff;
-}
+.pitch-goal-box { top: 36%; bottom: 36%; width: 6%; border: 2px solid #fff; }
 .pitch-goal-box.left { left: 0; border-left: none; }
 .pitch-goal-box.right { right: 0; border-right: none; }
+.pitch-arc.left { left: 11%; clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); top: 50%; height: 15%; aspect-ratio: 1/1; border-radius: 50%; transform: translateY(-50%); border: 2px solid #fff; }
+.pitch-arc.right { right: 11%; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); top: 50%; height: 15%; aspect-ratio: 1/1; border-radius: 50%; transform: translateY(-50%); border: 2px solid #fff; }
 
-/* --- ARCS DE CERCLE (La "demi-lune" de la surface) --- */
-/* CORRECTION : On utilise un rond parfait qu'on coupe */
-.pitch-arc {
-    top: 50%;
-    height: 15%; /* Taille de l'arc */
-    aspect-ratio: 1/1; /* Rond parfait */
-    border-radius: 50%;
-    border: 2px solid #fff;
-    transform: translateY(-50%);
-    z-index: -1;
-}
+/* --- PAGE GINGLIN : GRILLE ACCORDÉON --- */
+.titre_alternance { font-size: clamp(3rem, 6vw, 80px); line-height: 0.8; padding-top: 50px; margin: 0 auto; letter-spacing: -0.04em; width: 90%; display: flex; justify-content: center; font-weight: 900; color: #fff; text-align: center; }
+.grille { display: flex; flex-direction: row; justify-content: space-between; align-items: stretch; margin: 0 auto; width: 90%; padding: 30px 0; gap: 20px; height: 70vh; }
+.carte-slide { flex: 1; position: relative; overflow: hidden; cursor: pointer; border-radius: 20px; transition: flex 0.5s ease; min-width: 0; background-color: #050505; }
+.slide-content { display: flex; height: 100%; width: 100%; }
+.slide-image-wrapper { flex-basis: 100%; transition: flex-basis 0.5s ease; overflow: hidden; height: 100%; background-color: #050505; display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; }
+.carte-img { width: 100%; height: 100%; display: block; object-fit: contain; }
+.carte-info { flex-basis: 0; padding: 0; background-color: transparent; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: flex-basis 0.5s ease, padding 0.5s ease, opacity 0.3s ease; overflow: hidden; opacity: 0; height: 100%; position: relative; z-index: 5; }
+.carte-slide:hover { flex: 2.5; z-index: 10; }
+.carte-slide:hover .slide-image-wrapper { flex-basis: 50%; }
+.carte-slide:hover .carte-info { flex-basis: 50%; padding: 20px; opacity: 1; }
+.info-titre { font-size: 1.2rem; font-weight: 900; color: var(--accent-yellow); margin-bottom: 10px; text-transform: uppercase; }
+.info-description { font-size: 0.85rem; line-height: 1.4; font-weight: 500; color: #fff; }
 
-.pitch-arc.left { 
-    left: 11%; /* Juste sur la ligne de surface */
-    /* On coupe pour ne garder que la partie droite (extérieur surface) */
-    clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
-}
+/* --- PAGE GINGLIN : AU CŒUR DU PROJET (JAUNE) --- */
+.missions-section { width: 90%; max-width: 1200px; margin: 100px auto 50px auto; color: #fff; }
+.missions-header { margin-bottom: 60px; text-align: center; }
+.missions-header h2 { font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+.missions-header h2 .highlight { color: var(--accent-yellow); }
+.missions-header p { color: #888; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
+.missions-grid { display: flex; gap: 40px; justify-content: center; align-items: stretch; }
+.mission-card { flex: 1; background-color: #0a0a0a; padding: 40px; border-radius: 20px; border-left: 4px solid var(--accent-yellow); text-align: left; transition: transform 0.3s ease; }
+.mission-card:hover { transform: translateY(-5px); background-color: #111; }
+.mission-card h3 { font-size: 1.8rem; color: #fff; margin-bottom: 20px; text-transform: uppercase; font-weight: 800; }
+.mission-card p { color: #ccc; line-height: 1.6; font-size: 1.1rem; }
+.mission-card strong, .mission-card b { color: var(--accent-yellow); font-weight: 700; }
 
-.pitch-arc.right { 
-    right: 11%;
-    /* On coupe pour ne garder que la partie gauche */
-    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
-}
+/* --- SECTION 3 : PROJETS (BLEU) --- */
+#projets { background-color: #050505; padding-bottom: 10vh; position: relative; z-index: 10; }
+.projects-header { text-align: center; padding: 10vh 0 5vh 0; color: #fff; }
+.projects-header h2 { font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; margin-bottom: 10px; }
+.highlight { color: var(--accent-blue); }
+.cards-stack-container { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+.card { position: sticky; height: 75vh; background-color: var(--card-bg); border-radius: 30px; overflow: hidden; border: 1px solid #222; transform-origin: center top; transition: transform 0.5s ease; }
+#card-1 { top: 10vh; } #card-2 { top: 15vh; } #card-3 { top: 20vh; } #card-4 { top: 25vh; }
+.card-content { display: flex; height: 100%; }
+.card-image { flex: 1.5; height: 100%; overflow: hidden; }
+.card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+.card:hover .card-image img { transform: scale(1.05); }
+.card-text { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+.card-num { font-size: 6rem; font-weight: 900; color: rgba(255, 255, 255, 0.03); position: absolute; top: 20px; right: 30px; }
+.card-text h3 { font-size: 2.5rem; color: #fff; margin-bottom: 20px; text-transform: uppercase; font-weight: 800; }
+.btn-card { display: inline-block; width: fit-content; color: #fff; background-color: var(--accent-blue); padding: 15px 30px; font-weight: 700; text-transform: uppercase; border-radius: 5px; transition: all 0.3s ease; }
+.btn-card:hover { background-color: #fff; color: var(--accent-blue); transform: translateY(-3px); }
 
-/* --- CORNERS (CORRECTION) --- */
-.pitch-corner {
-    width: 3%;
-    aspect-ratio: 1/1; /* Rond parfait */
-    border: 2px solid #fff;
-}
+/* --- PAGES DÉTAILS PROJETS : ALIGNEMENT & COULEURS --- */
+.nav-project { width: 90%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: flex-start; padding: 40px 0; }
+.back-link { font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim); }
+.project-page .back-link:hover { color: var(--accent-blue); }
+.alt-page .back-link:hover { color: var(--accent-yellow); }
+.project-header { text-align: center; margin: 60px auto; max-width: 1000px; padding: 0 20px; }
+.project-category { color: var(--accent-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; }
+.project-header h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 1; margin-bottom: 30px; }
+.project-description { text-align: center; margin: 0 auto; max-width: 800px; color: #ccc; }
+.project-gallery { display: flex; flex-direction: column; align-items: center; gap: 50px; width: 90%; margin: 0 auto; }
+.gallery-item { width: 100%; max-width: 1200px; }
+.gallery-item img { border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); margin: 0 auto; }
 
-/* Top Left : On veut l'arc en bas à droite */
-.pitch-corner.tl { 
-    top: 0; left: 0; 
-    border-radius: 0 0 100% 0; /* Arrondi en bas à droite uniquement */
-    border-top: none; border-left: none; /* On enlève les bords extérieurs */
-}
-
-/* Top Right : On veut l'arc en bas à gauche */
-.pitch-corner.tr { 
-    top: 0; right: 0; 
-    border-radius: 0 0 0 100%; 
-    border-top: none; border-right: none;
-}
-
-/* Bottom Left : On veut l'arc en haut à droite */
-.pitch-corner.bl { 
-    bottom: 0; left: 0; 
-    border-radius: 0 100% 0 0; 
-    border-bottom: none; border-left: none;
-}
-
-/* Bottom Right : On veut l'arc en haut à gauche */
-.pitch-corner.br { 
-    bottom: 0; right: 0; 
-    border-radius: 100% 0 0 0; 
-    border-bottom: none; border-right: none;
-}
-
-/* --- POINTS DE PÉNALTY --- */
-.pitch-penalty-spot {
-    top: 50%;
-    width: 4px; height: 4px;
-    background: #fff;
-    border-radius: 50%;
-    transform: translateY(-50%);
-    border: none !important;
-}
-.pitch-penalty-spot.left { left: 11%; }
-.pitch-penalty-spot.right { right: 11%; }
-
-
-
-/*  ---------------------------------------------------------------------------------------------------------------------------------
-   --- SECTION 3 : PROJETS (STICKY STACK) ---
------------------------------------------------------------------------------------------------------------------------------------- */
-#projets {
-    background-color: #050505;
-    padding-bottom: 10vh; /* Espace à la fin */
-    position: relative;
-    z-index: 10;
-}
-
-.projects-header {
-    text-align: center;
-    padding: 10vh 0 5vh 0;
-    color: #fff;
-}
-
-.projects-header h2 {
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 900;
-    margin-bottom: 10px;
-}
-
-.highlight {
-    color: #ffde00; /* Jaune Ginglin */
-}
-
-.projects-header p {
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-}
-
-/* --- LE CONTENEUR DES CARTES --- */
-.cards-stack-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px; /* Espace entre le départ de chaque carte */
-}
-
-/* --- LA CARTE --- */
-.card {
-    position: sticky; /* C'est ça qui fait l'effet d'empilement */
-    height: 70vh; /* Hauteur de la carte */
-    background-color: #111; /* Fond de la carte */
-    border-radius: 30px;
-    overflow: hidden;
-    border: 1px solid #222;
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.5); /* Ombre vers le haut */
-    
-    /* Transition douce */
-    transform-origin: center top;
-    transition: transform 0.5s ease;
-}
-
-/* L'EFFET D'ESCALIER (IMPORTANT) */
-/* Chaque carte se colle un peu plus bas que la précédente pour qu'on voie le titre */
-#card-1 { top: 15vh; }
-#card-2 { top: 20vh; }
-#card-3 { top: 25vh; }
-
-/* Contenu interne de la carte */
-.card-content {
-    display: flex;
-    height: 100%;
-}
-
-/* Partie Image (Gauche) */
-.card-image {
-    flex: 1.5;
-    height: 100%;
-    overflow: hidden;
-}
-
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
-}
-
-/* Zoom lent sur l'image au survol */
-.card:hover .card-image img {
-    transform: scale(1.05);
-}
-
-/* Partie Texte (Droite) */
-.card-text {
-    flex: 1;
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
-    position: relative;
-}
-
-.card-num {
-    font-size: 6rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.03); /* Très discret en fond */
-    position: absolute;
-    top: 20px;
-    right: 30px;
-}
-
-.card-text h3 {
-    font-size: 2.5rem;
-    color: #fff;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.card-text p {
-    color: #aaa;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    font-size: 1.1rem;
-}
-
-.btn-card {
-    display: inline-block;
-    width: fit-content;
-    text-decoration: none;
-    color: #000;
-    background-color: #ffde00;
-    padding: 15px 30px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.btn-card:hover {
-    background-color: #fff;
-    transform: translateY(-3px);
-}
-
-
-/* ------------------------------------------------------------------------------------------------------------------------------------
-PAGE ALTERNANCE (Correction Transparence & Design)
---------------------------------------------------------------------------------------------------------------------------------------*/
-
-.titre_alternance {
-    font-size: clamp(3rem, 6vw, 80px);
-    line-height: 0.8;
-    padding-top: 50px;
-    margin: 0 auto;
-    letter-spacing: -0.04em;
-    width: 90%; 
-    display: flex;
-    justify-content: center;
-    font-weight: 900;
-    color: #fff;
-    text-align: center;
-}
-
-.missions-section {
-    width: 90%;
-    margin: 100px auto 50px auto; /* Espace avant/après */
-    color: #fff;
-}
-
-.missions-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.missions-header h2 {
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.missions-header p {
-    color: #888;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
-
-/* GRILLE DES MISSIONS */
-.missions-grid {
-    display: flex;
-    gap: 40px;
-    justify-content: center;
-}
-
-.mission-card {
-    flex: 1;
-    background-color: #0a0a0a; /* Un peu plus clair que le fond noir */
-    padding: 40px;
-    border-radius: 20px;
-    border-left: 4px solid #ffde00; /* La touche club */
-    position: relative;
-    transition: transform 0.3s ease;
-}
-
-.mission-card:hover {
-    transform: translateY(-5px);
-    background-color: #111;
-}
-
-.mission-card h3 {
-    font-size: 1.8rem;
-    color: #fff;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-.mission-card p {
-    color: #ccc;
-    line-height: 1.6;
-    font-size: 1.1rem;
-}
-
-.mission-card strong {
-    color: #ffde00;
-    font-weight: 700;
-}
-
-.grille {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch; 
-    margin: 0 auto;
-    width: 90%;
-    padding: 30px 0; 
-    gap: 20px;
-    
-    /* Hauteur fixe pour l'alignement */
-    height: 70vh; 
-}
-
-/* 1. LA CARTE */
-.carte-slide {
-    flex: 1; 
-    position: relative;
-    overflow: hidden; 
-    cursor: pointer;
-    border-radius: 20px;
-    transition: flex 0.5s ease; 
-    min-width: 0;
-    background-color: #050505; /* Fond noir */
-}
-
-/* 2. CONTENEUR INTERNE */
-.slide-content {
-    display: flex;
-    height: 100%;
-    width: 100%;
-}
-
-/* 3. IMAGE WRAPPER */
-.slide-image-wrapper {
-    flex-basis: 100%;
-    transition: flex-basis 0.5s ease;
-    overflow: hidden;
-    height: 100%;
-    background-color: #050505; 
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 1; /* L'image reste en dessous au besoin */
-}
-
-.carte-img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: contain; /* L'image est entière */
-}
-
-/* 4. TEXTE (MODIFIÉ : TRANSPARENT) */
-.carte-info {
-    flex-basis: 0;
-    padding: 0;
-    
-    /* ICI LE CHANGEMENT : Fond transparent très légèrement jaune */
-    background-color: transparent; 
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
-    transition: flex-basis 0.5s ease, padding 0.5s ease, opacity 0.3s ease;
-    overflow: hidden;
-    opacity: 0;
-    height: 100%;
-    
-    position: relative;
-    z-index: 5;
-}
-
-/* --- EFFET SURVOL --- */
-
-.carte-slide:hover {
-    flex: 2.5; 
-    z-index: 10;
-}
-
-.carte-slide:hover .slide-image-wrapper {
-    flex-basis: 50%;
-}
-
-.carte-slide:hover .carte-info {
-    flex-basis: 50%;
-    padding: 20px;
-    opacity: 1;
-}
-
-/* STYLES DU TEXTE (MODIFIÉ POUR FOND SOMBRE) */
-.info-titre {
-    font-size: 1.2rem;
-    font-weight: 900;
-    
-    /* Titre en Jaune pour ressortir */
-    color: #ffde00; 
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.info-description {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    font-weight: 500;
-    
-    /* Texte en Blanc */
-    color: #fff; 
-}
-
-
-/*  ------------------------------------------------------------------------------------------------------------------------------------
-   --- STYLE DU FOOTER COMMUN ---
- ---------------------------------------------------------------------------------------------------------------------------------------- */
-#main-footer {
-    background-color: #050505;
-    border-top: 1px solid #222;
-    padding: 60px 5vw 20px 5vw;
-    color: #fff;
-    margin-top: 100px; /* Espace au dessus */
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto 50px auto;
-    flex-wrap: wrap;
-}
-
-/* Titres */
-.footer-socials h4, .footer-contact h4 {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-}
-
-/* Icones */
+/* --- FOOTER & MISC --- */
+#main-footer { background-color: #050505; border-top: 1px solid #222; padding: 60px 5vw 20px 5vw; color: #fff; margin-top: 100px; }
+.footer-container { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto 50px auto; flex-wrap: wrap; }
 .social-icons { display: flex; gap: 20px; }
-.social-link {
-    display: flex; justify-content: center; align-items: center;
-    width: 50px; height: 50px;
-    border: 1px solid #333; border-radius: 50%;
-    color: #fff; transition: 0.3s;
-}
-.social-link:hover {
-    background-color: #ffde00; border-color: #ffde00; color: #000;
-    transform: translateY(-3px);
-}
-.icon { width: 24px; height: 24px; }
+.social-link { display: flex; justify-content: center; align-items: center; width: 50px; height: 50px; border: 1px solid #333; border-radius: 50%; color: #fff; transition: 0.3s; }
+.social-link:hover { background-color: var(--accent-blue); border-color: var(--accent-blue); color: #fff; transform: translateY(-3px); }
+.icon { width: 20px; height: 20px; fill: currentColor; }
+.contact-link:hover { color: var(--accent-blue); }
+.footer-bottom { text-align: center; font-size: 0.8rem; color: #444; border-top: 1px solid #363636; padding-top: 20px; }
 
-/* Contact */
-.footer-contact { text-align: right; }
-.contact-info { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-.contact-link { text-decoration: none; color: #fff; font-size: 1.5rem; font-weight: 700; transition: 0.3s; }
-.contact-link.phone { font-size: 1.2rem; color: #ccc; font-weight: 500; }
-.contact-link:hover { color: #ffde00; }
+/* Adaptation Jaune du Footer pour la page Alternance */
+.alt-page .social-link:hover { background-color: var(--accent-yellow); border-color: var(--accent-yellow); color: #000; }
+.alt-page .contact-link:hover { color: var(--accent-yellow); }
 
-/* Copyright */
-.footer-bottom {
-    text-align: center; font-size: 0.8rem; color: #444;
-    border-top: 1px solid #363636; padding-top: 20px;
-}
+/* --- ANIMATIONS & RESPONSIVE BASE --- */
+.reveal-left, .reveal-up { opacity: 0; transition: all 1s ease-out; }
+.reveal-active { opacity: 1; transform: translate(0, 0); }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 
-
-/* =========================================
-   --- PAGE PROJET DÉTAIL (MI CASA, ETC.) ---
-========================================= */
-
-/* Bouton Retour */
-.nav-project {
-    padding: 40px 5vw;
+@media (max-width: 1024px) {
+    .alt-container { flex-direction: column; gap: 40px; text-align: center; }
+    .card { position: relative !important; top: 0 !important; height: auto; margin-bottom: 30px; }
+    .card-content { flex-direction: column; }
+    .grille { flex-direction: column; height: auto; }
+    .carte-slide { height: 400px; }
+    .missions-grid { flex-direction: column; gap: 20px; }
+    .nav-project { justify-content: center; } 
 }
 
-.back-link {
-    text-decoration: none;
-    color: #888;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 700;
-    transition: color 0.3s;
+/* --- TABLETTE & TÉLÉPHONE (AJOUTS DÉFINITIFS CORRECTS) --- */
+@media (min-width: 769px) and (max-width: 1100px) { .line-1 { font-size: 12vw; } .alt-container { gap: 3vw; } .card { height: 60vh; } .project-header h1 { font-size: 8vw; } }
+@media (max-width: 768px) {
+    body { text-align: center; }
+    .line-1 { font-size: 15vw; margin-bottom: 5px; } .line-2 { font-size: 4vw; letter-spacing: 0.4em; padding-left: 0.4em; } .scroll-indicator { font-size: 0.6rem; margin-top: 10vh; }
+    #alternance { padding: 40px 3vw; min-height: auto; }
+    .alt-container { flex-direction: row !important; justify-content: center; align-items: flex-start; gap: 15px; }
+    .alt-logo { max-width: 80px; top: 0; }
+    .alt-text-content { text-align: left; padding-right: 0; flex: 1.5; display: flex; flex-direction: column; }
+    #alternance h2 { font-size: 1.1rem; } #alternance h3 { font-size: 0.8rem; margin-bottom: 10px; }
+    #alternance p { font-size: 0.75rem; padding-left: 10px; margin-bottom: 15px; text-align: left; }
+    .btn-discover { align-self: flex-start; padding: 10px 18px; font-size: 0.7rem; }
+    .grille { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 8px; height: auto !important; width: 95%; padding: 20px 0; }
+    .carte-slide { flex: none !important; height: 100px !important; display: block !important; border-radius: 10px; overflow: hidden; transition: 0.5s var(--transition); }
+    .slide-content { flex-direction: column !important; height: 100%; }
+    .slide-image-wrapper { flex-basis: 100% !important; height: 100%; }
+    .carte-info { flex-basis: auto !important; max-height: 0; opacity: 0; padding: 0 !important; background: #0a0a0a; width: 100%; transition: all 0.5s ease; pointer-events: none; }
+    .carte-slide.active { grid-column: span 3; height: auto !important; }
+    .carte-slide.active .slide-image-wrapper { height: 200px; }
+    .carte-slide.active .carte-info { max-height: 500px; opacity: 1; padding: 20px !important; pointer-events: auto; }
+    .cards-stack-container { gap: 20px; width: 95%; }
+    .card { position: sticky !important; height: 65vh; border-radius: 20px; top: 10vh; }
+    #card-2 { top: 13vh; } #card-3 { top: 16vh; } #card-4 { top: 19vh; }
+    .card-content { flex-direction: column; } .card-image { flex: 1; height: 40%; }
+    .card-text { flex: 1.2; padding: 20px; text-align: center; } .card-text h3 { font-size: 1.2rem; } .card-text p { font-size: 0.8rem; }
+    .btn-card { font-size: 0.7rem; padding: 10px 20px; margin: 0 auto; } .card-num { font-size: 3rem; top: 10px; right: 15px; }
+    #main-footer { padding: 40px 5vw 20px; }
+    .footer-container { flex-direction: row !important; flex-wrap: wrap; justify-content: space-between; text-align: left; gap: 20px; }
+    .footer-socials h4, .footer-contact h4 { font-size: 0.6rem; } .contact-link { font-size: 0.9rem; }
+    .social-link { width: 35px; height: 35px; } .icon { width: 16px; height: 16px; }
 }
 
-.back-link span {
-    display: inline-block;
-    transition: transform 0.3s;
-}
-
-.back-link:hover {
-    color: #ffde00;
-}
-
-.back-link:hover span {
-    transform: translateX(-5px);
-}
-
-/* En-tête du projet */
-.project-header {
-    max-width: 800px;
-    margin: 0 auto 80px auto;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.project-category {
-    color: #ffde00;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 20px;
-}
-
-.project-header h1 {
-    font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-}
-
-.project-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #ccc;
-}
-
-/* Galerie d'images */
-.project-gallery {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 50px; /* Espace entre chaque image */
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-    /* Petite ombre pour décoller l'image du fond */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-}
-
-/* Bouton Projet Suivant */
-.next-project-container {
-    padding: 100px 0;
-    text-align: center;
-}
-
-.btn-next {
-    display: inline-block;
-    padding: 20px 40px;
-    border: 1px solid #333;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 2px;
-    transition: all 0.3s;
-    border-radius: 50px;
-}
-
-.btn-next:hover {
-    background-color: #ffde00;
-    border-color: #ffde00;
-    color: #000;
-}
+/* --- BOUTON RETOUR EN HAUT --- */
+#back-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--accent-blue); color: #fff; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.3);}
+#back-to-top svg { width: 24px; height: 24px; fill: currentColor; }
+#back-to-top:hover { transform: translateY(-5px); background: #fff; color: var(--accent-blue); }
+.alt-page #back-to-top { background: var(--accent-yellow); color: #000; }
+.alt-page #back-to-top:hover { background: #fff; color: var(--accent-yellow); }
+#back-to-top.visible { opacity: 1; visibility: visible; }
+@media (max-width: 768px) {#back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }}
