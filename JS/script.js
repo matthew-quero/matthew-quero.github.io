@@ -5,13 +5,29 @@ const myImages = ['1.webp', '2.webp', '5.webp', '9.webp', '6.webp', '7.webp', '8
 let lastMousePos = { x: 0, y: 0 };
 let imageIndex = 0;
 const threshold = 150; 
+const priorityCount = 10; 
+let priorityLoaded = 0;
+let isReadyToStart = false;
 
-/* --- INITIALISATION TRACKER --- */
-if (track) {
-    myImages.forEach(file => {
-        const img = document.createElement("img");
+/* --- INITIALISATION TRACKER INTELLIGENT (UNIQUEMENT PC > 1024px) --- */
+if (track && window.innerWidth > 1024) {
+    myImages.forEach((file, index) => {
+        const img = new Image(); 
         img.src = `img/${file}`;
         img.classList.add("track-image");
+        img.dataset.index = index;
+
+        img.onload = () => {
+            img.classList.add("loaded");
+            // Si c'est une image prioritaire, on incrémente le compteur
+            if (index < priorityCount) {
+                priorityLoaded++;
+                if (priorityLoaded === priorityCount) {
+                    isReadyToStart = true;
+                    console.log("QuickStart : Prêt à tracker.");
+                }
+            }
+        };
         track.appendChild(img);
     });
 }
@@ -19,16 +35,37 @@ if (track) {
 const images = document.querySelectorAll(".track-image");
 
 window.addEventListener("mousemove", e => {
-    if (window.scrollY > 600 || !track) return;
+    // Désactivé si : pas prêt / scroll > 600 / écran <= 1024px / pas de track
+    if (!isReadyToStart || window.scrollY > 600 || !track || window.innerWidth <= 1024) return;
+
     const distance = Math.hypot(e.clientX - lastMousePos.x, e.clientY - lastMousePos.y);
+
     if (distance > threshold) {
-        const img = images[imageIndex];
-        img.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
-        img.style.zIndex = imageIndex;
-        img.style.opacity = "1";
-        setTimeout(() => { img.style.opacity = "0"; }, 1000);
-        lastMousePos = { x: e.clientX, y: e.clientY };
-        imageIndex = (imageIndex + 1) % images.length;
+        const currentImages = document.querySelectorAll(".track-image");
+        // SKIP LOGIC : On prend l'image prévue
+        let imgToDisplay = currentImages[imageIndex];
+        
+        // Si elle n'est pas encore chargée (classe 'loaded' absente)
+        if (imgToDisplay && !imgToDisplay.classList.contains('loaded')) {
+            // On cherche en marche arrière l'image chargée la plus proche
+            let fallbackIndex = imageIndex;
+            while (fallbackIndex >= 0 && currentImages[fallbackIndex] && !currentImages[fallbackIndex].classList.contains('loaded')) {
+                fallbackIndex--;
+            }
+            if (fallbackIndex >= 0) imgToDisplay = currentImages[fallbackIndex];
+            else return; 
+        }
+
+        if (imgToDisplay) {
+            imgToDisplay.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+            imgToDisplay.style.zIndex = imageIndex;
+            imgToDisplay.style.opacity = "1";
+
+            setTimeout(() => { imgToDisplay.style.opacity = "0"; }, 1000);
+
+            lastMousePos = { x: e.clientX, y: e.clientY };
+            imageIndex = (imageIndex + 1) % currentImages.length;
+        }
     }
 });
 
@@ -65,18 +102,12 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('.carte-slide').forEach(card => {
     card.addEventListener('click', function() {
         if (window.innerWidth <= 768) {
-            // Ferme les autres boîtes ouvertes
             document.querySelectorAll('.carte-slide').forEach(other => {
                 if (other !== card) other.classList.remove('active');
             });
-            // Alterne l'état de la carte cliquée
             this.classList.toggle('active');
-            
-            // Scroll doux vers l'élément ouvert
             if(this.classList.contains('active')) {
-                setTimeout(() => {
-                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 400);
+                setTimeout(() => { this.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 400);
             }
         }
     });
@@ -84,15 +115,23 @@ document.querySelectorAll('.carte-slide').forEach(card => {
 
 /* --- BOUTON RETOUR EN HAUT --- */
 const backToTop = document.getElementById("back-to-top");
+if (backToTop) {
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) backToTop.classList.add("visible");
+        else backToTop.classList.remove("visible");
+    });
+    backToTop.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
+}
 
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 400) {
-        backToTop.classList.add("visible");
-    } else {
-        backToTop.classList.remove("visible");
-    }
-});
-
-backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
+/* --- LOGIQUE ASSISTANT AVATAR --- */
+const assistantTrigger = document.getElementById('assistant-trigger');
+const assistantMenu = document.getElementById('assistant-menu');
+if (assistantTrigger && assistantMenu) {
+    assistantTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        assistantMenu.classList.toggle('active');
+    });
+    document.addEventListener('click', () => {
+        assistantMenu.classList.remove('active');
+    });
+}
