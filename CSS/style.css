@@ -1110,7 +1110,7 @@ body.is-loading {
     padding: 6px 10px;
     border-radius: 4px;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
     pointer-events: none;
 }
 
@@ -1574,7 +1574,7 @@ body.is-loading {
     padding: 6px 10px;
     border-radius: 4px;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
     pointer-events: none;
 }
 .cp-img-wrap:hover .cp-zoom-hint { opacity: 1; }
@@ -1697,7 +1697,7 @@ body.is-loading {
 .cdf-match-img {
     width: 100%;
     display: block;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
 }
 
 .cdf-match-link:hover .cdf-match-img { opacity: 0.8; }
@@ -1714,7 +1714,7 @@ body.is-loading {
     text-transform: uppercase;
     padding: 6px 10px;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
     pointer-events: none;
 }
 
@@ -1825,7 +1825,7 @@ body.is-loading {
     height: 100%;
     width: auto;
     display: block;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
     pointer-events: none;
 }
 
@@ -1849,7 +1849,7 @@ body.is-loading {
     max-width: 50%;
     display: block;
     cursor: zoom-in;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
 }
 
 .evt-feature-img:hover { opacity: 0.85; }
@@ -1895,7 +1895,7 @@ body.is-loading {
     width: 100%;
     height: auto;
     display: block;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
 }
 
 .evt-card:hover img { opacity: 0.85; }
@@ -1925,7 +1925,7 @@ body.is-loading {
     height: auto;
     display: block;
     cursor: zoom-in;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
 }
 
 .prg-img:hover { opacity: 0.85; }
@@ -2005,7 +2005,7 @@ body.is-loading {
     overflow: hidden;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
@@ -2161,7 +2161,7 @@ body.is-loading {
     font-size: 1.4rem;
     cursor: pointer;
     opacity: 0.6;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
 }
 
 .lb-close:hover { opacity: 1; }
@@ -2563,7 +2563,7 @@ body.is-loading {
     font-weight: 700;
     font-size: 0.85rem;
     letter-spacing: 1px;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
 }
 
 .project-hero-link:hover {
@@ -3432,7 +3432,7 @@ body.project-page-v2 #main-footer {
     font-size: 1.6rem;
     cursor: pointer;
     opacity: 0.7;
-    transition: opacity 0.2s;
+    transition: var(--transition-fast);
 }
 
 #plabennec-close:hover {
