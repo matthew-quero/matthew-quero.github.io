@@ -189,13 +189,13 @@ body.is-loading {
     line-height: 1.1;
     margin-bottom: 10px;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--color-white);
 }
 
 #alternance h3 {
     font-size: 1.8rem;
     font-weight: 400;
-    color: #888;
+    color: var(--color-grey);
     margin-bottom: 40px;
     font-style: italic;
 }
@@ -212,9 +212,9 @@ body.is-loading {
 
 .btn-discover {
     display: inline-block;
-    color: #fff;
+    color: var(--color-white);
     background-color: transparent;
-    border: 2px solid #fff;
+    border: 2px solid var(--color-white);
     padding: 12px 32px;
     font-weight: 900;
     text-transform: uppercase;
@@ -256,14 +256,14 @@ body.is-loading {
 
 .pitch-overlay div {
     position: absolute;
-    border-color: #fff;
+    border-color: var(--color-white);
     border-style: solid;
     border-width: 2px;
     box-sizing: border-box;
 }
 
-.pitch-outline { top: 0; left: 0; right: 0; bottom: 0; border: 2px solid #fff; }
-.pitch-midline { top: 0; bottom: 0; left: 50%; width: 0; border-left: 2px solid #fff; }
+.pitch-outline { top: 0; left: 0; right: 0; bottom: 0; border: 2px solid var(--color-white); }
+.pitch-midline { top: 0; bottom: 0; left: 50%; width: 0; border-left: 2px solid var(--color-white); }
 
 .pitch-center-circle {
     top: 50%;
@@ -272,7 +272,7 @@ body.is-loading {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    border: 2px solid #fff;
+    border: 2px solid var(--color-white);
 }
 
 .pitch-center-spot {
@@ -280,17 +280,17 @@ body.is-loading {
     left: 50%;
     width: 6px;
     height: 6px;
-    background: #fff;
+    background: var(--color-white);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     border: none !important;
 }
 
-.pitch-penalty-box { top: 20%; bottom: 20%; width: 16%; border: 2px solid #fff; }
+.pitch-penalty-box { top: 20%; bottom: 20%; width: 16%; border: 2px solid var(--color-white); }
 .pitch-penalty-box.left { left: 0; border-left: none; }
 .pitch-penalty-box.right { right: 0; border-right: none; }
 
-.pitch-goal-box { top: 36%; bottom: 36%; width: 6%; border: 2px solid #fff; }
+.pitch-goal-box { top: 36%; bottom: 36%; width: 6%; border: 2px solid var(--color-white); }
 .pitch-goal-box.left { left: 0; border-left: none; }
 .pitch-goal-box.right { right: 0; border-right: none; }
 
@@ -302,7 +302,7 @@ body.is-loading {
     aspect-ratio: 1/1;
     border-radius: 50%;
     transform: translateY(-50%);
-    border: 2px solid #fff;
+    border: 2px solid var(--color-white);
 }
 
 .pitch-arc.right {
@@ -313,7 +313,7 @@ body.is-loading {
     aspect-ratio: 1/1;
     border-radius: 50%;
     transform: translateY(-50%);
-    border: 2px solid #fff;
+    border: 2px solid var(--color-white);
 }
 
 /* === SECTION ABOUT TEASER (ACCUEIL) === */
@@ -347,7 +347,7 @@ body.is-loading {
     width: 100%;
     height: 100%;
     background: #222;
-    border: 1px solid #333;
+    border: 1px solid var(--color-border);
     border-radius: 10px;
 }
 
@@ -373,7 +373,7 @@ body.is-loading {
     line-height: 1.1;
     margin-bottom: 30px;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--color-white);
 }
 
 #about-teaser p {
@@ -421,7 +421,7 @@ body.is-loading {
     font-size: clamp(2.8rem, 5.5vw, 5.5rem);
     font-weight: 900;
     line-height: 0.88;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     margin-bottom: 16px;
     letter-spacing: -0.02em;
@@ -430,7 +430,7 @@ body.is-loading {
 .gh-accent { color: var(--accent-yellow); }
 
 .gh-club-name {
-    color: #fff;
+    color: var(--color-white);
     font-size: clamp(1.2rem, 2vw, 1.8rem);
     font-weight: 900;
     letter-spacing: 3px;
@@ -441,7 +441,7 @@ body.is-loading {
 .gh-mission {
     font-size: 1.05rem;
     line-height: 1.75;
-    color: #888;
+    color: var(--color-grey);
     max-width: 520px;
 }
 
@@ -476,14 +476,14 @@ body.is-loading {
 #ginglin-carousel {
     background: #030303;
     padding: 80px 0 70px;
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid var(--color-dark);
     overflow: hidden;
 }
 
 .gc-heading {
     font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 900;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 60px;
@@ -571,7 +571,7 @@ body.is-loading {
 .gc-arrow {
     background: transparent;
     border: 2px solid #2a2a2a;
-    color: #fff;
+    color: var(--color-white);
     width: 64px;
     height: 64px;
     border-radius: 50%;
@@ -593,7 +593,7 @@ body.is-loading {
 #ginglin-clubs {
     background: var(--bg);
     padding: 80px 8%;
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid var(--color-dark);
 }
 
 .gclub-header {
@@ -603,7 +603,7 @@ body.is-loading {
 .gclub-header h2 {
     font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 900;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     letter-spacing: -0.01em;
 }
@@ -612,7 +612,7 @@ body.is-loading {
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 4px;
-    color: #333;
+    color: var(--color-border);
     text-transform: uppercase;
     margin-bottom: 24px;
 }
@@ -714,7 +714,7 @@ body.is-loading {
 .gclub-btn {
     padding: 10px 20px;
     border: 1px solid #2a2a2a;
-    color: #888;
+    color: var(--color-grey);
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -745,7 +745,7 @@ body.is-loading {
 /* === PAGE GINGLIN : LA SUITE === */
 #ginglin-suite {
     background: #080808;
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid var(--color-dark);
     padding: 0;
     display: flex;
     align-items: flex-start;
@@ -792,7 +792,7 @@ body.is-loading {
 .gsuite-text {
     font-size: 1.1rem;
     line-height: 1.75;
-    color: #888;
+    color: var(--color-grey);
     text-wrap: balance;
 }
 
@@ -812,7 +812,7 @@ body.is-loading {
 .gstats-heading {
     font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 900;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     letter-spacing: -0.01em;
 }
@@ -840,7 +840,7 @@ body.is-loading {
 }
 
 .gstats-band--dark .gstats-platform {
-    color: #333;
+    color: var(--color-border);
 }
 
 .gstats-item {
@@ -934,7 +934,7 @@ body.is-loading {
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 900;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--color-white);
     letter-spacing: -0.02em;
     margin-bottom: 8px;
 }
@@ -957,7 +957,7 @@ body.is-loading {
 .cs-title {
     font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 900;
-    color: #fff;
+    color: var(--color-white);
     letter-spacing: -0.02em;
     text-transform: uppercase;
     margin-bottom: 24px;
@@ -1102,7 +1102,7 @@ body.is-loading {
     bottom: 12px;
     right: 12px;
     background: rgba(0, 0, 0, 0.75);
-    color: #fff;
+    color: var(--color-white);
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -1135,7 +1135,7 @@ body.is-loading {
     position: relative;
     font-size: 1.2rem;
     line-height: 1.75;
-    color: #fff;
+    color: var(--color-white);
     font-weight: 400;
     padding-left: 24px;
     border-left: 3px solid var(--accent-yellow);
@@ -1198,7 +1198,7 @@ body.is-loading {
 }
 
 .cm-ig-screen {
-    background: #fff;
+    background: var(--color-white);
     color: #111;
     display: flex;
     flex-direction: column;
@@ -1219,7 +1219,7 @@ body.is-loading {
     height: 32px;
     border-radius: 50%;
     background: #ddd;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #e1306c;
+    box-shadow: 0 0 0 2px var(--color-white), 0 0 0 3.5px #e1306c;
 }
 
 .cm-ig-post {
@@ -1259,7 +1259,7 @@ body.is-loading {
 
 .cm-ig-location {
     font-size: 5.5px;
-    color: #888;
+    color: var(--color-grey);
     line-height: 1.2;
 }
 
@@ -1357,7 +1357,7 @@ body.is-loading {
 .cm-desktop-frame {
     width: 460px;
     height: 300px;
-    background: #1a1a1a;
+    background: var(--color-dark);
     border: 3px solid #2a2a2a;
     border-radius: 10px 10px 4px 4px;
     overflow: hidden;
@@ -1374,7 +1374,7 @@ body.is-loading {
 
 .cm-fb-nav {
     height: 36px;
-    background: #fff;
+    background: var(--color-white);
     border-bottom: 1px solid #ddd;
     display: flex;
     align-items: center;
@@ -1397,7 +1397,7 @@ body.is-loading {
 }
 
 .cm-fb-post-card {
-    background: #fff;
+    background: var(--color-white);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -1468,13 +1468,13 @@ body.is-loading {
 .cm-desktop-neck {
     width: 36px;
     height: 20px;
-    background: #1a1a1a;
+    background: var(--color-dark);
 }
 
 .cm-desktop-base {
     width: 100px;
     height: 6px;
-    background: #1a1a1a;
+    background: var(--color-dark);
     border-radius: 0 0 6px 6px;
 }
 
@@ -1514,8 +1514,8 @@ body.is-loading {
     width: 44px;
     height: 44px;
     background: none;
-    border: 1px solid #333;
-    color: #888;
+    border: 1px solid var(--color-border);
+    color: var(--color-grey);
     font-size: 1.1rem;
     cursor: pointer;
     transition: border-color 0.2s, color 0.2s;
@@ -1566,7 +1566,7 @@ body.is-loading {
     bottom: 12px;
     right: 12px;
     background: rgba(0, 0, 0, 0.75);
-    color: #fff;
+    color: var(--color-white);
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -1660,7 +1660,7 @@ body.is-loading {
     width: 36px;
     height: 36px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid var(--color-border);
     color: #555;
     font-size: 0.75rem;
     font-weight: 700;
@@ -1707,7 +1707,7 @@ body.is-loading {
     bottom: 12px;
     right: 12px;
     background: rgba(0,0,0,0.75);
-    color: #fff;
+    color: var(--color-white);
     font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 2px;
@@ -1755,7 +1755,7 @@ body.is-loading {
 .cdf-btn {
     display: inline-block;
     padding: 14px 28px;
-    border: 1px solid #333;
+    border: 1px solid var(--color-border);
     color: #666;
     font-size: 0.7rem;
     font-weight: 700;
@@ -1767,7 +1767,7 @@ body.is-loading {
 }
 
 .cdf-btn:hover {
-    border-color: #888;
+    border-color: var(--color-grey);
     color: #aaa;
 }
 
@@ -1973,7 +1973,7 @@ body.is-loading {
     padding: 22px 20px;
     border: 1px solid #222;
     background: none;
-    color: #888;
+    color: var(--color-grey);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.7rem;
     font-weight: 700;
@@ -2071,7 +2071,7 @@ body.is-loading {
     background: #0a0a0a;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid #1a1a1a;
+    border: 1px solid var(--color-dark);
     cursor: pointer;
     position: relative;
     transition: border-color 0.25s, transform 0.25s;
@@ -2117,7 +2117,7 @@ body.is-loading {
 .cg-overlay span {
     font-size: 0.75rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -2157,7 +2157,7 @@ body.is-loading {
     right: 0;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--color-white);
     font-size: 1.4rem;
     cursor: pointer;
     opacity: 0.6;
@@ -2195,7 +2195,7 @@ body.is-loading {
 
 .lb-caption {
     font-size: 0.8rem;
-    color: #888;
+    color: var(--color-grey);
     text-align: center;
     max-width: 500px;
     line-height: 1.5;
@@ -2209,8 +2209,8 @@ body.is-loading {
 
 .lb-zoom-btn {
     background: #111;
-    border: 1px solid #333;
-    color: #fff;
+    border: 1px solid var(--color-border);
+    color: var(--color-white);
     width: 36px;
     height: 36px;
     border-radius: 6px;
@@ -2236,8 +2236,8 @@ body.is-loading {
     transform: translateY(-50%);
     z-index: 1002;
     background: none;
-    border: 1px solid #333;
-    color: #888;
+    border: 1px solid var(--color-border);
+    color: var(--color-grey);
     font-size: 1.1rem;
     width: 48px;
     height: 48px;
@@ -2326,7 +2326,7 @@ body.is-loading {
 .tv-img-name {
     font-size: 0.68rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -2336,7 +2336,7 @@ body.is-loading {
     width: 90%;
     max-width: 1200px;
     margin: 100px auto 50px auto;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .missions-header {
@@ -2356,7 +2356,7 @@ body.is-loading {
 }
 
 .missions-header p {
-    color: #888;
+    color: var(--color-grey);
     letter-spacing: 2px;
     text-transform: uppercase;
     font-size: 0.9rem;
@@ -2386,7 +2386,7 @@ body.is-loading {
 
 .mission-card h3 {
     font-size: 1.8rem;
-    color: #fff;
+    color: var(--color-white);
     margin-bottom: 20px;
     text-transform: uppercase;
     font-weight: 800;
@@ -2414,7 +2414,7 @@ body.is-loading {
 .proj-header {
     text-align: center;
     padding: 10vh 0 5vh;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .proj-header h2 {
@@ -2499,7 +2499,7 @@ body.is-loading {
 .proj-title {
     font-size: clamp(2rem, 4.5vw, 4rem);
     font-weight: 900;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     letter-spacing: -0.02em;
     line-height: 1;
@@ -2738,7 +2738,7 @@ body.is-loading {
     padding: 5px 14px;
     font-size: 0.75rem;
     letter-spacing: 1px;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .typo-grid {
@@ -2808,7 +2808,7 @@ body.is-loading {
 }
 
 .project-takeaway p {
-    color: #fff;
+    color: var(--color-white);
     font-weight: 400;
     white-space: nowrap;
     font-size: clamp(1rem, 1.5vw, 1.2rem);
@@ -2832,9 +2832,9 @@ body.is-loading {
 
 .btn-project-back {
     display: inline-block;
-    color: #fff;
+    color: var(--color-white);
     background-color: transparent;
-    border: 2px solid #fff;
+    border: 2px solid var(--color-white);
     padding: 13px 36px;
     font-weight: 900;
     text-transform: uppercase;
@@ -2933,7 +2933,7 @@ body.project-page-v2 #main-footer {
 .next-card-title {
     font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 900;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     letter-spacing: -0.02em;
     line-height: 1;
@@ -2977,7 +2977,7 @@ body.project-page-v2 #main-footer {
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #fff;
+    color: var(--color-white);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
 }
 
@@ -3035,7 +3035,7 @@ body.project-page-v2 #main-footer {
     width: 100%;
     height: 100%;
     background: #222;
-    border: 1px solid #333;
+    border: 1px solid var(--color-border);
     border-radius: 10px;
     overflow: hidden;
     display: flex;
@@ -3052,7 +3052,7 @@ body.project-page-v2 #main-footer {
 .about-text-side h1 {
     font-size: 3rem;
     margin-bottom: 30px;
-    color: #fff;
+    color: var(--color-white);
     font-weight: 900;
 }
 
@@ -3064,12 +3064,12 @@ body.project-page-v2 #main-footer {
 }
 
 .about-text-side strong {
-    color: #fff;
+    color: var(--color-white);
     border-bottom: 2px solid var(--accent);
 }
 
 .text-underline {
-    color: #fff;
+    color: var(--color-white);
     border-bottom: 2px solid var(--accent);
     padding-bottom: 1px;
 }
@@ -3152,7 +3152,7 @@ body.project-page-v2 #main-footer {
     display: block;
     font-size: 1.4rem;
     font-weight: 900;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
     margin-bottom: 8px;
 }
@@ -3198,7 +3198,7 @@ body.project-page-v2 #main-footer {
     display: block;
     width: 44px;
     height: 44px;
-    fill: #fff;
+    fill: var(--color-white);
     transition: fill 0.3s ease;
 }
 
@@ -3217,7 +3217,7 @@ body.project-page-v2 #main-footer {
 #about-vision {
     background: #080808;
     padding: 100px 5vw;
-    border-top: 1px solid #1a1a1a;
+    border-top: 1px solid var(--color-dark);
 }
 
 .vision-container {
@@ -3323,7 +3323,7 @@ body.project-page-v2 #main-footer {
     position: absolute;
     bottom: calc(100% + 15px);
     left: 0;
-    background: #fff;
+    background: var(--color-white);
     border-radius: 20px;
     padding: 18px;
     display: flex;
@@ -3343,7 +3343,7 @@ body.project-page-v2 #main-footer {
     top: 100%;
     right: 30px;
     border: 10px solid transparent;
-    border-top-color: #fff;
+    border-top-color: var(--color-white);
 }
 
 .avatar-bubble.active {
@@ -3379,7 +3379,7 @@ body.project-page-v2 #main-footer {
 
 .bubble-item:hover {
     background: var(--accent);
-    color: #fff;
+    color: var(--color-white);
 }
 
 .bubble-sixsept {
@@ -3428,7 +3428,7 @@ body.project-page-v2 #main-footer {
     right: 0;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--color-white);
     font-size: 1.6rem;
     cursor: pointer;
     opacity: 0.7;
@@ -3493,7 +3493,7 @@ body.project-page-v2 #main-footer {
 
 .contact-item .value {
     font-size: 1.2rem;
-    color: #fff;
+    color: var(--color-white);
     font-weight: 700;
 }
 

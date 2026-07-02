@@ -8,6 +8,15 @@
     --text-dim: #aaaaaa;
     --card-bg: #111;
     --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    --color-white: #fff;
+    --color-grey: #888;
+    --color-border: #333;
+    --color-dark: #1a1a1a;
+    --radius-round: 50%;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --transition-fast: opacity 0.2s;
 }
 
 /* === RESET === */

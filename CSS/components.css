@@ -34,7 +34,7 @@ body.nav-open {
     width: 30px;
     height: 3px;
     border-radius: 3px;
-    background: #fff;
+    background: var(--color-white);
     transition: var(--transition);
 }
 
@@ -114,7 +114,7 @@ body.nav-open #side-nav {
 #main-footer, #contact {
     background-color: #050505;
     padding: 60px 5vw 20px 5vw;
-    color: #fff;
+    color: var(--color-white);
     margin-top: 100px;
 }
 
@@ -139,16 +139,16 @@ body.nav-open #side-nav {
     align-items: center;
     width: 50px;
     height: 50px;
-    border: 1px solid #333;
+    border: 1px solid var(--color-border);
     border-radius: 50%;
-    color: #fff;
+    color: var(--color-white);
     transition: 0.3s;
 }
 
 .social-link:hover {
     background-color: var(--accent);
     border-color: var(--accent);
-    color: #fff;
+    color: var(--color-white);
     transform: translateY(-3px);
 }
 
@@ -193,7 +193,7 @@ body.nav-open #side-nav {
     width: 50px;
     height: 50px;
     background: var(--accent);
-    color: #fff;
+    color: var(--color-white);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -215,7 +215,7 @@ body.nav-open #side-nav {
 
 #back-to-top:hover {
     transform: translateY(-5px);
-    background: #fff;
+    background: var(--color-white);
     color: var(--accent);
 }
 
@@ -230,7 +230,7 @@ body.nav-open #side-nav {
 }
 
 .alt-page #back-to-top:hover {
-    background: #fff;
+    background: var(--color-white);
     color: var(--accent-yellow);
 }
 
