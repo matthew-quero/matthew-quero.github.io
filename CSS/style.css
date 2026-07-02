@@ -3092,7 +3092,7 @@ body.project-page-v2 #main-footer {
     display: block;
 }
 
-.about-text-side h2 {
+.about-text-side h1 {
     font-size: 3rem;
     margin-bottom: 30px;
     color: #fff;
@@ -3643,7 +3643,7 @@ body.project-page-v2 #main-footer {
     .about-grid { grid-template-columns: 1fr; gap: 30px; }
     .about-photo-side { min-height: 350px; }
     .img-placeholder-grey { position: relative; height: 350px; }
-    .about-text-side h2 { font-size: 1.8rem; text-align: center; }
+    .about-text-side h1 { font-size: 1.8rem; text-align: center; }
 
     .timeline-container h2 { font-size: 1.8rem; }
     .timeline-curve, .timeline-dot, .timeline-glow { display: none; }
