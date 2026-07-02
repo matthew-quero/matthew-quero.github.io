@@ -141,6 +141,7 @@
 
         function adjustRows() {
             var containerW = grid.offsetWidth;
+            var lastFullHeight = 280;
             rowEls.forEach(function(rowEl) {
                 var cards = Array.from(rowEl.querySelectorAll('.tv-card'));
                 var totalRatio = 0;
@@ -152,7 +153,15 @@
                     totalRatio += r;
                 });
                 var gaps = (cards.length - 1) * gap;
-                var h = Math.round((containerW - gaps) / totalRatio);
+                var h;
+                if (cards.length < currentPerRow) {
+                    /* Dernière ligne incomplète : ne pas l'étirer sur toute la largeur,
+                       garder la hauteur des lignes pleines pour éviter une image géante. */
+                    h = lastFullHeight;
+                } else {
+                    h = Math.round((containerW - gaps) / totalRatio);
+                    lastFullHeight = h;
+                }
                 rowEl.style.height = h + 'px';
                 cards.forEach(function(card, j) { card.style.flexGrow = ratios[j]; });
             });

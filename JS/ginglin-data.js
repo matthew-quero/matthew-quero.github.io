@@ -484,6 +484,10 @@ const GINGLIN_CLUBS = {
         group: 'autre',
         images: [
             { src: 'img/asgc/com/deplacement_supporters.webp', title: 'Déplacement Supporters', desc: "Communication pour le déplacement en bus des supporters à Guer." },
+            { src: 'img/asgc/com/deplacement_concarneau.webp', title: 'Déplacement à Concarneau', desc: "" },
+            { src: 'img/asgc/com/stage_u16.webp', title: 'Stage U16', desc: "" },
+            { src: 'img/asgc/com/stage_u16_v3.webp', title: 'Stage U16 (V3)', desc: "" },
+            { src: 'img/asgc/com/stage_u17.webp', title: 'Stage U17', desc: "" },
             { src: 'img/asgc/com/tournoi_aiglons.webp', title: 'Tournoi des Aiglons',     desc: "Affiche pour le tournoi des Aiglons en juin. Le visuel s'inspire du Trophée de la Loire." }
         ]
     },

@@ -17,6 +17,10 @@
             document.documentElement.style.overflow = '';
             document.body.classList.remove('is-loading');
             loader.remove();
+            if (window.location.hash) {
+                var target = document.querySelector(window.location.hash);
+                if (target) target.scrollIntoView();
+            }
         }, { once: true });
     }
 
