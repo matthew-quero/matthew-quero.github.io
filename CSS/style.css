@@ -2034,29 +2034,6 @@ body.is-loading {
     color: #000;
 }
 
-@media (max-width: 768px) {
-    .cn-inner {
-        flex-direction: column;
-    }
-
-    .cn-inner.cn-single .cn-btn {
-        flex: 0 1 auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .cm-inner {
-        flex-direction: column;
-        align-items: center;
-        gap: 32px;
-    }
-
-    .cm-desktop-frame {
-        width: 260px;
-        height: 170px;
-    }
-}
-
 #club-gallery {
     padding: 60px 5%;
 }
@@ -2681,12 +2658,6 @@ body.is-loading {
     display: block;
 }
 
-@media (max-width: 900px) {
-    .mockups-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 .project-identity {
     padding: 60px 5vw 100px;
     max-width: 1300px;
@@ -2764,22 +2735,6 @@ body.is-loading {
     white-space: nowrap;
 }
 
-@media (max-width: 800px) {
-    .identity-grid {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .typo-grid {
-        flex-direction: column;
-    }
-
-    .typo-item {
-        width: 100%;
-        max-width: 340px;
-    }
-}
-
 .typo-item-label {
     display: block;
     color: var(--accent);
@@ -2814,12 +2769,6 @@ body.is-loading {
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     line-height: 1.6;
     margin-bottom: 40px;
-}
-
-@media (max-width: 1100px) {
-    .project-takeaway p {
-        white-space: normal;
-    }
 }
 
 .project-takeaway .hl {
@@ -3517,6 +3466,56 @@ body.project-page-v2 #main-footer {
 
 .social-block .social-icons {
     margin-top: 0;
+}
+
+/* === RESPONSIVE : regroupement des media queries isolées (D.3) === */
+@media (max-width: 1100px) {
+    .project-takeaway p {
+        white-space: normal;
+    }
+}
+
+@media (max-width: 900px) {
+    .mockups-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .identity-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .typo-grid {
+        flex-direction: column;
+    }
+
+    .typo-item {
+        width: 100%;
+        max-width: 340px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cn-inner {
+        flex-direction: column;
+    }
+
+    .cn-inner.cn-single .cn-btn {
+        flex: 0 1 auto;
+    }
+
+    .cm-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .cm-desktop-frame {
+        width: 260px;
+        height: 170px;
+    }
 }
 
 /* === RESPONSIVE : ≤ 1024px === */
