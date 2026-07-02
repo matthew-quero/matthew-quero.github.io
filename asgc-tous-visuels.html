@@ -149,7 +149,7 @@
                 chunk.forEach(function(imgData) {
                     var card = document.createElement('div');
                     card.className = 'tv-card';
-                    card.innerHTML = '<div class="tv-img-wrap"><img src="' + imgData.src + '" alt="' + imgData.title + '"></div>';
+                    card.innerHTML = '<div class="tv-img-wrap"><img src="' + imgData.src + '" alt="' + imgData.title + '" loading="lazy"></div>';
 
                     card.addEventListener('click', function() { openLb(imgData.src, imgData.title); });
                     card.addEventListener('mouseenter', function() {

@@ -47,16 +47,16 @@
             <button class="gc-arrow" id="gcPrev" aria-label="Précédent">&#8592;</button>
             <div class="gc-stage" id="gcStage">
                 <div class="gc-slide" data-pos="0" data-club="stade-plabennecois">
-                    <img src="img/asgc/affiches/plabennec.webp" alt="Stade Plabennecois VS ASGC">
+                    <img src="img/asgc/affiches/plabennec.webp" alt="Stade Plabennecois VS ASGC" loading="lazy">
                 </div>
                 <div class="gc-slide" data-pos="1" data-club="us-concarneau">
-                    <img src="img/asgc/affiches/concarneau_cdf.webp" alt="ASGC VS US Concarneau">
+                    <img src="img/asgc/affiches/concarneau_cdf.webp" alt="ASGC VS US Concarneau" loading="lazy">
                 </div>
                 <div class="gc-slide" data-pos="2" data-club="us-montagnarde">
-                    <img src="img/asgc/affiches/montagnarde_aller.webp" alt="ASGC vs US Montagnarde">
+                    <img src="img/asgc/affiches/montagnarde_aller.webp" alt="ASGC vs US Montagnarde" loading="lazy">
                 </div>
                 <div class="gc-slide" data-pos="-1" data-club="ea-saint-renan">
-                    <img src="img/asgc/affiches/saint_renan_aller.webp" alt="ASGC vs EA Saint Renan">
+                    <img src="img/asgc/affiches/saint_renan_aller.webp" alt="ASGC vs EA Saint Renan" loading="lazy">
                 </div>
             </div>
             <button class="gc-arrow" id="gcNext" aria-label="Suivant">&#8594;</button>
@@ -82,7 +82,7 @@
                     <a href="asgc-tous-visuels.html" class="gclub-btn gclub-btn-all">Voir tous les visuels →</a>
                 </div>
                 <div class="gclub-mockup">
-                    <img src="img/site/mockup_asgc.webp" alt="Mockup ASGC">
+                    <img src="img/site/mockup_asgc.webp" alt="Mockup ASGC" loading="lazy">
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
     <!-- ===== LA SUITE ? ===== -->
     <section id="ginglin-suite">
         <div class="gsuite-image">
-            <img src="img/site/photo_matthew.webp" alt="Matthew Quéro - AS Ginglin Cesson">
+            <img src="img/site/photo_matthew.webp" alt="Matthew Quéro - AS Ginglin Cesson" loading="lazy">
         </div>
         <div class="gsuite-content">
             <h2 class="gsuite-title">LA <span class="gh-accent">SUITE ?</span></h2>
@@ -211,7 +211,7 @@
                 a.className = 'gclub-card' + (club.images.length === 0 ? ' gclub-card-soon' : '');
                 a.title = club.name;
                 if (club.logo) {
-                    a.innerHTML = '<div class="gclub-logo-wrap"><img src="' + club.logo + '" alt="' + club.name + '"></div>';
+                    a.innerHTML = '<div class="gclub-logo-wrap"><img src="' + club.logo + '" alt="' + club.name + '" loading="lazy"></div>';
                 } else {
                     a.innerHTML = '<div class="gclub-logo-wrap"><span class="gclub-initials">' + club.acronym + '</span></div>';
                 }

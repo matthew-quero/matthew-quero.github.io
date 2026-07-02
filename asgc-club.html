@@ -96,8 +96,8 @@
             <div class="cdf-carousel-col">
                 <div class="cdf-stage">
                     <img class="cdf-slide cdf-slide-active" src="img/asgc/coupe/cdf_5eme_tour.webp" alt="5ème Tour CDF">
-                    <img class="cdf-slide" src="img/asgc/coupe/cdf_6eme_tour_v1.webp" alt="6ème Tour CDF V1">
-                    <img class="cdf-slide" src="img/asgc/coupe/cdf_6eme_tour_v2.webp" alt="6ème Tour CDF V2">
+                    <img class="cdf-slide" src="img/asgc/coupe/cdf_6eme_tour_v1.webp" alt="6ème Tour CDF V1" loading="lazy">
+                    <img class="cdf-slide" src="img/asgc/coupe/cdf_6eme_tour_v2.webp" alt="6ème Tour CDF V2" loading="lazy">
                 </div>
                 <div class="cdf-selectors" id="cdfSelectors">
                     <button class="cdf-sel cdf-sel-active" data-idx="0">1</button>
@@ -472,7 +472,7 @@
                         item.className = 'com-item';
                         item.dataset.src = imgData.src;
                         item.dataset.caption = imgData.title;
-                        item.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.title + '" draggable="false">';
+                        item.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.title + '" draggable="false" loading="lazy">';
                         inner.appendChild(item);
                     });
                     return inner;
@@ -790,7 +790,7 @@
             nextLink.innerHTML =
                 '<div class="cn-hover-preview">' + (nextPreviewSrc ? '<img src="' + nextPreviewSrc + '" alt="">' : '') + '</div>' +
                 nextClub.name +
-                '<img class="cn-club-logo" src="' + nextClub.logo + '" alt="">';
+                '<img class="cn-club-logo" src="' + nextClub.logo + '" alt="" loading="lazy">';
         } else {
             nextLink.textContent = nextClub.name;
         }
@@ -870,8 +870,8 @@
                     mockupsSection.classList.remove('cm-hidden');
 
                     var mockupHtml = '';
-                    if (img.mockupInsta) mockupHtml += '<img src="' + img.mockupInsta + '" alt="Mockup Instagram ' + img.title + '">';
-                    if (img.mockup) mockupHtml += '<img src="' + img.mockup + '" alt="Mockup Facebook ' + img.title + '">';
+                    if (img.mockupInsta) mockupHtml += '<img src="' + img.mockupInsta + '" alt="Mockup Instagram ' + img.title + '" loading="lazy">';
+                    if (img.mockup) mockupHtml += '<img src="' + img.mockup + '" alt="Mockup Facebook ' + img.title + '" loading="lazy">';
                     if (!mockupHtml) mockupHtml = '<div class="cm-placeholder"></div>';
                     document.querySelector('.cm-mockup-img-wrap').innerHTML = mockupHtml;
                 }
