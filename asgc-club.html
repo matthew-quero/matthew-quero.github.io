@@ -251,12 +251,12 @@
     </div>
     </main>
 
-    <script src="JS/components.js"></script>
-    <script src="JS/ginglin-data.js"></script>
-    <script src="JS/script.js"></script>
+    <script src="JS/components.js" defer></script>
+    <script src="JS/ginglin-data.js" defer></script>
+    <script src="JS/script.js" defer></script>
 
     <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', function () {
         /* ===== INIT ===== */
         const params = new URLSearchParams(window.location.search);
         const clubId = params.get('club');
@@ -888,7 +888,7 @@
                 }
             }, 220);
         }
-    })();
+    });
     </script>
 
 </body>

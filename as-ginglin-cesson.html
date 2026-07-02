@@ -165,16 +165,16 @@
     </section>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.min.js"></script>
-    <script src="fonts/montserrat-black-b64.js"></script>
-    <script src="JS/components.js"></script>
-    <script src="JS/ginglin-data.js"></script>
-    <script src="JS/script.js"></script>
-    <script src="JS/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.min.js" defer></script>
+    <script src="fonts/montserrat-black-b64.js" defer></script>
+    <script src="JS/components.js" defer></script>
+    <script src="JS/ginglin-data.js" defer></script>
+    <script src="JS/script.js" defer></script>
+    <script src="JS/loader.js" defer></script>
 
     <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', function () {
         /* ===== COVERFLOW ===== */
         const stage = document.getElementById('gcStage');
         const slides = Array.from(stage.querySelectorAll('.gc-slide'));
@@ -242,7 +242,7 @@
                 btn.style.width = maxW + 'px';
             });
         });
-    })();
+    });
     </script>
 
     <script>
