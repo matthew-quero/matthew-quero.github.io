@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternance AS Ginglin Cesson - Matthew Quéro</title>
+    <link rel="icon" type="image/png" href="img/site/logo.png">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/components.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body class="alt-page is-loading">
+
+    <div id="loader">
+        <svg id="loader-svg" viewBox="0 0 220 130">
+            <path id="loader-path-m" fill="#000" fill-opacity="0" stroke="#000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+            <path id="loader-path-q" fill="#fff" fill-opacity="0" stroke="#fff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+        </svg>
+    </div>
+
+    <div class="nav-project">
+        <a href="index.html#alternance" class="back-link">← Retour au portfolio</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section id="ginglin-hero">
+        <canvas id="ginglin-canvas"></canvas>
+        <div class="gh-text">
+            <h1 class="gh-title">CHARGÉ DE<br><span class="gh-accent">COMMUNICATION</span></h1>
+            <p class="gh-club-name">AS Ginglin Cesson</p>
+            <p class="gh-mission">
+                Je m'occupe de toute la comm' du club. Affiches de match, résultats du week-end, annonces CDF. Tout ce qui sort sur Instagram et Facebook, c'est moi. Le week-end je suis au stade avec l'équipe première, objectif ou téléphone en main.
+            </p>
+        </div>
+        <div class="gh-visual">
+            <div class="gh-glow"></div>
+            <img src="img/site/logo_asgc.webp" alt="Logo AS Ginglin Cesson" class="gh-logo">
+        </div>
+    </section>
+
+    <!-- ===== COVERFLOW : 4 MEILLEURS VISUELS ===== -->
+    <section id="ginglin-carousel">
+        <h2 class="gc-heading">LES MEILLEURS <span class="gh-accent">VISUELS</span></h2>
+        <div class="gc-wrapper">
+            <button class="gc-arrow" id="gcPrev" aria-label="Précédent">&#8592;</button>
+            <div class="gc-stage" id="gcStage">
+                <div class="gc-slide" data-pos="0" data-club="stade-plabennecois">
+                    <img src="img/asgc/affiches/plabennec.webp" alt="Stade Plabennecois VS ASGC">
+                </div>
+                <div class="gc-slide" data-pos="1" data-club="us-concarneau">
+                    <img src="img/asgc/affiches/concarneau_cdf.webp" alt="ASGC VS US Concarneau">
+                </div>
+                <div class="gc-slide" data-pos="2" data-club="us-montagnarde">
+                    <img src="img/asgc/affiches/montagnarde_aller.webp" alt="ASGC vs US Montagnarde">
+                </div>
+                <div class="gc-slide" data-pos="-1" data-club="ea-saint-renan">
+                    <img src="img/asgc/affiches/saint_renan_aller.webp" alt="ASGC vs EA Saint Renan">
+                </div>
+            </div>
+            <button class="gc-arrow" id="gcNext" aria-label="Suivant">&#8594;</button>
+        </div>
+    </section>
+
+    <!-- ===== GRILLE CLUBS ===== -->
+    <section id="ginglin-clubs">
+        <div class="gclub-header">
+            <h2>LES <span class="gh-accent">AFFICHES</span></h2>
+        </div>
+
+        <div class="gclub-groups">
+            <div class="gclub-grid" id="clubGrid">
+                <!-- Injecté par JS depuis ginglin-data.js -->
+            </div>
+            <div class="gclub-right">
+                <div class="gclub-actions">
+                    <a href="asgc-club.html?club=cdf" class="gclub-btn">Coupe de France</a>
+                    <a href="asgc-club.html?club=programmes" class="gclub-btn">Programmes</a>
+                    <a href="asgc-club.html?club=evenements" class="gclub-btn">Événements</a>
+                    <a href="asgc-club.html?club=communication" class="gclub-btn">Communication</a>
+                    <a href="asgc-tous-visuels.html" class="gclub-btn gclub-btn-all">Voir tous les visuels →</a>
+                </div>
+                <div class="gclub-mockup">
+                    <img src="img/site/mockup_asgc.webp" alt="Mockup ASGC">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS RÉSEAUX ===== -->
+    <section id="ginglin-stats">
+        <div class="gstats-title-wrap">
+            <h2 class="gstats-heading">LA COMM' <span class="gh-accent">EN CHIFFRES</span></h2>
+        </div>
+        <div class="gstats-band">
+            <span class="gstats-platform">Facebook</span>
+            <div class="gstats-item">
+                <span class="gstats-value">2,7M</span>
+                <span class="gstats-label">Vues</span>
+                <span class="gstats-delta">+5,8%</span>
+            </div>
+            <div class="gstats-item">
+                <span class="gstats-value">19,6K</span>
+                <span class="gstats-label">Interactions</span>
+                <span class="gstats-delta">+13,8%</span>
+            </div>
+            <div class="gstats-item">
+                <span class="gstats-value">26,3K</span>
+                <span class="gstats-label">Clics sur un lien</span>
+                <span class="gstats-delta">+304,2%</span>
+            </div>
+            <div class="gstats-item">
+                <span class="gstats-value">639</span>
+                <span class="gstats-label">Followers en plus</span>
+                <span class="gstats-delta">+9,6%</span>
+            </div>
+        </div>
+        <div class="gstats-band gstats-band--dark">
+            <span class="gstats-platform">Instagram</span>
+            <div class="gstats-item">
+                <span class="gstats-value">3,0M</span>
+                <span class="gstats-label">Vues</span>
+                <span class="gstats-delta">+1 500%</span>
+            </div>
+            <div class="gstats-item">
+                <span class="gstats-value">87,6K</span>
+                <span class="gstats-label">Couverture</span>
+                <span class="gstats-delta">+30,8%</span>
+            </div>
+            <div class="gstats-item">
+                <span class="gstats-value">43,7K</span>
+                <span class="gstats-label">Interactions</span>
+                <span class="gstats-delta">+2 800%</span>
+            </div>
+            <div class="gstats-item">
+                <span class="gstats-value">814</span>
+                <span class="gstats-label">Followers en plus</span>
+                <span class="gstats-delta">+367,8%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LA SUITE ? ===== -->
+    <section id="ginglin-suite">
+        <div class="gsuite-image">
+            <img src="img/site/photo_matthew.webp" alt="Matthew Quéro - AS Ginglin Cesson">
+        </div>
+        <div class="gsuite-content">
+            <h2 class="gsuite-title">LA <span class="gh-accent">SUITE ?</span></h2>
+            <p class="gsuite-text">
+                L'année prochaine je suis en Bachelor à MyDigitalSchool, et j'espère pouvoir rester à Ginglin, sans certitude pour l'instant. On est en train de construire quelque chose avec ce club, l'identité visuelle avance, les réseaux gagnent en audience, et l'équipe vient de monter en National 2, une saison historique pour le club. J'ai envie de faire partie de cette nouvelle aventure.
+            </p>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/opentype.js@1.3.4/dist/opentype.min.js"></script>
+    <script src="fonts/montserrat-black-b64.js"></script>
+    <script src="JS/components.js"></script>
+    <script src="JS/ginglin-data.js"></script>
+    <script src="JS/script.js"></script>
+    <script src="JS/loader.js"></script>
+
+    <script>
+    (function () {
+        /* ===== COVERFLOW ===== */
+        const stage = document.getElementById('gcStage');
+        const slides = Array.from(stage.querySelectorAll('.gc-slide'));
+        const n = slides.length; // 4
+        let current = 0;
+
+        function getPos(i) {
+            let d = ((i - current) % n + n) % n;
+            if (d > Math.floor(n / 2)) d -= n;
+            return d;
+        }
+
+        function updateSlides() {
+            slides.forEach((s, i) => {
+                s.dataset.pos = Math.max(-3, Math.min(3, getPos(i)));
+            });
+        }
+
+        function goTo(idx) {
+            current = ((idx % n) + n) % n;
+            updateSlides();
+        }
+
+        document.getElementById('gcPrev').addEventListener('click', () => goTo(current - 1));
+        document.getElementById('gcNext').addEventListener('click', () => goTo(current + 1));
+
+        slides.forEach((s, i) => {
+            s.addEventListener('click', () => {
+                const pos = parseInt(s.dataset.pos);
+                if (pos !== 0) {
+                    goTo(i);
+                } else if (s.dataset.club) {
+                    window.location.href = 'asgc-club.html?club=' + s.dataset.club;
+                }
+            });
+        });
+
+        /* ===== GRILLE CLUBS (logos) ===== */
+        const grid = document.getElementById('clubGrid');
+        Object.entries(GINGLIN_CLUBS)
+            .filter(([, c]) => c.group === 'championnat')
+            .forEach(([id, club]) => {
+                const a = document.createElement('a');
+                a.href = club.images.length > 0 ? 'asgc-club.html?club=' + id : '#';
+                a.className = 'gclub-card' + (club.images.length === 0 ? ' gclub-card-soon' : '');
+                a.title = club.name;
+                if (club.logo) {
+                    a.innerHTML = '<div class="gclub-logo-wrap"><img src="' + club.logo + '" alt="' + club.name + '"></div>';
+                } else {
+                    a.innerHTML = '<div class="gclub-logo-wrap"><span class="gclub-initials">' + club.acronym + '</span></div>';
+                }
+                grid.appendChild(a);
+            });
+
+        /* ===== BOUTONS EXPAND (même taille initiale) ===== */
+        const btns = Array.from(document.querySelectorAll('.gclub-btn'));
+        let maxW = 0;
+        btns.forEach(btn => { maxW = Math.max(maxW, btn.offsetWidth); });
+        btns.forEach(btn => {
+            btn.style.width = maxW + 'px';
+            btn.addEventListener('mouseenter', () => {
+                btn.style.width = btn.parentElement.offsetWidth + 'px';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.width = maxW + 'px';
+            });
+        });
+    })();
+    </script>
+
+    <script>
+    (function() {
+      const canvas = document.getElementById('ginglin-canvas');
+      const ctx = canvas.getContext('2d');
+      const hero = canvas.parentElement;
+
+      function resize() {
+        canvas.width  = hero.offsetWidth;
+        canvas.height = hero.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const W = () => canvas.width;
+      const H = () => canvas.height;
+
+      function makeOrb() {
+        const h = H();
+        const startY = h * (0.05 + Math.random() * 0.90);
+        const endY   = startY + (Math.random() - 0.5) * h * 0.35;
+        const speed  = W() * (0.04 + Math.random() * 0.09);
+        const delay  = Math.random() * 5.0;
+        const ampY   = h * (0.008 + Math.random() * 0.035);
+        const freqY  = 0.6 + Math.random() * 2.2;
+        const size   = 5 + Math.random() * 5;
+        return { startY, endY, speed, delay, ampY, freqY, size, x: -20, elapsed: -delay };
+      }
+
+      let orbs = Array.from({ length: 7 }, makeOrb);
+
+      function drawGlow(x, y, size, alpha) {
+        const a = alpha;
+        const g1 = ctx.createRadialGradient(x,y,0,x,y,size*6);
+        g1.addColorStop(0, `rgba(255,222,0,${0.10*a})`);
+        g1.addColorStop(1, `rgba(255,222,0,0)`);
+        ctx.beginPath(); ctx.arc(x,y,size*6,0,Math.PI*2); ctx.fillStyle=g1; ctx.fill();
+
+        const g2 = ctx.createRadialGradient(x,y,0,x,y,size*2.5);
+        g2.addColorStop(0,   `rgba(255,242,80,${0.50*a})`);
+        g2.addColorStop(0.5, `rgba(255,222,0,${0.25*a})`);
+        g2.addColorStop(1,   `rgba(255,222,0,0)`);
+        ctx.beginPath(); ctx.arc(x,y,size*2.5,0,Math.PI*2); ctx.fillStyle=g2; ctx.fill();
+
+        const g3 = ctx.createRadialGradient(x,y,0,x,y,size);
+        g3.addColorStop(0,   `rgba(255,255,220,${a})`);
+        g3.addColorStop(0.4, `rgba(255,232,20,${0.95*a})`);
+        g3.addColorStop(1,   `rgba(255,222,0,0)`);
+        ctx.beginPath(); ctx.arc(x,y,size,0,Math.PI*2); ctx.fillStyle=g3; ctx.fill();
+      }
+
+      let last = null;
+      function frame(ts) {
+        if (!last) last = ts;
+        const dt = Math.min((ts - last) / 1000, 0.05);
+        last = ts;
+        const w = W(), h = H();
+        ctx.clearRect(0, 0, w, h);
+        for (const orb of orbs) {
+          orb.elapsed += dt;
+          if (orb.elapsed < 0) continue;
+          orb.x += orb.speed * dt;
+          const progress = (orb.x + 20) / (w + 40);
+          const baseY = orb.startY + (orb.endY - orb.startY) * progress;
+          const y = baseY + Math.sin(orb.elapsed * orb.freqY * Math.PI * 2) * orb.ampY;
+          const fadeW = w * 0.05;
+          let alpha = 1;
+          if (orb.x < fadeW)     alpha = Math.max(0, orb.x / fadeW);
+          if (orb.x > w - fadeW) alpha = Math.max(0, (w - orb.x) / fadeW);
+          drawGlow(orb.x, y, orb.size, alpha);
+          if (orb.x > w + 30) {
+            Object.assign(orb, makeOrb());
+            orb.delay = 0.5 + Math.random() * 3.0;
+            orb.elapsed = -orb.delay;
+            orb.x = -20;
+          }
+        }
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    })();
+    </script>
+
+</body>
+</html>

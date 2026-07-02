@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node blob-check.js)",
+      "Bash(curl -sf http://localhost:8765/as-ginglin-cesson.html)",
+      "Bash(chromium-cli --session ginglin)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(node final-check.js)",
+      "Bash(node test-avatar.js)",
+      "Bash(node test-avatar2.js)",
+      "Bash(node -e ' *)",
+      "Bash(npx --yes http-server -p 8099 -c-1)",
+      "Bash(curl -sf http://localhost:8099/index.html)",
+      "Bash(node test-hover.js)",
+      "Bash(node -e \"const sharp = require\\('sharp'\\); sharp\\('img/bxlnation1.png'\\).webp\\({quality:88}\\).toFile\\('img/bxlnation1.webp'\\).then\\(\\(\\)=>console.log\\('bxlnation1 done'\\)\\).catch\\(e=>console.error\\(e\\)\\)\")",
+      "Bash(node -e \"const sharp = require\\('sharp'\\); sharp\\('img/bxlnation2.png'\\).webp\\({quality:88}\\).toFile\\('img/2.webp'\\).then\\(\\(\\)=>console.log\\('bxlnation2 done'\\)\\).catch\\(e=>console.error\\(e\\)\\)\")",
+      "Bash(sort -t/ -k2 -n)",
+      "Bash(grep -v \"^.*//.*img\")",
+      "Bash(xargs grep -h \"img/[0-9]\")",
+      "PowerShell(python -c \"from PIL import Image; print\\('PIL ok'\\)\" 2>&1)",
+      "PowerShell(node -e \"const sharp = require\\('sharp'\\); console.log\\('sharp ok'\\)\" 2>&1)",
+      "PowerShell(node --version 2>&1)",
+      "Bash(grep -v \"Binary\\\\|inutilises\\\\|//\\\\|#\")",
+      "Skill(fewer-permission-prompts)",
+      "Skill(fewer-permission-prompts:*)",
+      "Bash(ls -la ~/.claude/projects/ 2>/dev/null | head -50)",
+      "Read(//c/Users/quero/.claude/projects/**)",
+      "Bash(find ~/.claude/projects -maxdepth 2 -name \"*.jsonl\" -printf '%T@ %p\\\\n' 2>/dev/null | sort -rn | head -50)",
+      "Bash(python3 \"C:\\\\Users\\\\quero\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-quero-OneDrive-Bureau-Cours-Int-gration-web-portfolio\\\\c39a4447-c42e-49e3-a116-b21940d4321e\\\\scratchpad\\\\scan_tools.py\")",
+      "Bash(node \"C:\\\\Users\\\\quero\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-quero-OneDrive-Bureau-Cours-Int-gration-web-portfolio\\\\c39a4447-c42e-49e3-a116-b21940d4321e\\\\scratchpad\\\\scan_tools.js\")",
+      "Bash(node \"C:\\\\Users\\\\quero\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-quero-OneDrive-Bureau-Cours-Int-gration-web-portfolio\\\\c39a4447-c42e-49e3-a116-b21940d4321e\\\\scratchpad\\\\scan_tools2.js\")",
+      "Bash(node \"C:\\\\Users\\\\quero\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-quero-OneDrive-Bureau-Cours-Int-gration-web-portfolio\\\\c39a4447-c42e-49e3-a116-b21940d4321e\\\\scratchpad\\\\scan_tools3.js\")",
+      "Bash(curl * http://localhost:*)",
+      "Bash(tasklist *)",
+      "Bash(grep -n \"!important\\\\|@media\\\\|^/\\\\* ===\" \"C:\\\\Users\\\\quero\\\\OneDrive\\\\Bureau\\\\Cours\\\\Intégration web\\\\portfolio\\\\CSS\\\\style.css\")",
+      "Bash(xargs du -h)",
+      "Bash(xargs grep -l \"proj-card\\\\|proj-stage\")"
+    ]
+  }
+}

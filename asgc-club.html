@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">ASGC - Matthew Quéro</title>
+    <link rel="icon" type="image/png" href="img/site/logo.png">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/components.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body class="alt-page">
+
+    <div class="nav-project">
+        <a href="as-ginglin-cesson.html#ginglin-clubs" class="back-link">← Retour Ginglin</a>
+    </div>
+
+    <!-- Club header: logo + name -->
+    <header id="club-header">
+        <div class="ch-logo-wrap" id="chLogoWrap">
+            <span id="chInitials"></span>
+        </div>
+        <h1 id="chName" class="ch-name"></h1>
+    </header>
+
+    <!-- Selector (shown only when club has multiple images) -->
+    <div id="club-selector" class="cs-hidden">
+        <p class="cs-title">Choisissez le visuel</p>
+        <div class="cs-inner" id="csInner"></div>
+    </div>
+
+    <!-- Visual section: explanation text then image centered below -->
+    <section id="club-visual" class="cv-hidden">
+        <div class="cv-inner">
+            <div class="cv-text" id="cvText">
+                <p class="cv-label">UN PEU DE CONTEXTE</p>
+            </div>
+            <div class="cv-image-wrap">
+                <div class="cv-img-container">
+                    <img class="cv-img" id="cvImg" src="" alt="">
+                    <div class="cv-zoom-hint">↗ Voir en grand</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote highlight (shown when club.quote exists) -->
+    <section id="club-quote" class="cq-hidden">
+        <div class="cq-inner">
+            <blockquote class="cq-block" id="cqText"></blockquote>
+        </div>
+    </section>
+
+    <!-- Mockup Facebook -->
+    <section id="club-mockups" class="cm-hidden">
+        <div class="cm-inner">
+            <div class="cm-mockup-img-wrap">
+                <div class="cm-placeholder"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process graphique (shown only for images with process data) -->
+    <section id="club-process" class="cp-hidden">
+        <div class="cp-inner">
+            <h2 class="cp-title">Découvrez mon <span class="gh-accent">process graphique</span></h2>
+            <div class="cp-carousel">
+                <button class="cp-arrow" id="cpPrev">&#8592;</button>
+                <div class="cp-stage" id="cpStage">
+                    <div class="cp-img-wrap" id="cpImgWrap">
+                        <img id="cpImgA" src="" alt="">
+                        <img id="cpImgB" src="" alt="">
+                        <div class="cp-zoom-hint">↗ Voir en grand</div>
+                    </div>
+                    <p class="cp-label" id="cpLabel"></p>
+                </div>
+                <button class="cp-arrow" id="cpNext">&#8594;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CDF Layout personnalisé -->
+    <div id="cdf-layout" class="cdf-hidden">
+
+        <header class="cdf-page-header">
+            <h1 class="cdf-page-title">Coupe <span class="gh-accent">de France</span></h1>
+        </header>
+
+        <section class="cdf-hero">
+            <div class="cdf-text-col">
+                <h2 class="cdf-section-title">Les visuels <span class="gh-accent">d'annonce de matchs</span></h2>
+                <p class="cdf-body">Voici les différents visuels que j'ai réalisés pour annoncer le 5ème et 6ème tour. Ces visuels ont été réalisés et postés directement après l'annonce des confrontations en direct sur le site de la ligue. Ils reprennent les éléments graphiques de la direction artistique de la Coupe de France tout en gardant les couleurs de l'AS Ginglin Cesson.</p>
+            </div>
+            <div class="cdf-carousel-col">
+                <div class="cdf-stage">
+                    <img class="cdf-slide cdf-slide-active" src="img/asgc/coupe/cdf_5eme_tour.webp" alt="5ème Tour CDF">
+                    <img class="cdf-slide" src="img/asgc/coupe/cdf_6eme_tour_v1.webp" alt="6ème Tour CDF V1">
+                    <img class="cdf-slide" src="img/asgc/coupe/cdf_6eme_tour_v2.webp" alt="6ème Tour CDF V2">
+                </div>
+                <div class="cdf-selectors" id="cdfSelectors">
+                    <button class="cdf-sel cdf-sel-active" data-idx="0">1</button>
+                    <button class="cdf-sel" data-idx="1">2</button>
+                    <button class="cdf-sel" data-idx="2">3</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="cdf-match">
+            <a id="cdfMatchLink" href="" class="cdf-match-link">
+                <img id="cdfMatchImg" src="" alt="" class="cdf-match-img">
+                <div class="cdf-match-hint">↗ Voir le visuel</div>
+            </a>
+            <div class="cdf-match-text">
+                <h2 id="cdfMatchTitle" class="cdf-section-title"></h2>
+                <p id="cdfMatchDesc" class="cdf-body"></p>
+                <div class="cdf-match-btns">
+                    <a id="cdfMatchBtn" href="" class="cdf-btn-primary">Voir le visuel</a>
+                    <a href="asgc-tous-visuels.html" class="cdf-btn">Voir tous les visuels</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Programmes Layout personnalisé -->
+    <div id="prg-layout" class="prg-hidden">
+
+        <header class="cdf-page-header">
+            <h1 class="cdf-page-title">Les <span class="gh-accent">Programmes</span></h1>
+        </header>
+
+        <section class="prg-section">
+            <div class="prg-grid">
+                <img class="prg-img" src="img/asgc/com/programme_weekend.webp" alt="Programme du week-end">
+                <img class="prg-img" src="img/asgc/com/programme_arbitre.webp" alt="Programme Arbitre">
+                <img class="prg-img" src="img/asgc/com/resultats_weekend.webp" alt="Résultats du week-end">
+            </div>
+            <div class="prg-text-block">
+                <p class="cdf-body">Voici quelques exemples des posts hebdomadaires sur le Facebook et l'Instagram du club. On y retrouve à chaque fois une photo accompagnée des informations des matchs ou tournois. Ces visuels sortent le vendredi soir avant le week-end pour permettre à tout le monde de savoir quoi faire s'ils veulent venir à l'Europe. Le visuel des arbitres paraît le samedi après-midi juste avant les premiers matchs jeunes, et enfin le lundi sort les résultats du week-end pour savoir ce qu'ont fait les différentes équipes de l'AS Ginglin Cesson.</p>
+            </div>
+            <div class="prg-btns">
+                <a href="asgc-tous-visuels.html" class="cdf-btn-primary">Voir tous les visuels</a>
+                <a href="asgc-club.html?club=evenements" class="cdf-btn">Voir les visuels des événements</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Événements Layout personnalisé -->
+    <div id="evt-layout" class="evt-hidden">
+
+        <header class="cdf-page-header">
+            <h1 class="cdf-page-title">Les <span class="gh-accent">Événements</span></h1>
+        </header>
+
+        <section class="evt-feature">
+            <img class="evt-feature-img" id="evtFeaturedImg" src="img/asgc/com/tournoi_aiglons.webp" alt="Tournoi des Aiglons">
+            <div class="evt-feature-text">
+                <h2 class="cdf-section-title">Tournoi <span class="gh-accent">des Aiglons</span></h2>
+                <p class="cdf-body">Affiche réalisée après une commande du club pour le tournoi qui aurait dû avoir lieu cette année. Malheureusement il n'aura pas lieu cette année, peut-être qu'il sera utilisé l'année prochaine. L'affiche présente des joueurs U12 et U13, un aigle au centre et de nombreux éléments graphiques : le tracé de Saint-Brieuc, le pont du Légué, des lettres et d'autres éléments pour sublimer le visuel.</p>
+                <a href="asgc-tous-visuels.html" class="cdf-btn-primary">Voir tous les visuels</a>
+            </div>
+        </section>
+
+        <section class="evt-grid-section">
+            <h2 class="evt-grid-title">Découvrir les autres <span class="gh-accent">visuels événements</span></h2>
+            <div class="evt-grid" id="evtGrid"></div>
+            <div class="evt-grid-cta">
+                <a href="asgc-tous-visuels.html" class="cdf-btn-primary">Voir tous les visuels</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Communication Layout personnalisé -->
+    <div id="com-layout" class="com-hidden">
+
+        <header class="cdf-page-header">
+            <h1 class="cdf-page-title com-page-title">La <span class="gh-accent">Communication</span></h1>
+        </header>
+
+        <section class="com-intro">
+            <p class="com-intro-line">Durant l'année, j'ai réalisé un grand nombre de visuels</p>
+            <p class="com-intro-line">pour la communication 360° du club,</p>
+            <p class="com-intro-line">en interne, sur les réseaux sociaux, en web et en print.</p>
+        </section>
+
+        <section class="com-tracks">
+            <div class="com-track" id="comTrack0"></div>
+            <div class="com-track" id="comTrack1"></div>
+            <div class="com-track" id="comTrack2"></div>
+        </section>
+
+        <div class="evt-grid-cta">
+            <a href="asgc-tous-visuels.html" class="cdf-btn-primary">Voir tous les visuels</a>
+        </div>
+
+    </div>
+
+    <!-- Gallery (shown for clubs without story) -->
+    <section id="club-gallery">
+        <div class="cg-grid" id="cgGrid">
+            <!-- Injected by JS -->
+        </div>
+    </section>
+
+    <!-- Nav bas de page -->
+    <section id="club-nav">
+        <div class="cn-inner">
+            <button class="cn-btn cn-btn-primary cn-hidden" id="cnOtherVisual">
+                <div class="cn-hover-preview" id="cnOtherPreview"><img src="" alt=""></div>
+                Découvrir l'autre visuel
+            </button>
+            <a class="cn-btn" id="cnNextClub" href="#">Équipe suivante</a>
+            <a class="cn-btn" href="asgc-tous-visuels.html">Tous les visuels</a>
+        </div>
+    </section>
+
+    <!-- Lightbox zoom -->
+    <div id="lightbox" class="lb-hidden">
+        <div class="lb-backdrop" id="lbBackdrop"></div>
+        <button class="lb-nav lb-nav-prev lb-nav-hidden" id="lbNavPrev">&#8592;</button>
+        <button class="lb-nav lb-nav-next lb-nav-hidden" id="lbNavNext">&#8594;</button>
+        <div class="lb-box">
+            <button class="lb-close" id="lbClose">✕</button>
+            <div class="lb-img-wrap" id="lbImgWrap">
+                <img id="lbImg" src="" alt="" draggable="false">
+            </div>
+            <div class="lb-footer">
+                <p class="lb-caption" id="lbCaption"></p>
+                <div class="lb-zoom-controls">
+                    <button class="lb-zoom-btn" id="lbZoomOut">−</button>
+                    <span class="lb-zoom-val" id="lbZoomVal">100%</span>
+                    <button class="lb-zoom-btn" id="lbZoomIn">+</button>
+                    <button class="lb-zoom-btn" id="lbZoomReset">↺</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="JS/components.js"></script>
+    <script src="JS/ginglin-data.js"></script>
+    <script src="JS/script.js"></script>
+
+    <script>
+    (function () {
+        /* ===== INIT ===== */
+        const params = new URLSearchParams(window.location.search);
+        const clubId = params.get('club');
+        const club = GINGLIN_CLUBS[clubId];
+
+        if (!club) {
+            document.getElementById('chName').textContent = 'Club introuvable';
+            return;
+        }
+
+        document.getElementById('pageTitle').textContent = club.name + ' - ASGC';
+        document.getElementById('chName').textContent = club.name;
+
+        const logoWrap = document.getElementById('chLogoWrap');
+        if (club.logo) {
+            logoWrap.innerHTML = '<img src="' + club.logo + '" alt="Logo ' + club.name + '">';
+        } else {
+            document.getElementById('chInitials').textContent = club.acronym;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        const lb        = document.getElementById('lightbox');
+        const lbImg     = document.getElementById('lbImg');
+        const lbCaption = document.getElementById('lbCaption');
+        const lbZoomVal = document.getElementById('lbZoomVal');
+        const lbWrap    = document.getElementById('lbImgWrap');
+        let scale = 1;
+        let panX = 0, panY = 0;
+        let dragging = false, startX, startY;
+        let lbCurrentIdx = 0;
+        let lbMode = 'image';
+        let lbProcessSteps = [], lbProcessIdx = 0, lbProcessOnClose = null;
+        const lbNavPrev = document.getElementById('lbNavPrev');
+        const lbNavNext = document.getElementById('lbNavNext');
+
+        function setZoom(z) {
+            scale = Math.min(4, Math.max(0.5, z));
+            lbImg.style.transform = 'scale(' + scale + ') translate(' + (panX / scale) + 'px,' + (panY / scale) + 'px)';
+            lbZoomVal.textContent = Math.round(scale * 100) + '%';
+        }
+
+        function openLightbox(i) {
+            lbMode = 'image';
+            lbCurrentIdx = i;
+            const img = club.images[i];
+            lbImg.src = img.src;
+            lbImg.alt = img.title;
+            lbCaption.textContent = img.desc;
+            scale = 1; panX = 0; panY = 0;
+            lbImg.style.transform = '';
+            lbZoomVal.textContent = '100%';
+            lbNavPrev.classList.add('lb-nav-hidden');
+            lbNavNext.classList.add('lb-nav-hidden');
+            lb.classList.remove('lb-hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openProcessLightbox(stepIdx, steps, onCloseFn) {
+            lbMode = 'process';
+            lbProcessSteps = steps;
+            lbProcessIdx = stepIdx;
+            lbProcessOnClose = onCloseFn;
+            lbImg.src = steps[stepIdx].src;
+            lbImg.alt = steps[stepIdx].label;
+            lbCaption.textContent = steps[stepIdx].label;
+            scale = 1; panX = 0; panY = 0;
+            lbImg.style.transform = '';
+            lbZoomVal.textContent = '100%';
+            lbNavPrev.classList.toggle('lb-nav-hidden', stepIdx === 0);
+            lbNavNext.classList.toggle('lb-nav-hidden', stepIdx === steps.length - 1);
+            lb.classList.remove('lb-hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function lbProcessNavigate(dir) {
+            var newIdx = lbProcessIdx + dir;
+            if (newIdx < 0 || newIdx >= lbProcessSteps.length) return;
+            lbProcessIdx = newIdx;
+            lbImg.src = lbProcessSteps[newIdx].src;
+            lbImg.alt = lbProcessSteps[newIdx].label;
+            lbCaption.textContent = lbProcessSteps[newIdx].label;
+            scale = 1; panX = 0; panY = 0;
+            lbImg.style.transform = '';
+            lbZoomVal.textContent = '100%';
+            lbNavPrev.classList.toggle('lb-nav-hidden', newIdx === 0);
+            lbNavNext.classList.toggle('lb-nav-hidden', newIdx === lbProcessSteps.length - 1);
+        }
+
+        function closeLightbox() {
+            lb.classList.add('lb-hidden');
+            document.body.style.overflow = '';
+            if (lbMode === 'process' && lbProcessOnClose) {
+                lbProcessOnClose(lbProcessIdx);
+            }
+        }
+
+        document.getElementById('lbClose').addEventListener('click', closeLightbox);
+        document.getElementById('lbBackdrop').addEventListener('click', closeLightbox);
+        lbNavPrev.addEventListener('click', function() { lbProcessNavigate(-1); });
+        lbNavNext.addEventListener('click', function() { lbProcessNavigate(1); });
+        document.getElementById('lbZoomIn').addEventListener('click', function() { setZoom(scale + 0.25); });
+        document.getElementById('lbZoomOut').addEventListener('click', function() { setZoom(scale - 0.25); });
+        document.getElementById('lbZoomReset').addEventListener('click', function() { scale = 1; panX = 0; panY = 0; setZoom(1); });
+
+        lbWrap.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            setZoom(scale + (e.deltaY < 0 ? 0.15 : -0.15));
+        }, { passive: false });
+
+        lbImg.addEventListener('mousedown', function(e) {
+            if (scale <= 1) return;
+            dragging = true;
+            startX = e.clientX - panX;
+            startY = e.clientY - panY;
+            lbImg.style.cursor = 'grabbing';
+        });
+        window.addEventListener('mousemove', function(e) {
+            if (!dragging) return;
+            panX = e.clientX - startX;
+            panY = e.clientY - startY;
+            lbImg.style.transform = 'scale(' + scale + ') translate(' + (panX / scale) + 'px,' + (panY / scale) + 'px)';
+        });
+        window.addEventListener('mouseup', function() {
+            dragging = false;
+            lbImg.style.cursor = scale > 1 ? 'grab' : 'default';
+        });
+
+        window.addEventListener('keydown', function(e) {
+            if (lb.classList.contains('lb-hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === '+' || e.key === '=') setZoom(scale + 0.25);
+            if (e.key === '-') setZoom(scale - 0.25);
+            if (e.key === '0') { scale = 1; panX = 0; panY = 0; setZoom(1); }
+            if (lbMode === 'process') {
+                if (e.key === 'ArrowLeft') lbProcessNavigate(-1);
+                if (e.key === 'ArrowRight') lbProcessNavigate(1);
+            }
+        });
+
+        /* ===== CDF LAYOUT ===== */
+        if (clubId === 'cdf') {
+            ['club-header','club-selector','club-visual','club-quote',
+             'club-mockups','club-process','club-gallery','club-nav'].forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            document.getElementById('cdf-layout').classList.remove('cdf-hidden');
+
+            var slides = Array.from(document.querySelectorAll('.cdf-slide'));
+            var sels   = Array.from(document.querySelectorAll('.cdf-sel'));
+            var current = 0;
+
+            function goTo(idx) {
+                slides[current].classList.remove('cdf-slide-active');
+                sels[current].classList.remove('cdf-sel-active');
+                current = idx;
+                slides[current].classList.add('cdf-slide-active');
+                sels[current].classList.add('cdf-sel-active');
+            }
+
+            sels.forEach(function(sel, i) {
+                sel.addEventListener('click', function() {
+                    clearInterval(timer);
+                    goTo(i);
+                    timer = setInterval(advance, 4000);
+                });
+            });
+
+            function advance() { goTo((current + 1) % slides.length); }
+            var timer = setInterval(advance, 4000);
+
+            var matchVisuals = [
+                {
+                    src: 'img/asgc/affiches/concarneau_cdf.webp',
+                    alt: 'ASGC VS US Concarneau',
+                    href: 'asgc-club.html?club=us-concarneau',
+                    titleHtml: "L'affiche du match <span class=\"gh-accent\">contre Concarneau</span>",
+                    desc: "Découvrez les détails de cette affiche réalisée pour la rencontre historique qui a eu lieu au stade de l'Europe face à un club de National !"
+                },
+                {
+                    src: 'img/asgc/affiches/enfants_guer.webp',
+                    alt: 'Enfants de Guer vs ASGC',
+                    href: 'asgc-club.html?club=enfants-de-guer',
+                    titleHtml: "L'affiche du match <span class=\"gh-accent\">contre les Enfants de Guer</span>",
+                    desc: "Découvrez les secrets de ce visuel que j'ai réalisé à l'occasion du cinquième tour de Coupe de France avec un déplacement dans le Morbihan pour nos Aiglons."
+                }
+            ];
+            var picked = matchVisuals[Math.floor(Math.random() * matchVisuals.length)];
+            document.getElementById('cdfMatchImg').src = picked.src;
+            document.getElementById('cdfMatchImg').alt = picked.alt;
+            document.getElementById('cdfMatchLink').href = picked.href;
+            document.getElementById('cdfMatchTitle').innerHTML = picked.titleHtml;
+            document.getElementById('cdfMatchDesc').textContent = picked.desc;
+            document.getElementById('cdfMatchBtn').href = picked.href;
+
+            return;
+        }
+
+        /* ===== COMMUNICATION LAYOUT ===== */
+        if (clubId === 'communication') {
+            ['club-header','club-selector','club-visual','club-quote',
+             'club-mockups','club-process','club-gallery','club-nav'].forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            document.getElementById('com-layout').classList.remove('com-hidden');
+
+            var comTracks = [
+                document.getElementById('comTrack0'),
+                document.getElementById('comTrack1'),
+                document.getElementById('comTrack2')
+            ];
+            var comSpeeds = [0.6, 0.4, 0.5];
+            var isDraggingCom = false;
+
+            function buildRoll(track, images) {
+                var roll = document.createElement('div');
+                roll.className = 'com-roll';
+                function makeInner() {
+                    var inner = document.createElement('div');
+                    inner.className = 'com-inner';
+                    images.forEach(function(imgData) {
+                        var item = document.createElement('div');
+                        item.className = 'com-item';
+                        item.dataset.src = imgData.src;
+                        item.dataset.caption = imgData.title;
+                        item.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.title + '" draggable="false">';
+                        inner.appendChild(item);
+                    });
+                    return inner;
+                }
+                roll.appendChild(makeInner());
+                var clone = makeInner();
+                clone.setAttribute('aria-hidden', 'true');
+                roll.appendChild(clone);
+                track.appendChild(roll);
+                return roll;
+            }
+
+            comTracks.forEach(function(track, trackIdx) {
+                var trackImages = club.images.filter(function(_, i) { return i % 3 === trackIdx; });
+                var trackH = Math.min(380, 180 + trackImages.length * 20);
+                track.style.height = trackH + 'px';
+
+                var roll = buildRoll(track, trackImages);
+                var offset = trackIdx * 80;
+
+                track.addEventListener('click', function(e) {
+                    if (isDraggingCom) { isDraggingCom = false; return; }
+                    var item = e.target.closest('.com-item');
+                    if (!item) return;
+                    lbMode = 'image';
+                    lbImg.src = item.dataset.src;
+                    lbImg.alt = item.dataset.caption;
+                    lbCaption.textContent = item.dataset.caption;
+                    scale = 1; panX = 0; panY = 0;
+                    lbImg.style.transform = '';
+                    lbZoomVal.textContent = '100%';
+                    lbNavPrev.classList.add('lb-nav-hidden');
+                    lbNavNext.classList.add('lb-nav-hidden');
+                    lb.classList.remove('lb-hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                var isDown = false, moved = false, dragStartX, dragStartOffset;
+                track.addEventListener('mousedown', function(e) {
+                    isDown = true; moved = false;
+                    dragStartX = e.pageX;
+                    dragStartOffset = offset;
+                    track.style.cursor = 'grabbing';
+                });
+                track.addEventListener('mouseleave', function() { isDown = false; track.style.cursor = 'grab'; });
+                track.addEventListener('mouseup', function() { isDown = false; isDraggingCom = moved; track.style.cursor = 'grab'; });
+                track.addEventListener('mousemove', function(e) {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    var dx = e.pageX - dragStartX;
+                    if (Math.abs(dx) > 5) moved = true;
+                    var half = roll.firstElementChild.offsetWidth;
+                    if (!half) return;
+                    offset = dragStartOffset - dx;
+                    offset = ((offset % half) + half) % half;
+                    roll.style.transform = 'translateX(-' + offset + 'px)';
+                });
+
+                var speed = comSpeeds[trackIdx];
+                (function loop() {
+                    if (!isDown) {
+                        var half = roll.firstElementChild.offsetWidth;
+                        if (half > 0) {
+                            offset += speed;
+                            if (offset >= half) offset -= half;
+                            roll.style.transform = 'translateX(-' + offset + 'px)';
+                        }
+                    }
+                    requestAnimationFrame(loop);
+                })();
+            });
+
+            return;
+        }
+
+        /* ===== ÉVÉNEMENTS LAYOUT ===== */
+        if (clubId === 'evenements') {
+            ['club-header','club-selector','club-visual','club-quote',
+             'club-mockups','club-process','club-gallery','club-nav'].forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            document.getElementById('evt-layout').classList.remove('evt-hidden');
+
+            function openEvtLightbox(src, caption) {
+                lbMode = 'image';
+                lbImg.src = src;
+                lbImg.alt = caption;
+                lbCaption.textContent = caption;
+                scale = 1; panX = 0; panY = 0;
+                lbImg.style.transform = '';
+                lbZoomVal.textContent = '100%';
+                lbNavPrev.classList.add('lb-nav-hidden');
+                lbNavNext.classList.add('lb-nav-hidden');
+                lb.classList.remove('lb-hidden');
+                document.body.style.overflow = 'hidden';
+            }
+
+            document.getElementById('evtFeaturedImg').addEventListener('click', function() {
+                openEvtLightbox('img/asgc/com/tournoi_aiglons.webp', 'Tournoi des Aiglons');
+            });
+
+            var featuredSrc = 'img/asgc/com/tournoi_aiglons.webp';
+            var evtGrid = document.getElementById('evtGrid');
+            club.images.filter(function(img) {
+                return img.src !== featuredSrc;
+            }).forEach(function(imgData) {
+                var card = document.createElement('div');
+                card.className = 'evt-card';
+                card.innerHTML = '<img src="' + imgData.src + '" alt="' + imgData.title + '" loading="lazy">';
+                card.addEventListener('click', function() {
+                    openEvtLightbox(imgData.src, imgData.title);
+                });
+                evtGrid.appendChild(card);
+            });
+
+            return;
+        }
+
+        /* ===== PROGRAMMES LAYOUT ===== */
+        if (clubId === 'programmes') {
+            ['club-header','club-selector','club-visual','club-quote',
+             'club-mockups','club-process','club-gallery','club-nav'].forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            document.getElementById('prg-layout').classList.remove('prg-hidden');
+
+            var prgImages = [
+                { src: 'img/asgc/com/programme_weekend.webp', caption: 'Programme du week-end' },
+                { src: 'img/asgc/com/programme_arbitre.webp', caption: 'Programme Arbitre' },
+                { src: 'img/asgc/com/resultats_weekend.webp', caption: 'Résultats du week-end' }
+            ];
+
+            document.querySelectorAll('.prg-img').forEach(function(img, i) {
+                img.addEventListener('click', function() {
+                    lbMode = 'image';
+                    lbImg.src = prgImages[i].src;
+                    lbImg.alt = prgImages[i].caption;
+                    lbCaption.textContent = prgImages[i].caption;
+                    scale = 1; panX = 0; panY = 0;
+                    lbImg.style.transform = '';
+                    lbZoomVal.textContent = '100%';
+                    lbNavPrev.classList.add('lb-nav-hidden');
+                    lbNavNext.classList.add('lb-nav-hidden');
+                    lb.classList.remove('lb-hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            return;
+        }
+
+        /* ===== DÉTECTION LAYOUT ===== */
+        const firstImg = club.images[0];
+        const hasStory = firstImg && (firstImg.story || club.story);
+
+        if (!hasStory || club.images.length === 0) {
+            /* --- FALLBACK GALERIE --- */
+            const grid = document.getElementById('cgGrid');
+            club.images.forEach(function(img, i) {
+                const card = document.createElement('div');
+                card.className = 'cg-card';
+                card.innerHTML =
+                    '<div class="cg-img-wrap"><img src="' + img.src + '" alt="' + img.title + '" loading="lazy"></div>' +
+                    '<div class="cg-overlay"><span>' + img.title + '</span></div>';
+                card.addEventListener('click', function() { openLightbox(i); });
+                grid.appendChild(card);
+            });
+            return;
+        }
+
+        /* --- LAYOUT VISUEL COMPLET --- */
+        document.getElementById('club-visual').classList.remove('cv-hidden');
+        if (!firstImg.process || firstImg.process.length === 0) {
+            document.getElementById('club-mockups').classList.remove('cm-hidden');
+        }
+        document.getElementById('club-gallery').style.display = 'none';
+
+        /* Sélecteur multi-visuels */
+        if (club.images.length > 1) {
+            const selector = document.getElementById('club-selector');
+            selector.classList.remove('cs-hidden');
+            const inner = document.getElementById('csInner');
+            club.images.forEach(function(img, i) {
+                const btn = document.createElement('button');
+                btn.className = 'cs-thumb' + (i === 0 ? ' cs-active' : '');
+                btn.innerHTML =
+                    '<div class="cs-thumb-img"><img src="' + img.src + '" alt="' + img.title + '"></div>' +
+                    '<span class="cs-thumb-label">' + img.title + '</span>';
+                btn.addEventListener('click', function() { renderVisual(i); });
+                inner.appendChild(btn);
+            });
+        }
+
+        /* Clic image → lightbox */
+        document.querySelector('.cv-img-container').addEventListener('click', function() {
+            openLightbox(activeVisualIdx);
+        });
+
+        /* Render initial */
+        var activeVisualIdx = 0;
+        renderVisual(0);
+
+        /* ===== CAROUSEL PROCESS ===== */
+        (function() {
+            var firstImg = club.images[0];
+            if (!firstImg || !firstImg.process || firstImg.process.length === 0) return;
+
+            var steps = firstImg.process;
+            var cpIdx = 0;
+            var imgA = document.getElementById('cpImgA');
+            var imgB = document.getElementById('cpImgB');
+            var cpLabelEl = document.getElementById('cpLabel');
+            var sectionEl = document.getElementById('club-process');
+            var activeEl = imgA;
+            var inactiveEl = imgB;
+            var lastScroll = 0;
+            var animating = false;
+
+            /* Initial state */
+            imgA.src = steps[0].src;
+            imgA.alt = steps[0].label;
+            imgA.style.zIndex = '2';
+            imgB.style.zIndex = '1';
+            imgB.style.transform = 'translateX(100%)';
+            cpLabelEl.textContent = steps[0].label;
+
+            /* Clic sur l'image → lightbox process avec zoom */
+            document.getElementById('cpImgWrap').addEventListener('click', function() {
+                openProcessLightbox(cpIdx, steps, function(newIdx) {
+                    cpIdx = newIdx;
+                    activeEl.src = steps[newIdx].src;
+                    activeEl.alt = steps[newIdx].label;
+                    cpLabelEl.textContent = steps[newIdx].label;
+                    lockedOut = false;
+                });
+            });
+
+            function setStep(idx, dir) {
+                if (idx === cpIdx || animating) return;
+                animating = true;
+                cpIdx = idx;
+
+                /* Prépare la nouvelle image hors-champ */
+                inactiveEl.src = steps[idx].src;
+                inactiveEl.alt = steps[idx].label;
+                inactiveEl.style.transition = 'none';
+                inactiveEl.style.transform = dir >= 0 ? 'translateX(100%)' : 'translateX(-100%)';
+                inactiveEl.style.zIndex = '3';
+                activeEl.style.zIndex = '2';
+
+                void inactiveEl.offsetWidth; /* Force reflow */
+
+                /* Glisse par-dessus */
+                inactiveEl.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                inactiveEl.style.transform = 'translateX(0)';
+
+                var tmp = activeEl; activeEl = inactiveEl; inactiveEl = tmp;
+                cpLabelEl.textContent = steps[idx].label;
+
+                setTimeout(function() { animating = false; }, 420);
+            }
+
+            document.getElementById('cpPrev').addEventListener('click', function() {
+                if (cpIdx > 0) setStep(cpIdx - 1, -1);
+            });
+            document.getElementById('cpNext').addEventListener('click', function() {
+                if (cpIdx < steps.length - 1) setStep(cpIdx + 1, 1);
+            });
+
+            /* Scroll hijacking bidirectionnel */
+            var lockedOut = false;
+            window.addEventListener('wheel', function(e) {
+                var rect = sectionEl.getBoundingClientRect();
+                var vh = window.innerHeight;
+                /* Hijack quand le haut de la section est proche du haut du viewport */
+                var inView = rect.top >= -30 && rect.top <= 30;
+
+                /* Hors section : reset du verrou */
+                if (!inView) { lockedOut = false; return; }
+
+                /* Verrou actif (après la dernière étape) : laisse la page défiler librement */
+                if (lockedOut) return;
+
+                var forward = e.deltaY > 0;
+
+                /* Dernière étape → verrou, la page continue */
+                if (forward && cpIdx >= steps.length - 1) { lockedOut = true; return; }
+                /* Première étape → laisse remonter */
+                if (!forward && cpIdx <= 0) return;
+
+                e.preventDefault();
+                /* Filtre inertie trackpad et debounce */
+                if (animating) return;
+                if (Math.abs(e.deltaY) < 30) return;
+                var now = Date.now();
+                if (now - lastScroll < 500) return;
+                lastScroll = now;
+                setStep(forward ? cpIdx + 1 : cpIdx - 1, forward ? 1 : -1);
+            }, { passive: false });
+        })();
+
+        /* ===== NAV BAS DE PAGE ===== */
+        var champIds = Object.keys(GINGLIN_CLUBS).filter(function(id) {
+            return GINGLIN_CLUBS[id].group === 'championnat';
+        });
+        var currentPos = champIds.indexOf(clubId);
+        var nextId = champIds[(currentPos + 1) % champIds.length];
+        var nextLink = document.getElementById('cnNextClub');
+        nextLink.href = 'asgc-club.html?club=' + nextId;
+        var nextClub = GINGLIN_CLUBS[nextId];
+        var nextPreviewSrc = nextClub.images.length > 0 ? nextClub.images[0].src : '';
+        if (nextClub.logo) {
+            nextLink.innerHTML =
+                '<div class="cn-hover-preview">' + (nextPreviewSrc ? '<img src="' + nextPreviewSrc + '" alt="">' : '') + '</div>' +
+                nextClub.name +
+                '<img class="cn-club-logo" src="' + nextClub.logo + '" alt="">';
+        } else {
+            nextLink.textContent = nextClub.name;
+        }
+
+        if (club.images.length > 1) {
+            var btnOther = document.getElementById('cnOtherVisual');
+            btnOther.classList.remove('cn-hidden');
+            btnOther.addEventListener('click', function() {
+                renderVisual((activeVisualIdx + 1) % club.images.length);
+                document.getElementById('club-visual').scrollIntoView({ behavior: 'smooth' });
+            });
+        } else {
+            document.querySelector('#club-nav .cn-inner').classList.add('cn-single');
+        }
+
+        /* ===== RENDER VISUEL ===== */
+        function renderVisual(idx) {
+            activeVisualIdx = idx;
+            const img = club.images[idx];
+            const story = img.story || club.story;
+            const quote = img.quote || club.quote;
+
+            /* Mise a jour selecteur + preview autre visuel */
+            document.querySelectorAll('.cs-thumb').forEach(function(btn, i) {
+                btn.classList.toggle('cs-active', i === idx);
+            });
+            var otherPreviewImg = document.querySelector('#cnOtherPreview img');
+            if (otherPreviewImg && club.images.length > 1) {
+                otherPreviewImg.src = club.images[(idx + 1) % club.images.length].src;
+            }
+
+            /* Fade out */
+            var fadeSections = [
+                document.getElementById('club-visual'),
+                document.getElementById('club-quote')
+            ];
+            fadeSections.forEach(function(s) { s.style.opacity = '0'; });
+
+            setTimeout(function() {
+                /* Image principale */
+                var cvImg = document.getElementById('cvImg');
+                cvImg.src = img.src;
+                cvImg.alt = img.title;
+
+                /* Paragraphes */
+                var textContainer = document.getElementById('cvText');
+                textContainer.querySelectorAll('.cv-para').forEach(function(el) { el.remove(); });
+                if (story) {
+                    (Array.isArray(story) ? story : [story]).forEach(function(p) {
+                        var el = document.createElement('p');
+                        el.className = 'cv-para';
+                        el.textContent = p;
+                        textContainer.appendChild(el);
+                    });
+                }
+
+                /* Citation */
+                var quoteSection = document.getElementById('club-quote');
+                if (quote) {
+                    quoteSection.classList.remove('cq-hidden');
+                    document.getElementById('cqText').textContent = quote;
+                } else {
+                    quoteSection.classList.add('cq-hidden');
+                }
+
+                /* Fade in */
+                fadeSections.forEach(function(s) { s.style.opacity = '1'; });
+
+                /* Process vs mockups */
+                var processSection = document.getElementById('club-process');
+                var mockupsSection = document.getElementById('club-mockups');
+                if (img.process && img.process.length > 0) {
+                    mockupsSection.classList.add('cm-hidden');
+                    processSection.classList.remove('cp-hidden');
+                } else {
+                    processSection.classList.add('cp-hidden');
+                    mockupsSection.classList.remove('cm-hidden');
+
+                    var mockupHtml = '';
+                    if (img.mockupInsta) mockupHtml += '<img src="' + img.mockupInsta + '" alt="Mockup Instagram ' + img.title + '">';
+                    if (img.mockup) mockupHtml += '<img src="' + img.mockup + '" alt="Mockup Facebook ' + img.title + '">';
+                    if (!mockupHtml) mockupHtml = '<div class="cm-placeholder"></div>';
+                    document.querySelector('.cm-mockup-img-wrap').innerHTML = mockupHtml;
+                }
+            }, 220);
+        }
+    })();
+    </script>
+
+</body>
+</html>
