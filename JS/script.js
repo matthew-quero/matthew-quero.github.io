@@ -33,7 +33,7 @@ if (aboutRevealItems.length) {
    Une lueur se déplace le long de la courbe SVG en fonction de la
    progression du scroll dans la section. */
 const timelineTrack = document.querySelector('.timeline-track');
-const timelinePath = document.querySelector('.timeline-curve path');
+const timelinePath = document.querySelector(window.innerWidth < 768 ? '.timeline-curve-mobile' : '.timeline-curve-desktop');
 if (timelineTrack && timelinePath) {
     const timelineGlow = document.createElement('div');
     timelineGlow.className = 'timeline-glow';
@@ -141,14 +141,19 @@ function playProjectTransition(imgEl, href) {
 
     const stages = Array.from(stack.querySelectorAll('.proj-stage'));
 
-    // La carte n'a plus de bouton : le clic doit naviguer partout, y
-    // compris sur mobile où l'effet de pile GSAP est désactivé plus bas.
-    stages.forEach(stage => {
-        stage.addEventListener('click', function () {
-            const href = stage.dataset.href;
-            if (href) window.location.href = href;
-        });
-    });
+    // Mobile (< 768px) : pas de pile GSAP, chaque carte apparaît individuellement
+    // au scroll avec un reveal gauche/droite alterné (classes posées dans le HTML).
+    if (window.innerWidth < 768) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('proj-reveal-active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        stages.forEach(stage => revealObserver.observe(stage));
+    }
 
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     if (window.innerWidth < 768) return;
@@ -262,6 +267,19 @@ document.querySelectorAll('.carte-slide').forEach(card => {
     });
 });
 
+/* === ACCORDÉON MOBILE (page à propos, section "Ma démarche") ===
+   Les 3 cards sont cliquables, le texte est masqué par défaut et
+   apparaît en dessous au clic. Un seul ouvert à la fois. */
+document.querySelectorAll('.vision-item').forEach(item => {
+    item.addEventListener('click', function () {
+        if (window.innerWidth > 768) return;
+        document.querySelectorAll('.vision-item').forEach(other => {
+            if (other !== item) other.classList.remove('active');
+        });
+        this.classList.toggle('active');
+    });
+});
+
 /* === BLOC "PROJET SUIVANT" (pages projet, template refonte) ===
    Cherche l'entrée suivante dans PORTFOLIO_PROJECTS (JS/projects-data.js)
    d'après data-current sur #next-project, remplit la carte. Reprend
@@ -292,7 +310,6 @@ document.querySelectorAll('.carte-slide').forEach(card => {
     card.addEventListener('click', () => playProjectTransition(img, next.href));
 
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    if (window.innerWidth < 768) return;
     gsap.registerPlugin(ScrollTrigger);
 
     const stackEl = section.querySelector('#next-stack');
@@ -307,9 +324,11 @@ document.querySelectorAll('.carte-slide').forEach(card => {
     function setStageEl(stageEl, growth) {
         const cardEl = stageEl.querySelector('.next-card');
         const metaEl = stageEl.querySelector('.next-card-meta');
+        // Basé sur la hauteur réelle du stage (cf. #proj-stack) pour rester
+        // proportionnel même quand #next-stack est réduit en CSS mobile.
         const scale = SMALL_SCALE + (1 - SMALL_SCALE) * growth;
         const radius = 24 * (1 - growth);
-        const offsetY = (1 - growth) * window.innerHeight * SMALL_SCALE;
+        const offsetY = (1 - growth) * stageEl.offsetHeight * SMALL_SCALE;
         const metaOpacity = Math.max(0, (growth - 0.75) / 0.25);
 
         gsap.set(cardEl, { scale, y: offsetY, borderRadius: radius });

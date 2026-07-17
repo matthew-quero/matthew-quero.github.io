@@ -2410,8 +2410,11 @@ body.is-loading {
 }
 
 .proj-stage {
+    display: block;
     position: absolute;
     inset: 0;
+    color: inherit;
+    text-decoration: none;
     pointer-events: none;
 }
 
@@ -3056,6 +3059,10 @@ body.project-page-v2 #main-footer {
     stroke-width: 1.5;
 }
 
+.timeline-curve-mobile {
+    display: none;
+}
+
 .timeline-glow {
     position: absolute;
     width: 22px;
@@ -3482,19 +3489,39 @@ body.project-page-v2 #main-footer {
 }
 
 @media (max-width: 800px) {
+    /* Palette en largeur, typo en dessous */
     .identity-grid {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        gap: 24px;
     }
 
+    .palette-grid {
+        flex-direction: row;
+        width: 100%;
+        max-width: 100%;
+        flex: none;
+        gap: 8px;
+    }
+    .palette-swatch { flex: 1 1 0; width: auto; margin-top: 0; }
+    .palette-swatch-color { height: 60px; border-radius: 8px; }
+    .palette-swatch-hex span { font-size: 0.6rem; padding: 3px 6px; }
+
     .typo-grid {
-        flex-direction: column;
+        width: 100%;
+        gap: 10px;
     }
 
     .typo-item {
-        width: 100%;
-        max-width: 340px;
+        width: auto;
+        height: auto;
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 16px 14px;
     }
+    .typo-item-sample { font-size: 1.2rem; white-space: normal; overflow-wrap: break-word; }
+    .typo-item-label { font-size: 0.6rem; letter-spacing: 1px; margin-bottom: 8px; }
+    .typo-item-name { font-size: 0.65rem; margin-top: 8px; }
 }
 
 @media (max-width: 768px) {
@@ -3551,25 +3578,50 @@ body.project-page-v2 #main-footer {
 
     .line-1 { font-size: 15vw; margin-bottom: 5px; }
     .line-2 { font-size: 4vw; letter-spacing: 0.4em; padding-left: 0.4em; }
-    .scroll-indicator { font-size: 0.6rem; bottom: 24px; }
+    .hero-line { display: none; }
+    .scroll-indicator { display: none; }
 
-    #alternance { padding: 40px 3vw; min-height: auto; margin-top: 50px; }
-    .alt-container { flex-direction: row !important; justify-content: center; align-items: flex-start; gap: 15px; }
+    /* Alternance : logo + titre groupés en ligne, texte et bouton en pleine largeur en dessous */
+    #alternance { padding: 40px 6vw; min-height: auto; margin-top: 50px; }
+    .alt-container {
+        display: grid !important;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "logo h4"
+            "logo h2"
+            "text text"
+            "btn btn";
+        align-items: start;
+        column-gap: 16px;
+        row-gap: 10px;
+    }
+    .logo-wrapper { grid-area: logo; }
     .alt-logo { max-width: 80px; top: 0; }
-    .alt-text-content { text-align: left; flex: 1.5; display: flex; flex-direction: column; }
+    .alt-text-content { display: contents; }
+    .alt-text-content.reveal-up { opacity: 1; transform: none; transition: none; }
 
-    #alternance h2 { font-size: 1.1rem; }
-    #alternance h3 { font-size: 0.8rem; margin-bottom: 10px; }
-    #alternance p { font-size: 0.75rem; padding-left: 10px; margin-bottom: 15px; text-align: left; }
-    .btn-discover { align-self: flex-start; padding: 10px 18px; font-size: 0.7rem; }
+    #alternance h4 { grid-area: h4; font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 0; text-align: left; }
+    #alternance h2 { grid-area: h2; font-size: 1.3rem; margin-bottom: 0; text-align: left; }
+    #alternance h3 { display: none; }
+    #alternance p { grid-area: text; font-size: 0.75rem; padding-left: 8px; margin-bottom: 0; text-align: left; }
+    #alternance .btn-discover { grid-area: btn; justify-self: start; padding: 8px 14px; font-size: 0.65rem; }
 
-    #about-teaser { padding: 40px 3vw; min-height: auto; }
-    .about-teaser-container { flex-direction: column !important; gap: 20px; }
-    .about-teaser-photo-wrapper { flex: none; max-width: 100%; width: 100%; }
-    .about-teaser-text-content { text-align: left; display: flex; flex-direction: column; }
+    /* À propos : photo en fond, texte en surimpression, section plus courte */
+    #about-teaser { padding: 0; min-height: 55vh; overflow: hidden; }
+    .about-teaser-container { position: relative; flex-direction: column !important; align-items: stretch; gap: 0; min-height: 55vh; }
+    .about-teaser-photo-wrapper { position: absolute; inset: 0; max-width: 100%; width: 100%; height: 100%; margin: 0; }
+    .about-teaser-photo-wrapper::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(5, 5, 5, 0.92) 0%, rgba(5, 5, 5, 0.55) 38%, rgba(5, 5, 5, 0.1) 75%);
+    }
+    .about-teaser-img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; opacity: 0.45; }
+    .about-teaser-text-content { position: relative; z-index: 1; margin-top: auto; padding: 30px 6vw; text-align: left; display: flex; flex-direction: column; }
 
-    #about-teaser h2 { font-size: 1.1rem; }
-    #about-teaser p { font-size: 0.75rem; padding-left: 10px; margin-bottom: 15px; text-align: left; }
+    #about-teaser h2 { font-size: 1.5rem; }
+    #about-teaser p { font-size: 0.8rem; padding-left: 10px; margin-bottom: 20px; text-align: left; }
+    #about-teaser .btn-discover { align-self: flex-start; padding: 8px 14px; font-size: 0.65rem; }
 
     #proj-stack {
         height: auto;
@@ -3579,32 +3631,94 @@ body.project-page-v2 #main-footer {
         gap: 20px;
         padding: 0 5%;
     }
-    .proj-stage { position: relative; opacity: 1 !important; height: 56vh; }
+    .proj-stage { position: relative; height: 56vh; pointer-events: auto; }
     .proj-card { position: relative; width: 100% !important; height: 100% !important; border-radius: var(--radius-md) !important; cursor: pointer; }
-    .proj-meta { opacity: 1 !important; }
+    .proj-meta { opacity: 1 !important; min-width: 0; }
     .proj-dark { display: none; }
     .proj-meta { padding: 24px 20px; }
     .proj-title { font-size: 1.6rem; }
-    .proj-desc { font-size: 0.85rem; }
+    .proj-desc { font-size: 0.85rem; white-space: normal; overflow: visible; text-overflow: clip; }
 
-    #next-stack { height: 56vh; overflow: visible; }
-    .next-stage { position: relative; opacity: 1 !important; }
-    .next-card { position: relative; width: 100% !important; height: 100% !important; transform: none !important; border-radius: var(--radius-md) !important; }
-    .next-card-meta { opacity: 1 !important; padding: 24px 20px; }
+    /* Reveal individuel des cartes projet au scroll, alterné gauche/droite */
+    .proj-stage.proj-reveal-left,
+    .proj-stage.proj-reveal-right {
+        opacity: 0;
+        transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .proj-stage.proj-reveal-left { transform: translateX(-60px); }
+    .proj-stage.proj-reveal-right { transform: translateX(60px); }
+    .proj-stage.proj-reveal-active { opacity: 1; transform: translate(0, 0); }
+
+    /* Mockups en mosaïque pour 5 photos (BXL Nation) : 2 côte à côte, 1 en grand, 2 côte à côte */
+    .mockups-grid-bento5 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "a b"
+            "c c"
+            "d e";
+        gap: 14px;
+    }
+    .mockups-grid-bento5 .mockup-item:nth-child(1) { grid-area: a; }
+    .mockups-grid-bento5 .mockup-item:nth-child(2) { grid-area: b; }
+    .mockups-grid-bento5 .mockup-item:nth-child(3) { grid-area: c; aspect-ratio: 2 / 1; }
+    .mockups-grid-bento5 .mockup-item:nth-child(4) { grid-area: d; }
+    .mockups-grid-bento5 .mockup-item:nth-child(5) { grid-area: e; }
+
+    /* Mockups en mosaïque pour 3 photos (Mi Casa) : 2 côte à côte, puis 1 en grand */
+    .mockups-grid-bento3 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "a b"
+            "c c";
+        gap: 14px;
+    }
+    .mockups-grid-bento3 .mockup-item:nth-child(1) { grid-area: a; }
+    .mockups-grid-bento3 .mockup-item:nth-child(2) { grid-area: b; }
+    .mockups-grid-bento3 .mockup-item:nth-child(3) { grid-area: c; }
+
+    /* Mockups en mosaïque pour 4 photos (Transmusicales, El Pingouino) : 1 en grand, 2 ensemble, 1 en grand */
+    .mockups-grid-bento4 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "a a"
+            "b c"
+            "d d";
+        gap: 14px;
+    }
+    .mockups-grid-bento4 .mockup-item:nth-child(1) { grid-area: a; aspect-ratio: 2 / 1; }
+    .mockups-grid-bento4 .mockup-item:nth-child(2) { grid-area: b; }
+    .mockups-grid-bento4 .mockup-item:nth-child(3) { grid-area: c; }
+    .mockups-grid-bento4 .mockup-item:nth-child(4) { grid-area: d; aspect-ratio: 2 / 1; }
+
+    /* Carte "projet suivant" : même mécanique GSAP (épinglage + auto-chargement)
+       et même taille (100vh) que sur PC, pour remplir tout l'écran pendant l'épinglage. */
+    .next-card-meta { padding: 24px 20px; }
     .next-card-title { font-size: 1.6rem; }
     .next-card-desc { font-size: 0.85rem; }
-    .next-loading-bar { display: none; }
+
+    /* Espaces de sections resserrés pour un enchaînement plus rapide */
+    #about-intro { padding: 30px 5vw; min-height: auto; }
+    #about-timeline { padding: 50px 5vw; }
+    #about-skills { padding: 50px 5vw; }
+    #about-vision { padding: 50px 5vw; }
 
     .about-grid { grid-template-columns: 1fr; gap: 30px; }
     .about-photo-side { min-height: 350px; }
     .img-placeholder-grey { position: relative; height: 350px; }
     .about-text-side h1 { font-size: 1.8rem; text-align: center; }
 
+    /* Timeline : même principe qu'en desktop (courbe + points alternés),
+       tracé et positions resserrés vers le centre pour laisser de la place
+       au texte sur un écran étroit (cf. .timeline-curve-mobile dans le HTML). */
     .timeline-container h2 { font-size: 1.8rem; }
-    .timeline-curve, .timeline-dot, .timeline-glow { display: none; }
-    .timeline-step { min-height: 0; margin-bottom: 28px; }
-    .timeline-content { position: static; width: 100%; transform: none; text-align: left !important; }
-    .timeline-content p { border-left: 3px solid var(--accent); padding-left: 16px; }
+    .timeline-curve-desktop { display: none; }
+    .timeline-curve-mobile { display: block; }
+    .timeline-step { min-height: 150px; }
+    .timeline-step.is-left .timeline-dot { left: 40%; }
+    .timeline-step.is-right .timeline-dot { left: 60%; }
+    .timeline-content { width: 37%; }
+    .timeline-year { font-size: 1.1rem; }
+    .timeline-content p { font-size: 0.8rem; }
 
     .skills-container h2 { font-size: 1.8rem; }
     .skills-grid { gap: 30px 24px; }
@@ -3612,6 +3726,11 @@ body.project-page-v2 #main-footer {
     .skill-name { font-size: 0.85rem; }
 
     .vision-grid { grid-template-columns: 1fr; gap: 20px; }
+
+    /* Ma démarche : cards cliquables, texte masqué jusqu'au clic */
+    .vision-item { cursor: pointer; }
+    .vision-item p { display: none; margin-top: 16px; }
+    .vision-item.active p { display: block; }
 
     .contact-footer-inner { flex-direction: column; align-items: center; gap: 30px; margin-bottom: 40px; }
     .avatar-circle { width: 110px; height: 110px; border-width: 3px; }
@@ -3683,6 +3802,12 @@ body.project-page-v2 #main-footer {
     #club-nav { padding: 30px 5% 20px; }
     .cn-btn { padding: 16px 14px; }
     .cv-zoom-hint, .cp-zoom-hint, .cdf-match-hint { opacity: 1; }
+
+    /* Lightbox : rétrécir l'image pour laisser la place aux flèches sans chevauchement */
+    .lb-img-wrap img { max-width: 64vw; }
+    .lb-nav { width: 38px; height: 38px; font-size: 0.9rem; }
+    .lb-nav-prev { left: 6px; }
+    .lb-nav-next { right: 6px; }
 
     /* Layout CDF */
     .cdf-page-header { padding: 60px 6% 0; }

@@ -50,8 +50,8 @@
         const socialsHTML = isAltPage
             ? `<a href="https://www.facebook.com/AsGinglinCesson/" target="_blank" class="social-link" title="Facebook AS Ginglin">${SVG.facebook}</a>
                <a href="https://www.instagram.com/asginglincesson/" target="_blank" class="social-link" title="Instagram AS Ginglin">${SVG.instagram}</a>`
-            : `<a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" class="social-link" title="LinkedIn Matthew Quéro">${SVG.linkedin}</a>
-               <a href="https://www.behance.net/matthewquero" target="_blank" class="social-link" title="Behance Matthew Quéro">${SVG.behance}</a>`;
+            : `<a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" class="social-link" title="LinkedIn Matthew Quéro" aria-label="LinkedIn de Matthew Quéro">${SVG.linkedin}</a>
+               <a href="https://www.behance.net/matthewquero" target="_blank" class="social-link" title="Behance Matthew Quéro" aria-label="Behance de Matthew Quéro">${SVG.behance}</a>`;
 
         document.body.insertAdjacentHTML('beforeend', `
             <footer id="main-footer">
