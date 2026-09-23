@@ -29,3 +29,13 @@ Libs externes en CDN (GSAP/ScrollTrigger, Three.js, opentype.js), aucune dans `p
 
 ## Duplication connue (ne pas "corriger" sans demander)
 Les 4 cartes de `#proj-stack` (accueil) sont en HTML statique en plus de `JS/projects-data.js` : volontaire, animation GSAP/ScrollTrigger déjà calibrée dessus, refus déjà exprimé par le passé pour une génération dynamique.
+
+## Refonte 2026
+Titres : Unbounded. Texte : Manrope.
+Couleurs : fond #FFFFFF, encre #0A0A0A, gris #7A7F84, filet #DCDFE2, accent #3FD7AE.
+Animations : survols entre 0.3 et 0.4s, courbe cubic-bezier(.2,.7,.2,1).
+Élément signature : le nom QUÉRO en 3D Three.js, chrome gris vert, réagit à la souris.
+Curseur custom : point plein vert, devient un anneau au survol des éléments cliquables.
+Navbar : Projets, Parcours, SaaS, plus le bouton Me contacter.
+Projets retenus : 9dot8, AS Ginglin Cesson, Quéro Carrelage à venir.
+Méthode : une section à la fois, validation visuelle avant de passer à la suivante.
