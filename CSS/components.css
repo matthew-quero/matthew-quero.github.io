@@ -275,7 +275,7 @@ body.nav-open #side-nav {
         height: 45px;
     }
 
-    #main-footer, #contact { padding: 40px 5vw 20px; }
+    #main-footer, #contact { padding: 40px 5vw 20px; margin-top: 0; }
 
     .footer-container {
         flex-direction: row !important;
