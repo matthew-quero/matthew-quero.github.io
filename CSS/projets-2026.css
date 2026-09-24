@@ -1,0 +1,121 @@
+/* === PROJETS 2026 (accueil, section #projets) === */
+
+.projects { padding: 140px 44px 120px; }
+
+.projects-head { margin-bottom: 90px; }
+.projects-head h2 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(40px, 6vw, 86px);
+    line-height: 1;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+}
+.projects-head p { margin-top: 20px; font-size: 15px; line-height: 1.55; color: var(--mute); }
+
+/* --- Niveau 1 : projets traités en grand --- */
+.project {
+    display: grid;
+    grid-template-columns: 1fr 290px;
+    gap: 64px;
+    align-items: start;
+}
+.project + .project { margin-top: 120px; }
+
+.project-media {
+    aspect-ratio: 16 / 9;
+    max-height: 440px;
+    width: 100%;
+    overflow: hidden;
+}
+.project-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s var(--ease);
+}
+.project:hover .project-media img { transform: scale(1.02); }
+
+.project-title {
+    margin-top: 32px;
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(28px, 4vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+}
+.project-text { margin-top: 18px; max-width: 620px; font-size: 15px; line-height: 1.6; }
+
+/* Colonne d'informations : lignes clé/valeur, filets en box-shadow */
+.project-info-row { padding: 14px 0; }
+.project-info-row + .project-info-row { box-shadow: inset 0 1px 0 var(--line); }
+.project-info dt {
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-weight: 400;
+    margin-bottom: 6px;
+}
+.project-info dd { font-size: 14px; line-height: 1.5; }
+
+/* Soulignement accent tracé de gauche à droite, comme .site-nav */
+.project-link { position: relative; }
+.project-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -4px;
+    height: 2px;
+    background: var(--accent);
+    transition: right .4s var(--ease);
+}
+.project-link:hover::after { right: 0; }
+
+/* --- Niveau 2 : autres travaux --- */
+.others { margin-top: 140px; }
+.others-title {
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-weight: 400;
+    margin-bottom: 18px;
+}
+
+.others-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: baseline;
+    gap: 24px;
+    padding: 22px 0;
+    box-shadow: inset 0 1px 0 var(--line);
+}
+/* Au survol, seuls le contexte et le nom glissent : le filet et la colonne de droite restent immobiles */
+.others-context, .others-name { transition: transform .35s var(--ease), color .35s var(--ease); }
+.others-context { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
+.others-name { font-size: 20px; }
+.others-kind { text-align: right; font-size: 14px; color: var(--mute); }
+
+a.others-row:hover .others-context,
+a.others-row:hover .others-name { transform: translateX(12px); }
+a.others-row:hover .others-name { color: var(--accent); }
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .projects { padding: 100px 20px 90px; }
+    .projects-head { margin-bottom: 60px; }
+
+    .project { grid-template-columns: 1fr; gap: 32px; }
+    .project + .project { margin-top: 90px; }
+    .project-title { margin-top: 24px; }
+
+    .others { margin-top: 100px; }
+    .others-row { grid-template-columns: 1fr; gap: 6px; }
+    .others-kind { text-align: left; }
+    a.others-row:hover .others-context,
+    a.others-row:hover .others-name { transform: none; }
+}
