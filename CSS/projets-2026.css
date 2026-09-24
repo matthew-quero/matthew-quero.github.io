@@ -1,6 +1,7 @@
 /* === PROJETS 2026 (accueil, section #projets) === */
 
-.projects { padding: 140px 44px 120px; }
+/* Contenu ramené à une colonne centrée de 1120px, marges de la page en minimum */
+.projects { padding: 140px max(44px, calc((100% - 1120px) / 2)) 120px; }
 
 .projects-head { margin-bottom: 90px; }
 .projects-head h2 {
@@ -16,15 +17,15 @@
 /* --- Niveau 1 : projets traités en grand --- */
 .project {
     display: grid;
-    grid-template-columns: 1fr 290px;
-    gap: 64px;
+    grid-template-columns: 1fr 260px;
+    gap: 48px;
     align-items: start;
 }
 .project + .project { margin-top: 120px; }
 
 .project-media {
     aspect-ratio: 16 / 9;
-    max-height: 440px;
+    max-height: 400px;
     width: 100%;
     overflow: hidden;
 }
