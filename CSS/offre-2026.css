@@ -74,9 +74,14 @@
     opacity: 0;
     transform: translateY(14px);
     pointer-events: none;
-    transition: opacity .45s var(--ease), transform .45s var(--ease);
+    transition: opacity .45s var(--ease), transform .45s var(--ease),
+                background .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
 }
 .offre-cta.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+
+/* Survol identique au bouton .cta du hero, le rond de la flèche s'inverse */
+.offre-cta:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.offre-cta:hover .offre-cta-arrow { background: var(--bg); color: var(--accent); }
 
 .offre-cta-text { display: flex; flex-direction: column; gap: 3px; }
 .offre-cta-label {
@@ -96,6 +101,7 @@
     border-radius: 50%;
     background: var(--ink);
     color: var(--bg);
+    transition: background .35s var(--ease), color .35s var(--ease);
 }
 
 /* === RESPONSIVE === */
