@@ -65,10 +65,11 @@
         return ok;
     }
 
-    // Le message disparaît dès que la saisie redevient valide, sans attendre un nouvel envoi
+    // Un champ déjà en erreur est revérifié à chaque frappe : le message suit la saisie
+    // (vide ou mal formé pour l'email) et disparaît dès qu'elle devient valide
     checks.slice(1).forEach(rule => {
         rule.el.addEventListener('input', () => {
-            if (rule.el.getAttribute('aria-invalid') === 'true' && rule.test(rule.el)) setError(rule, '');
+            if (rule.el.getAttribute('aria-invalid') === 'true') check(rule);
         });
     });
 
