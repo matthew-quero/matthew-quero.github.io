@@ -6,7 +6,7 @@
     const ring = document.getElementById('ring');
     if (!ring) return;
 
-    const CLICKABLE = 'a, button';
+    const CLICKABLE = 'a, button, [role="option"]';
 
     addEventListener('pointermove', function (e) {
         ring.style.left = e.clientX + 'px';

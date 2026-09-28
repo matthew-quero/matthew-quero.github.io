@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="CSS/projets-2026.css">
     <link rel="stylesheet" href="CSS/parcours-2026.css">
     <link rel="stylesheet" href="CSS/offre-2026.css">
+    <link rel="stylesheet" href="CSS/contact-2026.css">
 </head>
 
 <body>
@@ -196,6 +197,68 @@
         </div>
     </section>
 
+    <section class="contact" id="contact">
+        <div class="contact-head">
+            <h2>Me contacter</h2>
+            <p>Dites-moi en deux mots ce que vous avez en tête, je reviens vers vous sous 48 heures.</p>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+            <input type="hidden" name="access_key" value="fc486e66-208b-4b26-80e1-755797fceeaa">
+            <input type="hidden" name="subject" value="">
+            <input type="hidden" name="from_name" value="Portfolio Matthew Quéro">
+            <input type="hidden" name="replyto" value="">
+            <input type="checkbox" name="botcheck" class="contact-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="contact-field contact-field-full">
+                <span class="contact-label" id="contact-demande-label">Votre demande</span>
+                <div class="contact-select">
+                    <button type="button" class="contact-select-button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="contact-demande-label contact-demande-value">
+                        <span class="contact-select-value" id="contact-demande-value">Choisissez</span>
+                        <svg class="contact-select-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg>
+                    </button>
+                    <ul class="contact-select-list" role="listbox" aria-labelledby="contact-demande-label" hidden>
+                        <li role="option" tabindex="0" aria-selected="false">Site vitrine</li>
+                        <li role="option" tabindex="0" aria-selected="false">Refonte</li>
+                        <li role="option" tabindex="0" aria-selected="false">Intégration</li>
+                        <li role="option" tabindex="0" aria-selected="false">Autre</li>
+                    </ul>
+                </div>
+                <input type="hidden" name="demande" value="">
+            </div>
+
+            <div class="contact-field">
+                <label class="contact-label" for="contact-prenom">Prénom</label>
+                <input class="contact-input" type="text" id="contact-prenom" name="prenom" autocomplete="given-name" required>
+            </div>
+            <div class="contact-field">
+                <label class="contact-label" for="contact-nom">Nom</label>
+                <input class="contact-input" type="text" id="contact-nom" name="nom" autocomplete="family-name" required>
+            </div>
+            <div class="contact-field contact-field-full">
+                <label class="contact-label" for="contact-email">Email</label>
+                <input class="contact-input" type="email" id="contact-email" name="email" autocomplete="email" required>
+            </div>
+            <div class="contact-field contact-field-full">
+                <label class="contact-label" for="contact-message">Message (facultatif)</label>
+                <textarea class="contact-input" id="contact-message" name="message" placeholder="Le contexte, l'échéance, le budget si vous en avez un."></textarea>
+            </div>
+
+            <div class="contact-actions contact-field-full">
+                <button type="submit" class="contact-submit">
+                    <span class="contact-submit-label">Envoyer</span>
+                    <span class="contact-submit-arrow" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+                    </span>
+                </button>
+                <p class="contact-note">Vos informations servent uniquement à vous répondre.</p>
+            </div>
+            <p class="contact-error contact-field-full" role="alert" hidden>L'envoi a échoué. Réessayez, ou écrivez-moi directement.</p>
+        </form>
+
+        <p class="contact-success" role="status" hidden>Merci, votre message est parti. Je vous réponds sous 48 heures.</p>
+    </section>
+
     <div class="ring" id="ring"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js" defer></script>
@@ -203,5 +266,6 @@
     <script src="JS/curseur.js" defer></script>
     <script src="JS/accueil-2026.js" defer></script>
     <script src="JS/offre-2026.js" defer></script>
+    <script src="JS/contact-2026.js" defer></script>
 </body>
 </html>
