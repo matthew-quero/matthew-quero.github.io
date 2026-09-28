@@ -28,6 +28,54 @@
         hidden.value = option ? option.textContent : '';
         valueEl.textContent = option ? option.textContent : EMPTY;
         select.classList.toggle('is-chosen', !!option);
+        if (option) check(checks[0]);
+    }
+
+    /* --- Vérification maison (formulaire en novalidate) ---
+       Chaque règle : l'élément qui porte le filet, la valeur à tester, le message. */
+    const email = form.elements.email;
+    const checks = [
+        { el: button, error: 'Choisissez le type de demande.', test: () => hidden.value !== '' },
+        { el: form.elements.prenom, test: el => el.value.trim() !== '', error: 'Il me faut votre prénom.' },
+        { el: form.elements.nom, test: el => el.value.trim() !== '', error: 'Il me faut votre nom.' },
+        {
+            el: email,
+            test: el => el.value.trim() !== '' && !el.validity.typeMismatch,
+            error: el => el.value.trim() === '' ? 'Il me faut votre email pour vous répondre.' : 'Cet email ne semble pas valide.'
+        }
+    ];
+
+    function setError(rule, message) {
+        const msg = document.getElementById(rule.el.getAttribute('aria-describedby'));
+        if (message) {
+            rule.el.setAttribute('aria-invalid', 'true');
+            msg.textContent = message;
+            msg.hidden = false;
+        } else {
+            rule.el.removeAttribute('aria-invalid');
+            msg.textContent = '';
+            msg.hidden = true;
+        }
+    }
+
+    // Vérifie une règle ; renvoie true si le champ est valide
+    function check(rule) {
+        const ok = rule.test(rule.el);
+        setError(rule, ok ? '' : (typeof rule.error === 'function' ? rule.error(rule.el) : rule.error));
+        return ok;
+    }
+
+    // Le message disparaît dès que la saisie redevient valide, sans attendre un nouvel envoi
+    checks.slice(1).forEach(rule => {
+        rule.el.addEventListener('input', () => {
+            if (rule.el.getAttribute('aria-invalid') === 'true' && rule.test(rule.el)) setError(rule, '');
+        });
+    });
+
+    function validate() {
+        const invalid = checks.filter(rule => !check(rule));
+        if (invalid.length) invalid[0].el.focus();
+        return invalid.length === 0;
     }
 
     button.addEventListener('click', () => (list.hidden ? open() : close()));
@@ -51,6 +99,7 @@
     form.addEventListener('submit', async e => {
         e.preventDefault();
         if (form.elements.botcheck.checked) return;
+        if (!validate()) return;
 
         const name = form.elements.prenom.value.trim() + ' ' + form.elements.nom.value.trim();
         form.elements.subject.value = ['Portfolio', hidden.value, name].filter(Boolean).join(' · ');

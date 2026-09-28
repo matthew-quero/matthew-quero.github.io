@@ -56,18 +56,6 @@ textarea.contact-input { min-height: 96px; resize: vertical; }
 /* --- Menu déroulant maison (pas de <select>) --- */
 .contact-select { position: relative; max-width: 520px; }
 
-/* Champ requis invisible posé sur le filet : la bulle d'erreur du navigateur s'y accroche */
-.contact-select-proxy {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    padding: 0;
-    border: 0;
-    opacity: 0;
-    pointer-events: none;
-}
 
 .contact-select-button {
     display: flex;
@@ -119,6 +107,12 @@ textarea.contact-input { min-height: 96px; resize: vertical; }
 .contact-select-list li:hover,
 .contact-select-list li:focus { outline: none; color: var(--ink); background: #F4F6F6; }
 .contact-select-list li[aria-selected="true"] { color: var(--accent); }
+
+/* --- Erreurs de saisie (vérifiées en JS, formulaire en novalidate) ---
+   Placées après :focus pour que le filet reste rouge même quand le champ a le focus */
+.contact-input[aria-invalid="true"],
+.contact-select-button[aria-invalid="true"] { box-shadow: inset 0 -2px 0 var(--erreur); }
+.contact-field-error { margin-top: 10px; font-size: 13px; color: var(--erreur); }
 
 /* --- Envoi : même dessin que .offre-cta --- */
 .contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }

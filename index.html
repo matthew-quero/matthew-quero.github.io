@@ -203,7 +203,7 @@
             <p>Dites-moi en deux mots ce que vous avez en tête, je reviens vers vous sous 48 heures.</p>
         </div>
 
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" novalidate>
             <input type="hidden" name="access_key" value="fc486e66-208b-4b26-80e1-755797fceeaa">
             <input type="hidden" name="subject" value="">
             <input type="hidden" name="from_name" value="Portfolio Matthew Quéro">
@@ -213,7 +213,7 @@
             <div class="contact-field contact-field-full">
                 <span class="contact-label" id="contact-demande-label">Votre demande</span>
                 <div class="contact-select">
-                    <button type="button" class="contact-select-button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="contact-demande-label contact-demande-value">
+                    <button type="button" class="contact-select-button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="contact-demande-label contact-demande-value" aria-describedby="contact-demande-error">
                         <span class="contact-select-value" id="contact-demande-value">Choisissez</span>
                         <svg class="contact-select-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg>
                     </button>
@@ -223,22 +223,25 @@
                         <li role="option" tabindex="0" aria-selected="false">Intégration</li>
                         <li role="option" tabindex="0" aria-selected="false">Autre</li>
                     </ul>
-                    <!-- Porte la valeur pour l'envoi : champ texte invisible mais requis, pour que le navigateur signale l'oubli comme sur les autres champs -->
-                    <input class="contact-select-proxy" type="text" name="demande" value="" required tabindex="-1" aria-hidden="true" autocomplete="off">
                 </div>
+                <input type="hidden" name="demande" value="">
+                <p class="contact-field-error" id="contact-demande-error" hidden></p>
             </div>
 
             <div class="contact-field">
                 <label class="contact-label" for="contact-prenom">Prénom</label>
-                <input class="contact-input" type="text" id="contact-prenom" name="prenom" autocomplete="given-name" required>
+                <input class="contact-input" type="text" id="contact-prenom" name="prenom" autocomplete="given-name" required aria-describedby="contact-prenom-error">
+                <p class="contact-field-error" id="contact-prenom-error" hidden></p>
             </div>
             <div class="contact-field">
                 <label class="contact-label" for="contact-nom">Nom</label>
-                <input class="contact-input" type="text" id="contact-nom" name="nom" autocomplete="family-name" required>
+                <input class="contact-input" type="text" id="contact-nom" name="nom" autocomplete="family-name" required aria-describedby="contact-nom-error">
+                <p class="contact-field-error" id="contact-nom-error" hidden></p>
             </div>
             <div class="contact-field contact-field-full">
                 <label class="contact-label" for="contact-email">Email</label>
-                <input class="contact-input" type="email" id="contact-email" name="email" autocomplete="email" required>
+                <input class="contact-input" type="email" id="contact-email" name="email" autocomplete="email" required aria-describedby="contact-email-error">
+                <p class="contact-field-error" id="contact-email-error" hidden></p>
             </div>
             <div class="contact-field contact-field-full">
                 <label class="contact-label" for="contact-message">Message (facultatif)</label>

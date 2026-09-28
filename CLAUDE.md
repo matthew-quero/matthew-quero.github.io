@@ -32,7 +32,7 @@ Les 4 cartes de `#proj-stack` (accueil) sont en HTML statique en plus de `JS/pro
 
 ## Refonte 2026
 Titres : Unbounded. Texte : Manrope.
-Couleurs : fond #FFFFFF, encre #0A0A0A, gris #7A7F84, filet #DCDFE2, accent #3FD7AE.
+Couleurs : fond #FFFFFF, encre #0A0A0A, gris #7A7F84, filet #DCDFE2, accent #3FD7AE, erreur #D9483B (réservée aux erreurs de saisie des formulaires, nulle part ailleurs).
 Animations : survols entre 0.3 et 0.4s, courbe cubic-bezier(.2,.7,.2,1).
 Élément signature : le nom QUÉRO en 3D Three.js, chrome gris vert, réagit à la souris.
 Curseur custom : point plein vert, devient un anneau au survol des éléments cliquables.
