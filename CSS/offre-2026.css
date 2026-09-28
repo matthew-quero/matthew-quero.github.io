@@ -1,0 +1,110 @@
+/* === OFFRE 2026 (accueil, section #offre "Un projet ? Discutons-en.") ===
+   Défilement horizontal piloté par le scroll vertical (JS/offre-2026.js) :
+   la section fait 320vh, le conteneur collant reste à l'écran pendant que
+   le rail passe d'un panneau à l'autre. */
+
+.offre { height: 320vh; }
+
+.offre-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 max(44px, calc((100% - 1360px) / 2));
+}
+
+.offre-title {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(30px, 4.2vw, 64px);
+    line-height: .96;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+    margin-bottom: clamp(34px, 5.5vh, 64px);
+}
+
+/* Fenêtre qui masque les panneaux hors champ */
+.offre-window { height: min(46vh, 340px); overflow: hidden; }
+
+.offre-rail { display: flex; gap: 50px; height: 100%; will-change: transform; }
+
+.offre-panel {
+    flex: 0 0 100%;
+    min-width: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 50% 1fr;
+    column-gap: 80px;
+    align-items: center;
+}
+
+.offre-name {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(36px, 5.6vw, 92px);
+    line-height: .94;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.offre-phrase { max-width: 30ch; font-size: 16px; color: var(--mute); }
+
+.offre-detail + .offre-detail { margin-top: 26px; }
+.offre-detail h4 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+.offre-detail p { margin-top: 6px; font-size: 14.5px; line-height: 1.6; color: var(--mute); }
+
+/* Bouton devis : invisible jusqu'au dernier panneau */
+.offre-cta {
+    align-self: flex-start;
+    margin-top: clamp(34px, 5.5vh, 64px);
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 7px 7px 7px 26px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    opacity: 0;
+    transform: translateY(14px);
+    pointer-events: none;
+    transition: opacity .45s var(--ease), transform .45s var(--ease);
+}
+.offre-cta.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+
+.offre-cta-text { display: flex; flex-direction: column; gap: 3px; }
+.offre-cta-label {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+.offre-cta-note { font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; opacity: .6; }
+
+.offre-cta-arrow {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--bg);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 860px) {
+    /* Plus de blocage ni de défilement horizontal : panneaux empilés */
+    .offre { height: auto; }
+    .offre-sticky { position: static; height: auto; overflow: visible; display: block; padding: 100px 20px 0; }
+    .offre-window { height: auto; overflow: visible; }
+    .offre-rail { flex-direction: column; gap: 52px; transform: none; }
+    .offre-panel { grid-template-columns: 1fr; row-gap: 26px; overflow: visible; }
+    .offre-cta { opacity: 1; transform: none; pointer-events: auto; }
+}
