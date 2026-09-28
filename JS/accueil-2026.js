@@ -1,5 +1,11 @@
 /* === ACCUEIL 2026 === */
 
+/* Année du pied de page, jamais écrite en dur */
+(function () {
+    const y = document.getElementById('footer-year');
+    if (y) y.textContent = new Date().getFullYear();
+})();
+
 /* Date du jour au-dessus de "En recherche d'alternance" (hero) */
 (function () {
     const d = document.getElementById('hero-date');

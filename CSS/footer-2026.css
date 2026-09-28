@@ -1,0 +1,58 @@
+/* === PIED DE PAGE 2026 ===
+   Seul bloc du site sur fond encre : c'est le changement de fond qui sépare,
+   aucun filet. Même colonne centrée de 1120px que les sections. */
+
+.site-footer {
+    --footer-mute: #8B9197; /* gris lisible sur encre, --mute l'est trop peu */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px 40px;
+    padding: 34px max(44px, calc((100% - 1120px) / 2));
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.footer-name {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.footer-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 14px; }
+
+.footer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    font-size: 12.5px;
+    color: var(--footer-mute);
+}
+
+/* Survol : texte accent et filet tracé de gauche à droite, comme .site-nav */
+.footer-nav a,
+.footer-meta a { position: relative; transition: color .4s var(--ease); }
+.footer-nav a::after,
+.footer-meta a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -4px;
+    height: 1.5px;
+    background: var(--accent);
+    transition: right .4s var(--ease);
+}
+.footer-nav a:hover,
+.footer-meta a:hover { color: var(--accent); }
+.footer-nav a:hover::after,
+.footer-meta a:hover::after { right: 0; }
+
+/* === RESPONSIVE === */
+@media (max-width: 860px) {
+    .site-footer { flex-direction: column; align-items: flex-start; padding: 30px 20px 34px; }
+}
