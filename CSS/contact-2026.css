@@ -56,6 +56,19 @@ textarea.contact-input { min-height: 96px; resize: vertical; }
 /* --- Menu déroulant maison (pas de <select>) --- */
 .contact-select { position: relative; max-width: 520px; }
 
+/* Champ requis invisible posé sur le filet : la bulle d'erreur du navigateur s'y accroche */
+.contact-select-proxy {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .contact-select-button {
     display: flex;
     align-items: center;

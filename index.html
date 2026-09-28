@@ -223,8 +223,9 @@
                         <li role="option" tabindex="0" aria-selected="false">Intégration</li>
                         <li role="option" tabindex="0" aria-selected="false">Autre</li>
                     </ul>
+                    <!-- Porte la valeur pour l'envoi : champ texte invisible mais requis, pour que le navigateur signale l'oubli comme sur les autres champs -->
+                    <input class="contact-select-proxy" type="text" name="demande" value="" required tabindex="-1" aria-hidden="true" autocomplete="off">
                 </div>
-                <input type="hidden" name="demande" value="">
             </div>
 
             <div class="contact-field">
