@@ -67,7 +67,7 @@
     margin-top: clamp(34px, 5.5vh, 64px);
     display: inline-flex;
     align-items: center;
-    gap: 18px;
+    gap: 20px;
     padding: 7px 7px 7px 26px;
     border: 1.5px solid var(--ink);
     border-radius: 999px;
@@ -83,7 +83,6 @@
 .offre-cta:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
 .offre-cta:hover .offre-cta-arrow { background: var(--bg); color: var(--accent); }
 
-.offre-cta-text { display: flex; flex-direction: column; gap: 3px; }
 .offre-cta-label {
     font-family: var(--font-title);
     font-weight: 500;
@@ -91,7 +90,7 @@
     line-height: 1.1;
     text-transform: uppercase;
 }
-.offre-cta-note { font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; opacity: .6; }
+.offre-cta-note { font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; opacity: .6; white-space: nowrap; }
 
 .offre-cta-arrow {
     display: grid;
@@ -112,5 +111,17 @@
     .offre-window { height: auto; overflow: visible; }
     .offre-rail { flex-direction: column; gap: 52px; transform: none; }
     .offre-panel { grid-template-columns: 1fr; row-gap: 26px; overflow: visible; }
-    .offre-cta { opacity: 1; transform: none; pointer-events: auto; }
+    /* Trop étroit pour une seule ligne : la mention passe sous le libellé, le rond reste à droite */
+    .offre-cta {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        display: inline-grid;
+        grid-template-columns: auto auto;
+        column-gap: 20px;
+        row-gap: 3px;
+    }
+    .offre-cta-label { grid-column: 1; grid-row: 1; align-self: end; }
+    .offre-cta-note { grid-column: 1; grid-row: 2; align-self: start; }
+    .offre-cta-arrow { grid-column: 2; grid-row: 1 / 3; }
 }
