@@ -33,10 +33,10 @@ Les 4 cartes de `#proj-stack` (accueil) sont en HTML statique en plus de `JS/pro
 ## Refonte 2026
 Titres : Unbounded. Texte : Manrope.
 Couleurs : fond #FFFFFF, encre #0A0A0A, gris #7A7F84, filet #DCDFE2, accent #3FD7AE, erreur #D9483B (réservée aux erreurs de saisie des formulaires, nulle part ailleurs).
-Fonds : blanc partout, sauf le pied de page, en encre. Règle valable pour toutes les pages, pas une exception.
+Fonds : blanc partout, sauf le pied de page, en encre. Règle valable pour toutes les pages, pas une exception. Sur l'encre, le gris secondaire est #8B9197 (variable locale --footer-mute), --mute y étant illisible.
 Animations : survols entre 0.3 et 0.4s, courbe cubic-bezier(.2,.7,.2,1).
 Élément signature : le nom QUÉRO en 3D Three.js, chrome gris vert, réagit à la souris.
 Curseur custom : point plein vert, devient un anneau au survol des éléments cliquables.
-Navbar : Projets, Parcours, SaaS, plus le bouton Me contacter.
-Projets retenus : 9dot8, AS Ginglin Cesson, Quéro Carrelage à venir.
+Navbar : Projets, Qui je suis, Un projet ?, plus le bouton Me contacter.
+Projets détaillés : 9dot8, AS Ginglin Cesson. Autres travaux : Quéro Carrelage (en cours, sans lien), Transmusicales de Rennes, BXL Nation.
 Méthode : une section à la fois, validation visuelle avant de passer à la suivante.
