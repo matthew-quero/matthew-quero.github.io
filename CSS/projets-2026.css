@@ -103,7 +103,7 @@
 
 a.others-row:hover .others-context,
 a.others-row:hover .others-name { transform: translateX(12px); }
-a.others-row:hover .others-name { color: var(--accent); }
+a.others-row:hover .others-name { color: var(--accent-texte); }
 
 /* === RESPONSIVE === */
 @media (max-width: 900px) {

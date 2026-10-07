@@ -15,7 +15,9 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="canonical" href="https://matthew-quero.github.io/">
-    <link rel="icon" type="image/png" href="img/site/logo.png">
+    <link rel="icon" href="img/site/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="img/site/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="img/site/apple-touch-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,30 +29,42 @@
     <link rel="stylesheet" href="CSS/offre-2026.css">
     <link rel="stylesheet" href="CSS/contact-2026.css">
     <link rel="stylesheet" href="CSS/footer-2026.css">
+    <link rel="stylesheet" href="CSS/cote-2026.css">
+    <link rel="stylesheet" href="CSS/menu-2026.css">
 </head>
 
 <body>
 
     <section class="hero">
         <header class="site-header">
-            <div class="logo">Matthew Quéro</div>
+            <div class="logo"><img src="img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></div>
             <nav class="site-nav" aria-label="Navigation principale">
                 <a href="#projets">Projets</a>
                 <a href="#parcours">Qui je suis</a>
                 <a href="#offre">Un projet&nbsp;?</a>
             </nav>
             <a class="cta" href="#contact">Me contacter</a>
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span></button>
         </header>
+    <div class="menu-mobile" id="menu-mobile" hidden>
+        <nav aria-label="Navigation mobile">
+            <a href="#projets">Projets</a>
+            <a href="#parcours">Qui je suis</a>
+            <a href="#offre">Un projet&nbsp;?</a>
+            <a href="#contact">Me contacter</a>
+        </nav>
+        <div class="menu-pied">
+            <a href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+
 
         <h1>Développeur web</h1>
         <canvas id="hero-3d" aria-hidden="true"></canvas>
         <p class="pitch">Développeur web, formé sur le terrain de la communication sportive. Je code des sites et je gère la communication qui va avec.</p>
 
-        <div class="hero-status"><small id="hero-date">&nbsp;</small><b>En recherche d'alternance</b></div>
-        <div class="rail">
-            <a href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
+        <div class="hero-status"><small>Bretagne</small><b>Côtes-d'Armor et Rennes</b></div>
     </section>
 
     <section class="offre" id="offre">
@@ -126,13 +140,15 @@
         <div class="parcours-grid">
             <div class="parcours-text">
                 <h2>Qui je suis</h2>
-                <p>Maîtriser plusieurs disciplines, pour moi, c'est une question d'autonomie. Développer, concevoir, communiquer : trois compétences qui me permettent de <strong>porter un projet de bout en bout</strong> sans dépendre d'un intermédiaire.</p>
-                <p>Bachelor webmarketing et social media à MyDigitalSchool Rennes, et une première année d'alternance en communication à l'AS Ginglin Cesson.</p>
+                <p class="parcours-intro">Je conçois et développe des sites, et l'identité visuelle qui va avec.</p>
+                <div class="parcours-suite">
+                    <p>Charte graphique, déclinaisons, contenus pour les réseaux sociaux. Pendant un an, chargé de communication à l'AS Ginglin Cesson, club de football de Saint-Brieuc, en alternance de mon Bachelor webmarketing et social media à MyDigitalSchool Rennes.</p>
+                    <p>J'ai couvert la saison de l'équipe première et accompagné sa montée sur les réseaux. Je suis le football depuis l'enfance, ce qui a aidé&nbsp;: on écrit mieux pour un public dont on connaît déjà les codes.</p>
+                </div>
             </div>
-            <div class="parcours-photo"></div>
             <div class="parcours-tools">
                 <h3 class="parcours-tools-title">Les outils</h3>
-                <p class="parcours-tools-list">HTML&nbsp;<span>·</span> CSS&nbsp;<span>·</span> JavaScript&nbsp;<span>·</span> WordPress&nbsp;<span>·</span> Git&nbsp;<span>·</span> Photoshop&nbsp;<span>·</span> Premiere Pro&nbsp;<span>·</span> After Effects</p>
+                <p class="parcours-tools-list">HTML&nbsp;<span>·</span> CSS&nbsp;<span>·</span> JavaScript&nbsp;<span>·</span> PHP&nbsp;<span>·</span> WordPress&nbsp;<span>·</span> Git&nbsp;<span>·</span> Photoshop&nbsp;<span>·</span> Premiere&nbsp;Pro&nbsp;<span>·</span> After&nbsp;Effects</p>
             </div>
         </div>
     </section>
@@ -149,21 +165,21 @@
                     <img src="img/projets/9dot8/cover.webp" alt="Page d'accueil du site 9dot8" width="1600" height="900" loading="lazy">
                 </div>
                 <h3 class="project-title">9dot8</h3>
-                <p class="project-text">Site vitrine complet pour une association de glisse urbaine rennaise. Maquettes par l'équipe, développement et intégration WordPress de bout en bout, livrés en une semaine et demie.</p>
+                <p class="project-text">Site vitrine complet pour une association de glisse urbaine rennaise. Maquettes par Titouan, le reste pour moi : thème WordPress sur mesure, intégration page par page et back-office PHP. Livré en une semaine et demie.</p>
             </div>
             <dl class="project-info">
                 <div class="project-info-row"><dt>Année</dt><dd>2026</dd></div>
                 <div class="project-info-row"><dt>Contexte</dt><dd>Projet de groupe, MyDigitalSchool Rennes</dd></div>
-                <div class="project-info-row"><dt>Mon rôle</dt><dd>Développement, intégration, mise en ligne</dd></div>
-                <div class="project-info-row"><dt>Outils</dt><dd>WordPress, HTML, CSS</dd></div>
-                <div class="project-info-row"><dt>Lien</dt><dd><a class="project-link" href="https://matthew-quero.github.io/9dot8/" target="_blank" rel="noopener">Voir le site</a></dd></div>
+                <div class="project-info-row"><dt>Mon rôle</dt><dd>Thème WordPress, intégration, back-office PHP</dd></div>
+                <div class="project-info-row"><dt>Outils</dt><dd>WordPress, PHP, HTML, CSS</dd></div>
+                <div class="project-info-row"><dt>Lien</dt><dd><a class="project-link" href="projet-9dot8.html">Voir le projet</a></dd></div>
             </dl>
         </article>
 
         <article class="project">
             <div class="project-main">
                 <div class="project-media">
-                    <img src="img/asgc/mockups/instagram/pontivy_aller.webp" alt="Visuel jour de match publié sur le compte Instagram du club" width="1000" height="558" loading="lazy">
+                    <img src="img/site/photo_matthew.webp" alt="Matthew Quéro filmant une célébration de but derrière la main courante du stade" width="1400" height="932" loading="lazy">
                 </div>
                 <h3 class="project-title">AS Ginglin Cesson</h3>
                 <p class="project-text">Un an de communication digitale pour un club de football de Saint-Brieuc. Visuels jour de match, réseaux sociaux, couverture photo et vidéo des rencontres, valorisation des partenaires.</p>
@@ -172,7 +188,7 @@
                 <div class="project-info-row"><dt>Période</dt><dd>Septembre 2025 · Août 2026</dd></div>
                 <div class="project-info-row"><dt>Contexte</dt><dd>Alternance, chargé de communication</dd></div>
                 <div class="project-info-row"><dt>Mon rôle</dt><dd>Visuels, réseaux sociaux, photo et vidéo</dd></div>
-                <div class="project-info-row"><dt>Outils</dt><dd>Photoshop, Premiere Pro, After Effects</dd></div>
+                <div class="project-info-row"><dt>Outils</dt><dd>Photoshop, Premiere&nbsp;Pro, After&nbsp;Effects</dd></div>
                 <div class="project-info-row"><dt>Résultat</dt><dd>5,7&nbsp;M de vues cumulées Facebook et Instagram, 1&nbsp;450 abonnés gagnés</dd></div>
                 <div class="project-info-row"><dt>Lien</dt><dd><a class="project-link" href="as-ginglin-cesson.html">Voir les travaux</a></dd></div>
             </dl>
@@ -181,7 +197,7 @@
         <div class="others">
             <h3 class="others-title">Autres travaux</h3>
             <div class="others-row">
-                <span class="others-context">En cours</span>
+                <span class="others-context">Client</span>
                 <span class="others-name">Quéro Carrelage</span>
                 <span class="others-kind">Site vitrine client</span>
             </div>
@@ -265,7 +281,7 @@
     </section>
 
     <footer class="site-footer">
-        <div class="footer-name">Matthew Quéro</div>
+        <div class="footer-name"><img src="img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
         <nav class="footer-nav" aria-label="Pied de page">
             <a href="#offre">Un projet&nbsp;?</a>
             <a href="#parcours">Qui je suis</a>
@@ -280,13 +296,31 @@
         </div>
     </footer>
 
+    <aside class="cote">
+        <a class="cote-lien" href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+        <a class="cote-lien" href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="cote-haut" type="button" aria-label="Revenir en haut de la page">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 13.5V2.5M8 2.5 3 7.5M8 2.5l5 5" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </aside>
+
     <div class="ring" id="ring"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js" defer></script>
+    <script src="vendor/three.min.js" defer></script>
     <script src="JS/hero-3d.js" defer></script>
     <script src="JS/curseur.js" defer></script>
+    <script src="JS/menu-2026.js" defer></script>
+    <script src="JS/cote-2026.js" defer></script>
     <script src="JS/accueil-2026.js" defer></script>
     <script src="JS/offre-2026.js" defer></script>
     <script src="JS/contact-2026.js" defer></script>
+    <!-- Mesure d'audience GoatCounter : sans cookie, sans empreinte,
+         l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
+         Rien a declarer, aucune banniere a afficher. -->
+    <script data-goatcounter="https://matthewquero.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

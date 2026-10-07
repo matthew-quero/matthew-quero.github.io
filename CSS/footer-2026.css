@@ -13,14 +13,9 @@
     color: var(--bg);
 }
 
-.footer-name {
-    font-family: var(--font-title);
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: -.02em;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
+/* Même marque, version blanche : le pied de page est le seul bloc sur encre. */
+.footer-name { line-height: 0; }
+.footer-name img { display: block; height: 34px; width: auto; }
 
 .footer-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 14px; }
 
@@ -48,7 +43,7 @@
     transition: right .4s var(--ease);
 }
 .footer-nav a:hover,
-.footer-meta a:hover { color: var(--accent); }
+.footer-meta a:hover { color: var(--accent-texte); }
 .footer-nav a:hover::after,
 .footer-meta a:hover::after { right: 0; }
 

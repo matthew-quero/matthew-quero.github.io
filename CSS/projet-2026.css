@@ -1,0 +1,192 @@
+/* === PAGE PROJET 2026 ===
+   Feuille commune aux pages projet : en-tête du projet, captures, retour.
+   La barre de navigation et la colonne .wrap sont dans base-2026.css,
+   partagées avec l'accueil et la page ASGC. */
+
+/* --- En-tête du projet --- */
+.projet-intro { padding: 86px 0 0; }
+.projet-intro h1 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(38px, 5.6vw, 80px);
+    line-height: .98;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+}
+.projet-role { margin-top: 22px; font-size: 15px; color: var(--mute); }
+.projet-texte { margin-top: 38px; max-width: 74ch; font-size: 17px; line-height: 1.68; }
+.projet-texte + .projet-texte { margin-top: 20px; }
+.projet-texte strong { font-weight: 600; }
+
+/* Image de concept : la photo qui donne l'ambiance du projet, pas une capture */
+.projet-couverture { margin: 62px 0 0; }
+.projet-couverture img { display: block; width: 100%; height: auto; }
+
+/* --- Captures : alternance gauche/droite, chaque image file jusqu'au bord ---
+   La section sort de la colonne pour occuper toute la largeur de la fenêtre.
+   Chaque écran ne garde ensuite le retrait que du côté où se trouve le texte. */
+.ecrans {
+    padding: 130px 0 0;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
+}
+.colonne { padding-left: max(44px, calc((100vw - 1240px) / 2));
+           padding-right: max(44px, calc((100vw - 1240px) / 2)); }
+
+.ecran { display: grid; align-items: center; gap: clamp(32px, 4vw, 70px); margin: 0; }
+.ecran + .ecran { margin-top: clamp(70px, 8vw, 130px); }
+.ecran:nth-of-type(odd) {
+    grid-template-columns: minmax(0, 390px) minmax(0, 1fr);
+    padding-left: max(44px, calc((100vw - 1240px) / 2));
+}
+.ecran:nth-of-type(even) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 390px);
+    padding-right: max(44px, calc((100vw - 1240px) / 2));
+}
+.ecran:nth-of-type(even) .ecran-txt { order: 2; }
+.ecran:nth-of-type(even) .ecran-vue { order: 1; }
+
+.ecran-txt h3 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(19px, 2.2vw, 26px);
+    line-height: 1.04;
+    letter-spacing: -.025em;
+    text-transform: uppercase;
+}
+.ecran-txt p { margin-top: 15px; font-size: 14.5px; line-height: 1.62; color: var(--mute); max-width: 44ch; }
+
+/* Le back-office n'est pas une page du site : il reste dans la colonne,
+   en pleine largeur, et ferme la série. */
+.ecran-admin { margin: clamp(70px, 8vw, 130px) 0 0; }
+.ecran-admin .ecran-txt { margin-top: 24px; }
+
+.bloc-titre {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(24px, 3vw, 38px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    margin-bottom: 56px;
+}
+
+/* Les captures sont des pages entières, très hautes. On les présente dans une
+   fenêtre de hauteur fixe calée sur le haut de page : on voit le rythme du site
+   sans imposer six écrans de défilement par capture. */
+.ecran-vue {
+    height: clamp(360px, 42vw, 540px);
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(10, 10, 10, .04), 0 16px 40px rgba(10, 10, 10, .06);
+}
+.ecran-vue img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Faux navigateur minimal, réservé au back-office : sans ce cadre, une
+   interface d'administration se lit comme un simple tableau. */
+.navigateur { border-radius: 12px; overflow: hidden; box-shadow: 0 1px 2px rgba(10,10,10,.04), 0 16px 40px rgba(10,10,10,.06); }
+.navigateur-barre { height: 40px; background: #F4F4F5; display: flex; align-items: center; padding: 0 14px; }
+.navigateur-url {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    background: var(--bg);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--mute);
+}
+/* Cette capture est deja recadree sur les champs : on la montre en entier,
+   sans la fenetre qui coupe les captures de pages. */
+.navigateur img { display: block; width: 100%; height: auto; border-radius: 0; box-shadow: none; }
+
+/* --- Pièces d'identité : des livrables, pas des captures de pages.
+   Chaque pièce garde son format, rien n'est recadré ni mis dans une fenêtre. --- */
+.pieces { padding: 130px 0 0; }
+.paire { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 3.6vw, 64px); align-items: start; }
+.paire + .piece-large, .piece-large + .paire { margin-top: clamp(70px, 8vw, 120px); }
+.piece { margin: 0; }
+.piece-vue { overflow: hidden; border-radius: 12px; }
+.piece-vue img { display: block; width: 100%; height: auto; }
+.piece figcaption { margin-top: 22px; }
+.piece h3, .piece-notes h3 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(19px, 2.2vw, 26px);
+    line-height: 1.04;
+    letter-spacing: -.025em;
+    text-transform: uppercase;
+}
+.piece p, .piece-notes p { margin-top: 15px; font-size: 14.5px; line-height: 1.62; color: var(--mute); max-width: 48ch; }
+.piece-large figcaption { max-width: 62ch; }
+
+/* La colonne qui accompagne les réseaux : charte et typographies */
+.piece-notes { align-self: center; }
+.teintes { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 22px; list-style: none;
+           font-size: 12px; color: var(--mute); letter-spacing: .02em; }
+.teintes li { display: flex; align-items: center; gap: 9px; }
+.teintes span { width: 20px; height: 20px; border-radius: 4px; display: block; }
+
+/* --- Lien vers le site et retour --- */
+.projet-liens { padding: 120px 0 130px; display: flex; gap: 46px; flex-wrap: wrap; }
+.projet-liens a {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+    position: relative;
+}
+.projet-liens a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -6px;
+    height: 2px;
+    background: var(--accent);
+    transition: right .4s var(--ease);
+}
+.projet-liens a:hover::after { right: 0; }
+.retour { padding: 30px 0 130px; }
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .page-header { grid-template-columns: 1fr auto; row-gap: 18px; padding: 20px; }
+    .site-nav { grid-column: 1 / -1; order: 3; gap: 22px; flex-wrap: wrap; }
+    /* La colonne reprend le retrait de la barre du haut : sinon le contenu
+       est plus étroit que la nav, et un titre d'un seul mot se coupe. */
+    .wrap { padding: 0 20px; }
+    .projet-intro { padding-top: 52px; }
+    .projet-intro h1 {
+        font-size: clamp(27px, 7.2vw, 56px);
+        hyphens: auto;
+        overflow-wrap: break-word;
+    }
+    .projet-texte { font-size: 16px; }
+    .projet-couverture { margin-top: 40px; }
+    .ecrans { padding-top: 84px; }
+    /* en colonne unique, chaque écran reprend le retrait des deux côtés */
+    .ecran, .ecran:nth-of-type(odd), .ecran:nth-of-type(even) {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        gap: 22px;
+    }
+    .ecran:nth-of-type(even) .ecran-txt { order: 2; }
+    .ecran:nth-of-type(even) .ecran-vue { order: 1; }
+    .colonne { padding-left: 20px; padding-right: 20px; }
+    .ecran + .ecran, .ecran-admin { margin-top: 76px; }
+    .ecran-vue { height: clamp(300px, 64vw, 420px); }
+    .pieces { padding-top: 84px; }
+    .paire { grid-template-columns: 1fr; gap: 56px; }
+    .paire + .piece-large, .piece-large + .paire { margin-top: 56px; }
+    .projet-liens { padding-top: 76px; gap: 28px; }
+    .retour { padding-bottom: 90px; }
+}

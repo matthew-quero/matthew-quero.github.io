@@ -2,129 +2,160 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Transmusicales - Matthew Quéro</title>
-    <meta name="description" content="Portfolio de Matthew Quéro, créateur visuel et chargé de communication à l'AS Ginglin Cesson. Découvrez mes projets en branding, UX/UI et stratégie digitale.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transmusicales de Rennes, site WordPress | Matthew Quéro</title>
+    <meta name="description" content="Site vitrine WordPress multi-pages pour un festival de musique : accueil, présentation, programmation des artistes, actualités et informations pratiques.">
 
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:url" content="https://matthew-quero.github.io/projet-transmusicales.html">
-    <meta property="og:title" content="Transmusicales — Matthew Quéro">
-    <meta property="og:description" content="Conception d'un site vitrine WordPress complet pour un festival de musique.">
+    <meta property="og:title" content="Transmusicales de Rennes, site WordPress">
+    <meta property="og:description" content="Site vitrine WordPress multi-pages pour un festival de musique.">
     <meta property="og:image" content="https://matthew-quero.github.io/img/og-image.jpg">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link rel="canonical" href="https://matthew-quero.github.io/projet-transmusicales.html">
-    <link rel="icon" type="image/png" href="img/site/logo.png">
-    <link rel="stylesheet" href="CSS/base.css">
-    <link rel="stylesheet" href="CSS/components.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/site/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="img/site/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="img/site/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/base-2026.css">
+    <link rel="stylesheet" href="CSS/projet-2026.css">
+    <link rel="stylesheet" href="CSS/footer-2026.css">
+    <link rel="stylesheet" href="CSS/cote-2026.css">
+    <link rel="stylesheet" href="CSS/menu-2026.css">
 </head>
 
-<body class="project-page project-page-v2">
+<body>
 
-    <div class="nav-project">
-        <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+    <header class="page-header">
+        <div class="logo"><a href="index.html"><img src="img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></a></div>
+        <nav class="site-nav" aria-label="Navigation principale">
+            <a href="index.html#projets">Projets</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#offre">Un projet&nbsp;?</a>
+        </nav>
+        <a class="cta" href="index.html#contact">Me contacter</a>
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span></button>
+    </header>
+    <div class="menu-mobile" id="menu-mobile" hidden>
+        <nav aria-label="Navigation mobile">
+            <a href="index.html#projets">Projets</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#offre">Un projet&nbsp;?</a>
+            <a href="index.html#contact">Me contacter</a>
+        </nav>
+        <div class="menu-pied">
+            <a href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
     </div>
 
-    <main>
-    <header class="project-hero">
-        <div class="project-hero-bg">
-            <img src="img/projets/transmusicales/hero.webp" alt="">
-        </div>
-        <div class="project-hero-content reveal-up">
-            <h1>TRANSMUSICALES</h1>
-            <p class="project-description">
-                Projet réalisé dans le cadre de ma formation : la conception d'un site vitrine WordPress complet pour les Transmusicales de Rennes, festival de musique. Page d'accueil, présentation du festival, programmation des artistes, actualités et informations pratiques : un site multi-pages pensé comme un véritable site événementiel.
-            </p>
-            <a href="https://transmusicales.matthew-quero.mds-rennes.yt/" target="_blank" class="project-hero-link">Voir le site →</a>
-        </div>
-    </header>
 
-    <section class="project-mockups">
-        <h2 class="project-section-title">Mockups</h2>
-        <div class="mockups-grid mockups-grid-bento4">
-            <div class="mockup-item">
-                <img src="img/projets/transmusicales/page_festival.webp" alt="Page Le Festival" loading="lazy">
-            </div>
-            <div class="mockup-item">
-                <img src="img/projets/transmusicales/programmation.webp" alt="Programmation des artistes" loading="lazy">
-            </div>
-            <div class="mockup-item">
-                <img src="img/projets/transmusicales/contact.webp" alt="Page Contact & Informations" loading="lazy">
-            </div>
-            <div class="mockup-item">
-                <img src="img/projets/transmusicales/billetterie.webp" alt="Billetterie et actualités" loading="lazy">
-            </div>
-        </div>
-    </section>
+    <main class="wrap">
 
-    <section class="project-identity">
-        <h2 class="project-section-title">Palette & Typographies</h2>
-        <div class="identity-grid">
-            <div class="palette-grid">
-                <div class="palette-swatch">
-                    <div class="palette-swatch-hex"><span>#0A0A0A</span></div>
-                    <div class="palette-swatch-color" style="background:#0A0A0A;"></div>
-                </div>
-                <div class="palette-swatch">
-                    <div class="palette-swatch-hex"><span>#3F444B</span></div>
-                    <div class="palette-swatch-color" style="background:#3F444B;"></div>
-                </div>
-                <div class="palette-swatch">
-                    <div class="palette-swatch-hex"><span>#E30613</span></div>
-                    <div class="palette-swatch-color" style="background:#E30613;"></div>
-                </div>
-                <div class="palette-swatch">
-                    <div class="palette-swatch-hex"><span>#FFFFFF</span></div>
-                    <div class="palette-swatch-color" style="background:#FFFFFF;"></div>
-                </div>
-            </div>
-            <div class="typo-grid">
-                <div class="typo-item">
-                    <span class="typo-item-label">Police</span>
-                    <p class="typo-item-sample" style="font-family: 'Montserrat', sans-serif; font-weight:900; font-size:1.7rem;">Transmusicales</p>
-                    <p class="typo-item-name">Montserrat</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section class="projet-intro">
+            <h1>Transmusicales</h1>
+            <p class="projet-role">Site WordPress, 2026</p>
+            <p class="projet-texte">Exercice à MyDigitalSchool : refaire le site des Transmusicales de Rennes, avec une direction artistique imposée et une date de rendu. Cinq pages sous WordPress : l'accueil, la présentation du festival, la programmation, les actualités et le contact.</p>
+            <p class="projet-texte">Noir et rouge sur toute la longueur, des titres très gras qui tiennent la page, et les photos de concert comme seule respiration.</p>
 
-    <section class="project-takeaway">
-        <p>
-            Transmusicales a été l'occasion de réaliser un site complet en <span class="hl">conditions réelles de client</span>,<br>
-            avec la contrainte de respecter une direction artistique imposée et une échéance de temps.
-        </p>
-        <a href="index.html#projets" class="btn-project-back">Retour aux projets</a>
-    </section>
+            <figure class="projet-couverture">
+                <img src="img/projets/transmusicales/couverture.webp" alt="Haut de la page d'accueil du site des Transmusicales" width="1920" height="900">
+            </figure>
+        </section>
 
-    <section id="next-project" data-current="transmusicales">
-        <div id="next-stack">
-            <div class="next-stage">
-                <div class="next-card">
-                    <div class="next-card-img-wrap">
-                        <img alt="" loading="lazy">
-                    </div>
-                    <div class="next-card-overlay">
-                        <div class="next-card-meta">
-                            <span class="next-card-cat"></span>
-                            <h3 class="next-card-title"></h3>
-                            <p class="next-card-desc"></p>
-                        </div>
-                    </div>
-                    <div class="next-loading-bar">
-                        <div class="next-loading-fill"></div>
-                        <span class="next-loading-label">Chargement du projet suivant</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section class="ecrans">
+            <h2 class="bloc-titre colonne">Les écrans</h2>
+
+            <figure class="ecran">
+                <figcaption class="ecran-txt">
+                    <h3>L'accueil</h3>
+                    <p>Le hero pleine hauteur sur une photo de salle, puis une bande rouge défilante avec les dates et le lieu. En dessous, la présentation du festival, les têtes d'affiche, la billetterie et les dernières actualités s'enchaînent.</p>
+                </figcaption>
+                <div class="ecran-vue"><img src="img/projets/transmusicales/accueil.webp" alt="Page d'accueil du site des Transmusicales" width="1920" height="3682" loading="lazy"></div>
+            </figure>
+
+            <figure class="ecran">
+                <figcaption class="ecran-txt">
+                    <h3>Le festival</h3>
+                    <p>L'histoire du festival en trois paragraphes, avec une photo cadrée de rouge à côté. En dessous, les informations pratiques en six cases : dates, lieu, accès, horaires, hébergement, tarifs.</p>
+                </figcaption>
+                <div class="ecran-vue"><img src="img/projets/transmusicales/festival.webp" alt="Page de présentation du festival" width="1920" height="1992" loading="lazy"></div>
+            </figure>
+
+            <figure class="ecran">
+                <figcaption class="ecran-txt">
+                    <h3>La programmation</h3>
+                    <p>Chaque artiste a sa fiche. Sur la grille, le portrait, le nom et le style, et le cadre rouge qui revient d'une vignette à l'autre pour tenir l'ensemble.</p>
+                </figcaption>
+                <div class="ecran-vue"><img src="img/projets/transmusicales/artistes.webp" alt="Grille des artistes programmés" width="1920" height="1912" loading="lazy"></div>
+            </figure>
+
+            <figure class="ecran">
+                <figcaption class="ecran-txt">
+                    <h3>Les actualités</h3>
+                    <p>Le fil d'articles du festival, en trois colonnes. Les titres sont en rouge et prennent la place, l'image sert de repère plus que d'illustration.</p>
+                </figcaption>
+                <div class="ecran-vue"><img src="img/projets/transmusicales/actualites.webp" alt="Page des actualités" width="1920" height="991" loading="lazy"></div>
+            </figure>
+
+            <figure class="ecran">
+                <figcaption class="ecran-txt">
+                    <h3>Le contact</h3>
+                    <p>Formulaire à gauche dans un bloc souligné de rouge, coordonnées et carte à droite. Le sujet du message est pré-rempli selon le lien par lequel on arrive.</p>
+                </figcaption>
+                <div class="ecran-vue"><img src="img/projets/transmusicales/contact.webp" alt="Page contact avec formulaire et carte" width="1920" height="1265" loading="lazy"></div>
+            </figure>
+        </section>
+
+        <section class="projet-liens">
+            <a href="https://transmusicales.matthew-quero.mds-rennes.yt/" target="_blank" rel="noopener">Voir le site</a>
+            <a href="index.html#projets">Retour aux projets</a>
+        </section>
+
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-    <script src="JS/projects-data.js" defer></script>
-    <script src="JS/components.js" defer></script>
-    <script src="JS/script.js" defer></script>
+    <footer class="site-footer">
+        <div class="footer-name"><img src="img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
+        <nav class="footer-nav" aria-label="Pied de page">
+            <a href="index.html#offre">Un projet&nbsp;?</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#projets">Projets</a>
+            <a href="index.html#contact">Me contacter</a>
+        </nav>
+        <div class="footer-meta">
+            <a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+            <a href="mentions-legales.html">Mentions légales</a>
+            <span>©&nbsp;<span id="footer-year"></span></span>
+        </div>
+    </footer>
+
+    <aside class="cote">
+        <a class="cote-lien" href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+        <a class="cote-lien" href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="cote-haut" type="button" aria-label="Revenir en haut de la page">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 13.5V2.5M8 2.5 3 7.5M8 2.5l5 5" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </aside>
+
+    <div class="ring" aria-hidden="true"></div>
+
+    <script src="JS/curseur.js" defer></script>
+    <script src="JS/menu-2026.js" defer></script>
+    <script src="JS/cote-2026.js" defer></script>
+    <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+    <!-- Mesure d'audience GoatCounter : sans cookie, sans empreinte,
+         l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
+         Rien a declarer, aucune banniere a afficher. -->
+    <script data-goatcounter="https://matthewquero.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

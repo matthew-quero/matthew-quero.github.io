@@ -5,15 +5,15 @@
 
 /* Une seule grille : texte et outils à gauche, photo à droite sur les deux lignes,
    pour que les deux colonnes se terminent au même endroit */
+/* Une seule colonne : l'accroche porte la section, la liste d'outils la ferme.
+   C'est elle qui fait le visuel, a la place de la photo qui etait ici avant. */
 .parcours-grid {
     display: grid;
-    grid-template-columns: 1fr 330px;
-    grid-template-rows: auto auto;
-    column-gap: clamp(30px, 5vw, 72px);
-    row-gap: 56px;
+    grid-template-columns: 1fr;
+    row-gap: 46px;
 }
 
-.parcours-text { grid-column: 1; grid-row: 1; }
+.parcours-text { }
 .parcours-text h2 {
     font-family: var(--font-title);
     font-weight: 500;
@@ -23,21 +23,30 @@
     text-transform: uppercase;
     margin-bottom: 26px;
 }
-.parcours-text p { max-width: 46ch; font-size: 16.5px; line-height: 1.6; }
-.parcours-text p + p { margin-top: 18px; color: var(--mute); }
+.parcours-text p { font-size: 16.5px; line-height: 1.6; }
+
+/* L'accroche, traitee comme un titre secondaire */
+.parcours-intro {
+    margin-top: 26px;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.34;
+    letter-spacing: -.02em;
+    max-width: 26ch;
+}
+
+/* Le reste en deux colonnes. break-inside garde chaque paragraphe entier,
+   sinon les colonnes coupent une phrase en deux. */
+.parcours-suite {
+    margin-top: 34px;
+    columns: 2;
+    column-gap: clamp(40px, 5vw, 86px);
+    max-width: 82ch;
+}
+.parcours-suite p { break-inside: avoid; color: var(--mute); }
+.parcours-suite p + p { margin-top: 0; }
 .parcours-text strong { font-weight: 600; }
 
-.parcours-photo {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    position: relative;
-    min-height: 430px;
-    overflow: hidden;
-    background: var(--line);
-}
-.parcours-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-
-.parcours-tools { grid-column: 1; grid-row: 2; align-self: end; }
+.parcours-tools { }
 .parcours-tools-title {
     font-family: var(--font-title);
     font-weight: 500;
@@ -50,8 +59,9 @@
 .parcours-tools-list {
     font-family: var(--font-title);
     font-weight: 500;
-    font-size: clamp(16px, 1.9vw, 25px);
-    line-height: 1.35;
+    font-size: clamp(20px, 3.6vw, 48px);
+    line-height: 1.18;
+    letter-spacing: -.03em;
     text-transform: uppercase;
 }
 .parcours-tools-list span { color: var(--mute); }
@@ -60,8 +70,7 @@
 @media (max-width: 900px) {
     .parcours { padding: 100px 20px 0; }
 
-    /* Ordre du HTML : texte, photo, outils */
-    .parcours-grid { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 40px; }
-    .parcours-text, .parcours-photo, .parcours-tools { grid-column: auto; grid-row: auto; }
-    .parcours-photo { aspect-ratio: 4 / 3; min-height: 0; }
+    .parcours-grid { row-gap: 36px; }
+    .parcours-suite { columns: 1; }
+    .parcours-suite p + p { margin-top: 18px; }
 }

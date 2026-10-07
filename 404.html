@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page introuvable | Matthew Quéro</title>
+    <meta name="description" content="Cette page n'existe pas ou a changé d'adresse.">
+    <meta name="robots" content="noindex, follow">
+
+    <link rel="icon" href="/img/site/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/img/site/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/img/site/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Unbounded est demandé ici sur tout son axe de graisse (200 à 900),
+         et pas sur deux valeurs fixes comme sur les autres pages :
+         c'est ce qui permet au chiffre de se déformer en continu. -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/base-2026.css">
+    <link rel="stylesheet" href="/CSS/projet-2026.css">
+    <link rel="stylesheet" href="/CSS/404-2026.css">
+    <link rel="stylesheet" href="/CSS/footer-2026.css">
+    <link rel="stylesheet" href="/CSS/cote-2026.css">
+    <link rel="stylesheet" href="/CSS/menu-2026.css">
+</head>
+
+<body>
+
+    <header class="page-header">
+        <div class="logo"><a href="/index.html"><img src="/img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></a></div>
+        <nav class="site-nav" aria-label="Navigation principale">
+            <a href="/index.html#projets">Projets</a>
+            <a href="/index.html#parcours">Qui je suis</a>
+            <a href="/index.html#offre">Un projet&nbsp;?</a>
+        </nav>
+        <a class="cta" href="/index.html#contact">Me contacter</a>
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span></button>
+    </header>
+    <div class="menu-mobile" id="menu-mobile" hidden>
+        <nav aria-label="Navigation mobile">
+            <a href="/index.html#projets">Projets</a>
+            <a href="/index.html#parcours">Qui je suis</a>
+            <a href="/index.html#offre">Un projet&nbsp;?</a>
+            <a href="/index.html#contact">Me contacter</a>
+        </nav>
+        <div class="menu-pied">
+            <a href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+
+
+    <main class="wrap">
+
+        <section class="erreur">
+            <h1 class="erreur-chiffre" id="chiffre" aria-label="Erreur 404"><b aria-hidden="true">4</b><b aria-hidden="true">0</b><b aria-hidden="true">4</b></h1>
+            <div class="erreur-pied">
+                <p>Cette page n'existe pas, ou elle a changé d'adresse.</p>
+                <div class="erreur-liens">
+                    <a href="/index.html">Retour à l'accueil</a>
+                    <a href="/index.html#projets">Voir les projets</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-name"><img src="/img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
+        <nav class="footer-nav" aria-label="Pied de page">
+            <a href="/index.html#offre">Un projet&nbsp;?</a>
+            <a href="/index.html#parcours">Qui je suis</a>
+            <a href="/index.html#projets">Projets</a>
+            <a href="/index.html#contact">Me contacter</a>
+        </nav>
+        <div class="footer-meta">
+            <a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+            <a href="/mentions-legales.html">Mentions légales</a>
+            <span>©&nbsp;<span id="footer-year"></span></span>
+        </div>
+    </footer>
+
+    <aside class="cote">
+        <a class="cote-lien" href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+        <a class="cote-lien" href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="cote-haut" type="button" aria-label="Revenir en haut de la page">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 13.5V2.5M8 2.5 3 7.5M8 2.5l5 5" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </aside>
+
+    <div class="ring" aria-hidden="true"></div>
+
+    <script src="/JS/curseur.js" defer></script>
+    <script src="/JS/menu-2026.js" defer></script>
+    <script src="/JS/cote-2026.js" defer></script>
+    <script src="/JS/404-2026.js" defer></script>
+    <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+    <!-- Mesure d'audience GoatCounter : sans cookie, sans empreinte,
+         l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
+         Rien a declarer, aucune banniere a afficher. -->
+    <script data-goatcounter="https://matthewquero.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

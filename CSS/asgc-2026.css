@@ -1,0 +1,237 @@
+/* === AS GINGLIN CESSON 2026 (page projet) ===
+   En-tête du projet, chiffres, visuels commentés.
+   La barre de navigation et la colonne .wrap sont dans base-2026.css. */
+
+/* --- En-tête du projet : titre à gauche, écusson à droite,
+   puis le texte à gauche et la photo à droite, toute la largeur --- */
+.projet-intro { padding: 86px 0 0; }
+
+/* Le logo est centré sur la hauteur du titre lui-même, pas sur le bloc entier */
+.projet-titre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+.projet-intro h1 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(38px, 5.6vw, 80px);
+    line-height: .98;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+}
+.projet-role { margin-top: 22px; font-size: 15px; color: var(--mute); }
+.ecusson { flex: 0 0 auto; width: clamp(64px, 7vw, 96px); height: auto; }
+
+/* Le bloc sort de la colonne par la droite : le texte reste aligné sur la
+   colonne, la photo file jusqu'au bord de la fenêtre. */
+.projet-texte { margin-top: 38px; max-width: 74ch; font-size: 17px; line-height: 1.68; }
+
+/* --- Chiffres : deux réseaux côte à côte --- */
+.bilan { padding: 104px 0 0; }
+.bloc-titre {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(24px, 3vw, 38px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+.reseaux { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+.reseau-nom {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    margin-bottom: 30px;
+}
+.chiffres { display: grid; grid-template-columns: 1fr 1fr; gap: 38px 30px; }
+.chiffre strong {
+    display: block;
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(30px, 3.6vw, 48px);
+    line-height: 1;
+    letter-spacing: -.03em;
+}
+.chiffre span { display: block; margin-top: 12px; font-size: 13px; color: var(--mute); }
+
+/* --- Visuels : carrousel en perspective (JS/asgc-2026.js) ---
+   Les affiches sont posées sur un axe qui s'enfonce dans l'écran. Celle du
+   centre est droite et nette, les autres reculent en pivotant et s'éclaircissent.
+   Sans JavaScript, la pile reste empilée et la première affiche est visible. */
+.visuels { padding: 126px 0 0; }
+
+/* La scène sort de la colonne pour occuper toute la largeur de la fenêtre,
+   et coupe à ses bords : sans ça, les affiches éloignées débordent et
+   créent une barre de défilement horizontale. */
+.scene {
+    position: relative;
+    height: 500px;
+    margin-top: 58px;
+    margin-left: calc(50% - 50vw);
+    width: 100vw;
+    overflow: hidden;
+    perspective: 1500px;
+}
+.piste { position: absolute; inset: 0; transform-style: preserve-3d; }
+
+.aff {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 470px;
+    height: 470px;
+    margin: -235px 0 0 -235px;
+    transform-style: preserve-3d;
+    transition: transform .72s var(--ease), opacity .72s var(--ease);
+}
+.piste.est-prete .aff { cursor: pointer; }
+.piste.est-prete .aff:not(.est-loin) { cursor: default; }
+/* contain et non cover : toutes les affiches ne sont pas carrées, celle du
+   tournoi est en 1080x1350. Elles gardent la même hauteur, la portrait est
+   simplement moins large, et aucune n'est recadrée. */
+.aff img { display: block; width: 100%; height: 100%; object-fit: contain; }
+
+/* Voile blanc sur les affiches qui s'éloignent : le fond de la page étant
+   blanc, on les éclaircit au lieu de les assombrir. */
+.aff::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg);
+    opacity: 0;
+    transition: opacity .72s var(--ease);
+    pointer-events: none;
+}
+.aff.est-loin::after { opacity: .5; }
+
+/* Légendes : une seule affichée à la fois, en fondu */
+.legendes { position: relative; margin-top: 34px; min-height: 340px; }
+.legende {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(820px, 100%);
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .42s var(--ease);
+}
+.legende.est-active { opacity: 1; pointer-events: auto; }
+
+.legende-club {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--mute);
+}
+.legende-club img { width: 26px; height: 26px; object-fit: contain; }
+.legende h3 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(26px, 4vw, 54px);
+    line-height: .98;
+    letter-spacing: -.035em;
+    text-transform: uppercase;
+}
+.legende-desc { margin-top: 20px; font-size: 15.5px; line-height: 1.64; }
+.legende-recul { margin-top: 20px; font-size: 14.5px; line-height: 1.64; color: var(--mute); font-style: italic; }
+
+/* Navigation : deux flèches et une barre d'avancement, rien d'autre */
+.carrousel-nav {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+.fleche {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 1.5px solid var(--line);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink);
+    font-size: 15px;
+    cursor: pointer;
+    transition: background .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
+}
+.fleche:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+
+.barre { position: relative; width: 300px; height: 2px; background: var(--line); }
+.barre i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 11%;
+    background: var(--accent);
+    transition: left .5s var(--ease), width .5s var(--ease);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .visuels { padding-top: 84px; }
+    .scene { height: 330px; perspective: 900px; margin-top: 40px; }
+    .aff { width: 270px; height: 270px; margin: -135px 0 0 -135px; }
+    .legendes { min-height: 300px; }
+    .barre { width: 150px; }
+}
+
+/* --- Retour --- */
+.retour { padding: 110px 0 130px; }
+.retour a {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+    position: relative;
+}
+.retour a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -6px;
+    height: 2px;
+    background: var(--accent);
+    transition: right .4s var(--ease);
+}
+.retour a:hover::after { right: 0; }
+
+/* === RESPONSIVE === */
+@media (max-width: 1000px) {
+    .visuel { grid-template-columns: 1fr; gap: 28px; }
+    .visuel + .visuel { margin-top: 80px; }
+}
+
+@media (max-width: 900px) {
+    .page-header { grid-template-columns: 1fr auto; row-gap: 18px; padding: 20px; }
+    .site-nav { grid-column: 1 / -1; order: 3; gap: 22px; flex-wrap: wrap; }
+    .wrap { padding: 0 20px; }
+    .projet-intro { padding-top: 52px; }
+    .projet-intro h1 { font-size: clamp(27px, 7.2vw, 56px); hyphens: auto; overflow-wrap: break-word; }
+    .projet-titre { flex-direction: column; align-items: flex-start; gap: 24px; }
+
+    .projet-texte { font-size: 16px; }
+    .bilan { padding-top: 76px; }
+    .reseaux { grid-template-columns: 1fr; gap: 54px; }
+    .visuels { padding-top: 84px; }
+    .retour { padding: 76px 0 90px; }
+}
+
+@media (max-width: 560px) {
+    .chiffres { gap: 30px 22px; }
+}

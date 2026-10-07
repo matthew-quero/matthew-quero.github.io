@@ -1,0 +1,44 @@
+/* === MENTIONS LÉGALES 2026 ===
+   La nav, la colonne, l'en-tête et le lien de fin viennent de projet-2026.css.
+   Chaque section porte un titre de la même taille que "Les écrans" sur les
+   pages projet : la page se parcourt comme le reste du site. */
+
+.legal { padding: 20px 0 0; }
+.legal-bloc { padding: 72px 0 0; }
+.legal-bloc h2 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(26px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: -.035em;
+    text-transform: uppercase;
+}
+.legal-bloc p {
+    margin-top: 22px;
+    max-width: 58ch;
+    font-size: 16px;
+    line-height: 1.68;
+    color: var(--mute);
+}
+.legal-bloc p + p { margin-top: 15px; }
+
+/* L'adresse du site et le courriel : en encre, pour ressortir du gris */
+.legal-url, .legal-bloc a { color: var(--ink); }
+.legal-bloc a { position: relative; }
+.legal-bloc a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--line);
+    transition: background .3s var(--ease);
+}
+.legal-bloc a:hover::after { background: var(--accent); }
+
+@media (max-width: 900px) {
+    .legal { padding-top: 10px; }
+    .legal-bloc { padding-top: 52px; }
+    .legal-bloc p { font-size: 15px; }
+}

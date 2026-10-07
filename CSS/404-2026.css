@@ -1,0 +1,58 @@
+/* === PAGE 404 2026 ===
+   Le chiffre est composé en Unbounded variable : sa graisse se déplace
+   en continu de 200 à 900. Chaque glyphe lit sa distance au curseur et
+   s'épaissit en conséquence. Au repos, une vague lente le traverse pour
+   que la page ne soit jamais figée. Tout est dans JS/404-2026.js. */
+
+.erreur {
+    min-height: calc(100vh - 240px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 0 120px;
+}
+
+.erreur-chiffre {
+    display: flex;
+    margin: 0 0 clamp(26px, 4vw, 48px);
+    font-family: var(--font-title);
+    font-size: clamp(120px, 24vw, 300px);
+    line-height: .8;
+    letter-spacing: -.055em;
+    user-select: none;
+}
+
+/* la graisse de départ sert aussi de repli si la police variable
+   n'est pas chargée : la page reste lisible sans le script */
+.erreur-chiffre b {
+    display: block;
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
+    transition: font-variation-settings .45s var(--ease), color .45s var(--ease);
+}
+
+.erreur-pied { display: flex; flex-wrap: wrap; align-items: baseline; gap: 20px 46px; }
+.erreur-pied p { font-size: 15px; line-height: 1.55; color: var(--mute); max-width: 40ch; }
+
+.erreur-liens { display: flex; flex-wrap: wrap; gap: 34px; }
+.erreur-liens a { position: relative; font-size: 15px; }
+.erreur-liens a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -6px;
+    height: 2px;
+    background: var(--accent);
+    transition: right .4s var(--ease);
+}
+.erreur-liens a:hover::after { right: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+    .erreur-chiffre b { transition: none; }
+}
+
+@media (max-width: 900px) {
+    .erreur { min-height: 0; padding: 20px 0 90px; }
+    .erreur-pied { gap: 24px; }
+}

@@ -1,0 +1,76 @@
+/* === COLONNE LATERALE 2026 ===
+   GitHub, LinkedIn et le retour en haut de page. Fixe sur toute la page,
+   presente sur les 7 pages. Avant, ces liens vivaient dans le hero de
+   l'accueil et disparaissaient des qu'on scrollait.
+
+   Les deux liens s'effacent quand le pied de page arrive, parce qu'il est
+   sur fond encre et qu'ils y seraient illisibles. Le bouton, lui, reste :
+   il a son propre fond. */
+
+.cote {
+    position: fixed;
+    right: 22px;
+    /* 62% et non 50% : c'est la hauteur qu'avait le rail dans le hero,
+       aux deux tiers de l'ecran plutot qu'au milieu. */
+    top: 62%;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+}
+
+.cote-lien {
+    writing-mode: vertical-rl;
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--mute);
+    transition: color .35s var(--ease), opacity .4s var(--ease), visibility .4s;
+}
+.cote-lien:hover { color: var(--accent-texte); }
+
+/* Au-dessus du pied de page : seuls les liens s'effacent */
+.cote.sur-pied .cote-lien { opacity: 0; visibility: hidden; }
+
+.cote-haut {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink);
+    padding: 0;
+    /* cache tant qu'on n'a pas depasse le premier ecran */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity .38s var(--ease), transform .38s var(--ease),
+                visibility .38s, background .3s var(--ease), border-color .3s var(--ease);
+}
+.cote.est-loin .cote-haut { opacity: 1; visibility: visible; transform: none; }
+.cote-haut:hover { background: var(--accent); border-color: var(--accent); }
+.cote-haut svg { width: 15px; height: 15px; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+    .cote-lien, .cote-haut { transition: none; }
+}
+
+/* Sous 1280px la colonne verticale passe sur le texte : mesure faite,
+   la colonne de droite d'"Autres travaux" la touche a 1024 et 1152 px.
+   En dessous de ce seuil on ne garde donc que le bouton, cale en bas a
+   droite. GitHub et LinkedIn restent accessibles dans le menu burger et
+   dans le pied de page. */
+@media (max-width: 1279px) {
+    .cote {
+        top: auto;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        right: 20px;
+        gap: 0;
+    }
+    .cote-lien { display: none; }
+}

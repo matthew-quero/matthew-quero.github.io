@@ -83,7 +83,22 @@ addEventListener('resize',resize);resize();
 
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clock=new THREE.Clock();
+
+/* La scene ne tourne que quand le hero est a l'ecran, et jamais quand
+   l'onglet est en arriere-plan : inutile de faire chauffer la carte
+   graphique d'un telephone pour une animation que personne ne regarde. */
+let visible=true, actif=document.visibilityState==='visible', enCours=false;
+new IntersectionObserver(function(e){ visible=e[0].isIntersecting; relancer(); },
+  {threshold:0}).observe(canvas);
+document.addEventListener('visibilitychange',function(){
+  actif=document.visibilityState==='visible'; relancer();
+});
+function relancer(){
+  if(visible&&actif&&!enCours){ enCours=true; clock.getDelta(); frame(); }
+}
+
 function frame(){
+  if(!visible||!actif){ enCours=false; return; }
   const t=clock.getElapsedTime();
   tx+=(mx-tx)*.06;ty+=(my-ty)*.06;
   const spin=Math.sin(t*.45)*.38;
@@ -93,5 +108,5 @@ function frame(){
   renderer.render(scene,camera);
   requestAnimationFrame(frame);
 }
-frame();
+enCours=true;frame();
 })();

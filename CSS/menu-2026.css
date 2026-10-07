@@ -1,0 +1,112 @@
+/* === MENU MOBILE 2026 ===
+   Chargé en dernier : il doit passer après les règles de nav de
+   accueil-2026.css, projet-2026.css et asgc-2026.css.
+   Au-dessus de 900px, le bouton n'existe pas et la nav reste en place. */
+
+.burger { display: none; }
+.menu-mobile { display: none; }
+
+@media (max-width: 900px) {
+
+    /* La nav en ligne et le bouton de contact laissent la place au burger */
+    .site-header .site-nav,
+    .page-header .site-nav,
+    .site-header .cta,
+    .page-header .cta { display: none; }
+
+    .site-header,
+    .page-header { grid-template-columns: 1fr auto; row-gap: 0; align-items: center; }
+
+    /* Le bouton vit dans l'en-tête : sans ce z-index, il reste enfermé
+       dans l'empilement de l'en-tête et passe sous le panneau ouvert. */
+    .site-header { z-index: 60; }
+    .page-header { position: relative; z-index: 60; }
+
+    /* --- Le bouton : deux traits, rien de plus --- */
+    .burger {
+        display: block;
+        position: relative;
+        justify-self: end;
+        width: 42px;
+        height: 42px;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        z-index: 60;
+    }
+    .burger span {
+        position: absolute;
+        left: 10px;
+        width: 22px;
+        height: 1.5px;
+        background: var(--ink);
+        transition: transform .38s var(--ease), opacity .25s var(--ease);
+    }
+    .burger span:first-child { top: 18px; }
+    .burger span:last-child  { top: 24px; }
+
+    /* Ouvert : les deux traits forment une croix */
+    .burger.est-ouvert span:first-child { transform: translateY(3px) rotate(45deg); }
+    .burger.est-ouvert span:last-child  { transform: translateY(-3px) rotate(-45deg); }
+
+    /* --- Le panneau : un rideau qui descend du haut et y remonte --- */
+    .menu-mobile {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: var(--bg);
+        padding: 96px 20px 32px;
+        visibility: hidden;
+        clip-path: inset(0 0 100% 0);
+        transition: clip-path .56s var(--ease), visibility .56s;
+    }
+    .menu-mobile.est-ouvert { visibility: visible; clip-path: inset(0 0 0 0); }
+    .menu-mobile[hidden] { display: block; }
+
+    .menu-mobile nav { display: flex; flex-direction: column; }
+    .menu-mobile nav a {
+        font-family: var(--font-title);
+        font-weight: 500;
+        font-size: clamp(27px, 8vw, 40px);
+        line-height: 1.04;
+        letter-spacing: -.03em;
+        text-transform: uppercase;
+        padding: 16px 0;
+    }
+    .menu-mobile nav a + a { box-shadow: 0 -1px 0 var(--line); }
+
+    /* Le dernier lien est l'action : il prend l'accent */
+    .menu-mobile nav a:last-child { color: var(--accent-texte); }
+
+    /* Les liens arrivent l'un après l'autre, une fois le rideau descendu */
+    .menu-mobile nav a { opacity: 0; transform: translateY(12px); }
+    .menu-mobile.est-ouvert nav a {
+        opacity: 1;
+        transform: none;
+        transition: opacity .38s var(--ease) .18s, transform .38s var(--ease) .18s;
+    }
+    .menu-mobile.est-ouvert nav a:nth-child(2) { transition-delay: .24s; }
+    .menu-mobile.est-ouvert nav a:nth-child(3) { transition-delay: .30s; }
+    .menu-mobile.est-ouvert nav a:nth-child(4) { transition-delay: .36s; }
+
+    .menu-pied {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 32px;
+        display: flex;
+        gap: 26px;
+        font-size: 11px;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--mute);
+    }
+
+    /* Plus de défilement derrière le panneau */
+    body.menu-ouvert { overflow: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-mobile, .menu-mobile nav a, .burger span { transition-duration: .01ms; }
+}

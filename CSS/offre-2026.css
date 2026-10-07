@@ -13,7 +13,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 max(44px, calc((100% - 1360px) / 2));
+    /* 88 et non 44 : c'est la seule section assez large pour passer sous
+       la colonne laterale fixe. Au-dessus de 1536 px la valeur calculee
+       reprend la main, donc rien ne change sur les grands ecrans. */
+    padding: 0 max(88px, calc((100% - 1360px) / 2));
 }
 
 .offre-title {
@@ -80,8 +83,8 @@
 .offre-cta.is-visible { opacity: 1; transform: none; pointer-events: auto; }
 
 /* Survol identique au bouton .cta du hero, le rond de la flèche s'inverse */
-.offre-cta:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
-.offre-cta:hover .offre-cta-arrow { background: var(--bg); color: var(--accent); }
+.offre-cta:hover { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.offre-cta:hover .offre-cta-arrow { background: var(--ink); color: var(--accent); }
 
 .offre-cta-label {
     font-family: var(--font-title);
