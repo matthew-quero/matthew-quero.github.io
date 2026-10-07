@@ -62,19 +62,29 @@
 }
 .project-info dd { font-size: 14px; line-height: 1.5; }
 
-/* Soulignement accent tracé de gauche à droite, comme .site-nav */
-.project-link { position: relative; }
+/* Soulignement accent tracé de gauche à droite, comme .site-nav.
+   Fait en dégradé de fond et non en ::after : le pseudo-élément sert
+   à rendre toute la carte cliquable, juste en dessous. */
+.project-link {
+    padding-bottom: 4px;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 0 2px;
+    transition: background-size .4s var(--ease);
+}
+.project-link:hover { background-size: 100% 2px; }
+
+/* Toute la carte ouvre le projet : le lien projette une zone invisible
+   sur l'article entier. Avant, seul le texte "Voir le projet" répondait,
+   alors que dans Autres travaux la ligne entière est cliquable. */
+.project { position: relative; }
 .project-link::after {
     content: '';
     position: absolute;
-    left: 0;
-    right: 100%;
-    bottom: -4px;
-    height: 2px;
-    background: var(--accent);
-    transition: right .4s var(--ease);
+    inset: 0;
+    z-index: 1;
 }
-.project-link:hover::after { right: 0; }
 
 /* --- Niveau 2 : autres travaux --- */
 .others { margin-top: 140px; }
