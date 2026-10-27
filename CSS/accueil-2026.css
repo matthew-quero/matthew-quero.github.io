@@ -92,12 +92,40 @@
     height: 100%;
     object-fit: contain;
 }
+/* Le relief calculé montre le mot à la même taille et au même endroit
+   que la boucle, mais il lui faut plus de place autour.
+   Mesuré en rejouant la scène angle par angle : en tournant vers le
+   pointeur, le mot ne s'élargit pas, il rétrécit même (1 578 px de large
+   de face, 1 097 px à pleine rotation). En revanche il grandit en
+   hauteur, de 434 à 610 px, et son centre visuel glisse jusqu'à 119 px
+   de côté et 60 px vers le haut. La boîte taillée au plus juste pour la
+   boucle le coupait donc dès qu'on bougeait la souris.
+   D'où un canvas plus grand que la boîte, centré dessus : 18 % de plus
+   en largeur, 65 % en hauteur, ce qui laisse encore 7 % de marge au pire
+   angle. Le canvas est transparent, ce débord ne se voit pas. */
+.hero-nom-zone canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    width: 118%;
+    height: 165%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity .6s var(--ease);
+}
+
 .hero-nom-3d { transition: opacity .6s var(--ease); }
 .hero-nom-boucle { opacity: 0; transition: opacity .6s var(--ease); }
 
-/* La boucle a réellement commencé à jouer : elle prend la place. */
+/* Trois états qui se succèdent, chacun remplaçant le précédent une fois
+   qu'il a réellement quelque chose à montrer : l'image, puis la boucle,
+   puis le relief qui suit la souris. */
 .hero.en-relief .hero-nom-boucle { opacity: 1; }
 .hero.en-relief .hero-nom-3d { opacity: 0; }
+.hero.en-relief-vrai canvas { opacity: 1; }
+.hero.en-relief-vrai .hero-nom-boucle,
+.hero.en-relief-vrai .hero-nom-3d { opacity: 0; }
 
 .pitch {
     position: absolute;

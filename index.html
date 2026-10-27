@@ -96,6 +96,9 @@
                  selon la largeur et ne le demande qu'après la page. -->
             <video class="hero-nom-boucle" aria-hidden="true" muted loop playsinline
                    disablepictureinpicture preload="none" width="1400" height="402"></video>
+            <!-- Vide et sans coût tant que personne n'a bougé de souris :
+                 JS/hero-nom.js ne va chercher Three.js qu'à ce moment-là. -->
+            <canvas id="hero-3d" aria-hidden="true"></canvas>
         </div>
 
         <p class="pitch">Conception et développement de sites. Et la communication qui va avec.</p>

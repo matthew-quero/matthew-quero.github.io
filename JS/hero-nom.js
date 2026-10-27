@@ -79,6 +79,7 @@
     var vu = true, ongletActif = true;
     function ajuster() {
         if (!video.src) return;
+        if (hero.classList.contains('en-relief-vrai')) { video.pause(); return; }
         if (vu && ongletActif) { var e = video.play(); if (e && e.catch) e.catch(function () {}); }
         else video.pause();
     }
@@ -88,4 +89,49 @@
         ongletActif = document.visibilityState === 'visible';
         ajuster();
     });
+
+    /* === Le relief qui suit la souris ===
+       La scène Three.js, chargée seulement si quelqu'un bouge une vraie
+       souris. Elle coûte cher à peindre là où il n'y a pas de carte
+       graphique, et c'est précisément le cas de la machine qui mesure
+       PageSpeed : 25 690 ms de blocage mesurés quand elle partait toute
+       seule. Cette machine ne bouge jamais de pointeur. Personne ne paie
+       donc pour une interaction qu'il n'aura pas. */
+    var canvas = document.getElementById('hero-3d');
+    if (!canvas) return;
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (innerWidth < 900) return;
+    /* Même seuil que pour l'ancien relief : on n'écarte que les machines
+       vraiment justes, pas la moitié des ordinateurs de bureau. */
+    if (navigator.hardwareConcurrency > 0 && navigator.hardwareConcurrency < 4) return;
+    try {
+        var sonde = document.createElement('canvas');
+        if (!(sonde.getContext('webgl2') || sonde.getContext('webgl'))) return;
+    } catch (e) { return; }
+
+    /* Un vrai geste, pas un artefact. Chrome émet un mousemove quand le
+       contenu défile sous un curseur immobile : on exige donc un
+       déplacement réel, et d'au moins quelques dizaines de pixels. */
+    var depart = null, parcouru = 0, parti = false;
+    function geste(e) {
+        if (parti || e.pointerType && e.pointerType !== 'mouse') return;
+        if (depart) parcouru += Math.abs(e.clientX - depart.x) + Math.abs(e.clientY - depart.y);
+        depart = { x: e.clientX, y: e.clientY };
+        if (parcouru < 40) return;
+        parti = true;
+        window.removeEventListener('pointermove', geste);
+        charger();
+    }
+    window.addEventListener('pointermove', geste, { passive: true });
+
+    function charger() {
+        var three = document.createElement('script');
+        three.src = 'vendor/three.min.js';
+        three.onload = function () {
+            var relief = document.createElement('script');
+            relief.src = 'JS/hero-relief.js';
+            document.head.appendChild(relief);
+        };
+        document.head.appendChild(three);
+    }
 })();
