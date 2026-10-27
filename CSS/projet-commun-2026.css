@@ -1,0 +1,187 @@
+/* === BLOCS COMMUNS AUX PAGES PROJET ===
+   Chargé par les quatre pages de réalisation. Il existe parce que
+   as-ginglin-cesson.html n'utilise pas projet-2026.css mais sa propre
+   feuille : sans ce fichier partagé, ces trois blocs auraient été écrits
+   en double, et auraient fini par diverger. */
+/* --- Accès au site et comptes liés, en haut de page ---
+   Le lien vers la réalisation n'existait qu'en bas, après toute la page :
+   quelqu'un qui veut voir le travail avant de lire devait faire défiler
+   jusqu'au bout. */
+.projet-acces {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 22px;
+    font-size: var(--t-meta);
+    color: var(--mute);
+}
+.projet-acces-lien {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--ink);
+    font-weight: 500;
+}
+/* Même soulignement tracé de gauche à droite que la navigation. */
+.projet-acces-lien::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 11px;
+    height: 2px;
+    background: var(--accent);
+    transition: right .4s var(--ease);
+}
+.projet-acces-lien:hover::after { right: 0; }
+
+/* --- Invitation de contact, en bas de page --- */
+.projet-suite { margin-top: clamp(90px, 11vw, 150px); }
+.projet-suite-q {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: clamp(22px, 3.2vw, 38px);
+    line-height: 1.12;
+    letter-spacing: -.03em;
+    max-width: 18ch;
+}
+.projet-suite-cta {
+    margin-top: 26px;
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 44px;
+    padding: 6px 6px 6px 26px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: var(--t-meta);
+    text-transform: uppercase;
+    transition: background .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
+}
+.projet-suite-cta:hover { background: var(--accent); border-color: var(--accent); }
+.projet-suite-cta:hover .projet-suite-rond { background: var(--ink); color: var(--accent); }
+.projet-suite-rond {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--bg);
+    transition: background .35s var(--ease), color .35s var(--ease);
+}
+
+/* Précision sur les chiffres de la saison, entre le titre du bilan et les
+   deux colonnes de réseaux. Le bas est plus généreux que le haut : elle
+   appartient au titre, pas aux chiffres, et sans cet écart elle venait se
+   coller au mot « Facebook » qui la suit. */
+.bilan-cadre {
+    margin: 14px 0 42px;
+    font-size: var(--t-meta);
+    color: var(--mute);
+}
+
+/* --- Captures téléphone ---
+   Deux écrans côte à côte, à leur vraie proportion. Pas de cadre dessiné
+   autour : la capture porte déjà son propre bord blanc, et la charte ne
+   veut pas de bordures décoratives. */
+.ecrans-mobile { margin-top: clamp(80px, 9vw, 130px); }
+.ecrans-mobile-texte {
+    margin-top: 16px;
+    max-width: 52ch;
+    font-size: var(--t-courant);
+    line-height: 1.6;
+    color: var(--mute);
+}
+.telephones {
+    margin-top: clamp(34px, 4vw, 56px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(20px, 3vw, 44px);
+}
+.telephone { flex: 0 1 300px; margin: 0; }
+.telephone img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(10, 10, 10, .13);
+}
+.telephone figcaption {
+    margin-top: 14px;
+    font-size: var(--t-etiquette);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--mute);
+}
+
+/* --- Capture en hauteur dans le cadre navigateur ---
+   .navigateur étire son image sur toute la colonne. Pour une capture au
+   format portrait, comme un formulaire, ça donne une image de 1 400 px de
+   haut qui écrase tout le reste de la page. On la borne, et on met le
+   texte à côté plutôt qu'en dessous : il y a la place. */
+.ecran-admin--debout {
+    display: grid;
+    grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+    gap: clamp(30px, 4vw, 70px);
+    align-items: center;
+}
+.ecran-admin--debout .ecran-txt { margin-top: 0; }
+
+@media (max-width: 780px) {
+    .ecran-admin--debout { grid-template-columns: 1fr; }
+    .ecran-admin--debout .navigateur { max-width: 360px; }
+}
+
+/* Une seule ligne sur un écran large : « Vous avez un projet similaire ? »
+   fait trente signes, la colonne en tient le double. */
+.projet-suite-q { max-width: 34ch; }
+
+/* --- Fiche du projet ---
+   L'année, le contexte, le rôle et les outils vivaient sur les cartes de
+   l'accueil. Une liste de projets doit donner envie d'ouvrir, pas tout
+   dire avant d'avoir été ouverte : ces informations sont ici, sur la
+   page qui parle du projet, juste avant la photo de couverture. */
+.projet-meta {
+    margin-top: clamp(38px, 4.6vw, 56px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    gap: 26px 44px;
+}
+.projet-meta dt {
+    font-size: var(--t-etiquette);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+.projet-meta dd { font-size: 15px; line-height: 1.55; }
+
+@media (max-width: 900px) {
+    .projet-meta {
+        margin-top: 34px;
+        grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+        gap: 22px 26px;
+    }
+    .projet-meta dd { font-size: 14px; }
+
+    /* Le bouton occupait neuf dixièmes de la colonne : ce n'était plus
+       un bouton, c'était une barre. Le libellé était la vraie cause,
+       « Discutons de votre projet » fait vingt-cinq signes en capitales
+       dans une police large, juste sous un titre qui dit déjà « Vous avez
+       un projet similaire ? ». Il est passé à « Discutons-en », et les
+       mesures reviennent à celles des autres boutons du site. */
+    .projet-suite-cta {
+        margin-top: 22px;
+        gap: 12px;
+        padding: 4px 4px 4px 20px;
+        font-size: var(--t-etiquette);
+        white-space: nowrap;
+    }
+    .projet-suite-rond { width: 32px; height: 32px; }
+}

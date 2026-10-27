@@ -31,18 +31,20 @@
     margin-right: calc(50% - 50vw);
     width: 100vw;
 }
-.colonne { padding-left: max(44px, calc((100vw - 1240px) / 2));
-           padding-right: max(44px, calc((100vw - 1240px) / 2)); }
+/* 100% et non 100vw : .ecrans fait deja toute la largeur, et 100vw
+   compte la barre de defilement, ce qui decalait ces blocs de quelques
+   pixels par rapport au reste de la page. */
+.colonne { padding-left: var(--marge); padding-right: var(--marge); }
 
 .ecran { display: grid; align-items: center; gap: clamp(32px, 4vw, 70px); margin: 0; }
 .ecran + .ecran { margin-top: clamp(70px, 8vw, 130px); }
 .ecran:nth-of-type(odd) {
     grid-template-columns: minmax(0, 390px) minmax(0, 1fr);
-    padding-left: max(44px, calc((100vw - 1240px) / 2));
+    padding-left: var(--marge);
 }
 .ecran:nth-of-type(even) {
     grid-template-columns: minmax(0, 1fr) minmax(0, 390px);
-    padding-right: max(44px, calc((100vw - 1240px) / 2));
+    padding-right: var(--marge);
 }
 .ecran:nth-of-type(even) .ecran-txt { order: 2; }
 .ecran:nth-of-type(even) .ecran-vue { order: 1; }
@@ -100,7 +102,7 @@
     padding: 0 12px;
     background: var(--bg);
     border-radius: 999px;
-    font-size: 12px;
+    font-size: var(--t-etiquette);
     color: var(--mute);
 }
 /* Cette capture est deja recadree sur les champs : on la montre en entier,
@@ -130,7 +132,7 @@
 /* La colonne qui accompagne les réseaux : charte et typographies */
 .piece-notes { align-self: center; }
 .teintes { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 22px; list-style: none;
-           font-size: 12px; color: var(--mute); letter-spacing: .02em; }
+           font-size: var(--t-meta); color: var(--mute); letter-spacing: .02em; }
 .teintes li { display: flex; align-items: center; gap: 9px; }
 .teintes span { width: 20px; height: 20px; border-radius: 4px; display: block; }
 
@@ -183,10 +185,55 @@
     .ecran:nth-of-type(even) .ecran-vue { order: 1; }
     .colonne { padding-left: 20px; padding-right: 20px; }
     .ecran + .ecran, .ecran-admin { margin-top: 76px; }
-    .ecran-vue { height: clamp(300px, 64vw, 420px); }
+
+    /* Sur téléphone, la fenêtre qui recadre ne veut plus rien dire : la
+       colonne est trop étroite pour qu'un morceau de page se lise, et on
+       ne voyait jamais que le haut de chaque capture. L'écran est donc
+       montré en entier, en petit, et un appui l'agrandit. La hauteur est
+       bornée pour qu'une capture de page complète ne prenne pas tout
+       l'écran à elle seule. */
+    .ecran-vue {
+        height: auto;
+        overflow: visible;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .ecran-vue img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 60svh;
+        object-fit: contain;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 1px 2px rgba(10, 10, 10, .04), 0 14px 34px rgba(10, 10, 10, .1);
+    }
+}
+
+/* Au doigt, le curseur zoom-in n'existe pas : sans un mot, rien ne dit
+   que la capture s'ouvre en grand. Les lecteurs d'écran, eux, ont déjà
+   « Agrandir » dans le nom de l'image. */
+@media (hover: none) and (pointer: coarse) {
+    .ecran-vue::after,
+    .navigateur::after {
+        content: 'Appuyer pour agrandir';
+        display: block;
+        margin-top: 12px;
+        font-size: var(--t-etiquette);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--mute);
+        text-align: center;
+    }
+    /* Le cadre porte une ombre et des coins arrondis : la mention doit
+       rester dehors, sinon elle est rognée avec le reste. */
+    .navigateur { overflow: visible; box-shadow: none; }
+    .navigateur img { border-radius: 0 0 12px 12px; }
+    .navigateur-barre { border-radius: 12px 12px 0 0; }
     .pieces { padding-top: 84px; }
     .paire { grid-template-columns: 1fr; gap: 56px; }
     .paire + .piece-large, .piece-large + .paire { margin-top: 56px; }
     .projet-liens { padding-top: 76px; gap: 28px; }
     .retour { padding-bottom: 90px; }
 }
+

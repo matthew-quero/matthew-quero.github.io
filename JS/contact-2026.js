@@ -1,41 +1,21 @@
 /* === CONTACT 2026 (accueil, section #contact) ===
-   Menu déroulant maison + envoi du formulaire à Web3Forms sans quitter la page. */
+   Vérification des champs + envoi à Web3Forms sans quitter la page.
+
+   Le menu déroulant était fait maison, avec un <ul role="listbox"> dont
+   chaque option portait tabindex="0". Il est maintenant natif : plus rien
+   à piloter ici pour l'ouverture, la fermeture, les flèches ou l'échappement,
+   le navigateur s'en charge, et le téléphone affiche son propre sélecteur. */
 (function () {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
-    /* --- Menu déroulant --- */
-    const select = form.querySelector('.contact-select');
-    const button = select.querySelector('.contact-select-button');
-    const valueEl = select.querySelector('.contact-select-value');
-    const list = select.querySelector('.contact-select-list');
-    const options = [...list.querySelectorAll('[role="option"]')];
-    const hidden = form.querySelector('input[name="demande"]');
-    const EMPTY = valueEl.textContent;
-
-    function open() {
-        list.hidden = false;
-        select.classList.add('is-open');
-        button.setAttribute('aria-expanded', 'true');
-    }
-    function close() {
-        list.hidden = true;
-        select.classList.remove('is-open');
-        button.setAttribute('aria-expanded', 'false');
-    }
-    function choose(option) {
-        options.forEach(o => o.setAttribute('aria-selected', String(o === option)));
-        hidden.value = option ? option.textContent : '';
-        valueEl.textContent = option ? option.textContent : EMPTY;
-        select.classList.toggle('is-chosen', !!option);
-        if (option) check(checks[0]);
-    }
+    const demande = form.elements.demande;
 
     /* --- Vérification maison (formulaire en novalidate) ---
        Chaque règle : l'élément qui porte le filet, la valeur à tester, le message. */
     const email = form.elements.email;
     const checks = [
-        { el: button, error: 'Choisissez le type de demande.', test: () => hidden.value !== '' },
+        { el: demande, error: 'Choisissez le type de demande.', test: el => el.value !== '' },
         { el: form.elements.prenom, test: el => el.value.trim() !== '', error: 'Il me faut votre prénom.' },
         { el: form.elements.nom, test: el => el.value.trim() !== '', error: 'Il me faut votre nom.' },
         {
@@ -65,11 +45,14 @@
         return ok;
     }
 
-    // Un champ déjà en erreur est revérifié à chaque frappe : le message suit la saisie
-    // (vide ou mal formé pour l'email) et disparaît dès qu'elle devient valide
-    checks.slice(1).forEach(rule => {
-        rule.el.addEventListener('input', () => {
-            if (rule.el.getAttribute('aria-invalid') === 'true') check(rule);
+    /* Un champ déjà en erreur est revérifié à chaque frappe : le message suit
+       la saisie (vide ou mal formé pour l'email) et disparaît dès qu'elle
+       devient valide. Le menu déroulant écoute change et non input, et sans
+       attendre d'être en erreur : choisir une valeur efface le reproche. */
+    checks.forEach(rule => {
+        const evenement = rule.el === demande ? 'change' : 'input';
+        rule.el.addEventListener(evenement, () => {
+            if (rule.el === demande || rule.el.getAttribute('aria-invalid') === 'true') check(rule);
         });
     });
 
@@ -78,18 +61,6 @@
         if (invalid.length) invalid[0].el.focus();
         return invalid.length === 0;
     }
-
-    button.addEventListener('click', () => (list.hidden ? open() : close()));
-    options.forEach(option => {
-        option.addEventListener('click', () => { choose(option); close(); button.focus(); });
-        option.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); option.click(); }
-        });
-    });
-    document.addEventListener('click', e => { if (!select.contains(e.target)) close(); });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && !list.hidden) { close(); button.focus(); }
-    });
 
     /* --- Envoi --- */
     const submit = form.querySelector('.contact-submit');
@@ -103,7 +74,7 @@
         if (!validate()) return;
 
         const name = form.elements.prenom.value.trim() + ' ' + form.elements.nom.value.trim();
-        form.elements.subject.value = ['Portfolio', hidden.value, name].filter(Boolean).join(' · ');
+        form.elements.subject.value = ['Portfolio', demande.value, name].filter(Boolean).join(' · ');
         form.elements.replyto.value = form.elements.email.value.trim();
 
         const data = Object.fromEntries(new FormData(form));
@@ -123,10 +94,12 @@
             if (!res.ok || !json.success) throw new Error(json.message);
 
             form.reset();
-            choose(null);
             form.hidden = true;
             success.hidden = false;
         } catch {
+            /* En cas d'échec, la saisie reste en place : form.reset() n'est
+               appelé que sur un envoi réussi. Le message porte role="alert",
+               il est donc annoncé sans déplacer le focus. */
             error.hidden = false;
         } finally {
             submit.disabled = false;

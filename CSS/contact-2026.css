@@ -2,7 +2,7 @@
    Formulaire envoyé à Web3Forms par JS/contact-2026.js. */
 
 /* Même colonne centrée de 1120px que les autres sections */
-.contact { padding: 140px max(44px, calc((100% - 1120px) / 2)); }
+.contact { padding: 140px var(--marge); }
 
 .contact-head h2 {
     font-family: var(--font-title);
@@ -26,7 +26,7 @@
 
 .contact-label {
     display: block;
-    font-size: 11px;
+    font-size: var(--t-etiquette);
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--mute);
@@ -37,13 +37,14 @@
 .contact-input {
     display: block;
     width: 100%;
+    min-height: 44px;
     padding: 8px 0 10px;
     border: 0;
     border-radius: 0;
     background: transparent;
     color: var(--ink);
     font: 300 17px/1.5 var(--font-text);
-    box-shadow: inset 0 -1px 0 var(--line);
+    box-shadow: inset 0 -1px 0 var(--ligne-champ);
     transition: box-shadow .3s var(--ease);
 }
 .contact-input:focus { outline: none; box-shadow: inset 0 -2px 0 var(--accent); }
@@ -53,66 +54,57 @@ textarea.contact-input { min-height: 96px; resize: vertical; }
 /* Piège à robots, hors écran */
 .contact-botcheck { position: absolute; left: -9999px; }
 
-/* --- Menu déroulant maison (pas de <select>) --- */
-.contact-select { position: relative; max-width: 520px; }
+/* --- Menu déroulant natif, habillé en ligne ---
+   appearance:none retire le cadre et la flèche du système, on garde la
+   même ligne que les autres champs et on redessine la flèche à côté. */
+.contact-select { position: relative; max-width: 520px; display: flex; align-items: center; }
 
-
-.contact-select-button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+.contact-select-champ {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: 1;
     width: 100%;
-    padding: 8px 0 12px;
+    min-height: 44px;
+    padding: 8px 34px 10px 0;
     border: 0;
+    border-radius: 0;
     background: transparent;
     color: var(--mute);
     font-family: var(--font-title);
     font-weight: 500;
     font-size: clamp(15px, 1.7vw, 22px);
     text-transform: uppercase;
-    text-align: left;
-    box-shadow: inset 0 -1px 0 var(--line);
+    box-shadow: inset 0 -1px 0 var(--ligne-champ);
     transition: box-shadow .3s var(--ease), color .3s var(--ease);
 }
-.contact-select-button:focus { outline: none; box-shadow: inset 0 -2px 0 var(--accent); }
-.contact-select.is-chosen .contact-select-button { color: var(--ink); }
+/* Tant que rien n'est choisi, la ligne reste grise comme un libellé en
+   attente ; dès qu'une valeur est prise, elle passe à l'encre. */
+.contact-select-champ:valid { color: var(--ink); }
+.contact-select-champ:focus { outline: none; box-shadow: inset 0 -2px 0 var(--accent); }
 
-.contact-select-chevron { flex: none; color: var(--ink); transition: transform .35s var(--ease); }
-.contact-select.is-open .contact-select-chevron { transform: rotate(180deg); }
+/* Les options du menu natif héritent de la casse du select dans certains
+   navigateurs : on les remet en bas de casse, et au gabarit du système. */
+.contact-select-champ option {
+    text-transform: none;
+    font-family: var(--font-text);
+    font-size: 16px;
+    color: var(--ink);
+}
 
-.contact-select-list {
+/* La flèche ne doit pas intercepter le clic destiné au select. */
+.contact-select-chevron {
     position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    z-index: 5;
-    list-style: none;
-    padding: 8px 0;
-    background: var(--bg);
-    border-radius: 4px;
-    box-shadow: 0 20px 44px rgba(10, 10, 10, .11);
+    right: 4px;
+    flex: none;
+    color: var(--ink);
+    pointer-events: none;
 }
-.contact-select-list[hidden] { display: none; }
-
-.contact-select-list li {
-    padding: 13px 22px;
-    font-family: var(--font-title);
-    font-weight: 500;
-    font-size: 15px;
-    text-transform: uppercase;
-    color: var(--mute);
-    transition: color .3s var(--ease), background .3s var(--ease);
-}
-.contact-select-list li:hover,
-.contact-select-list li:focus { outline: none; color: var(--ink); background: #F4F6F6; }
-.contact-select-list li[aria-selected="true"] { color: var(--accent-texte); }
 
 /* --- Erreurs de saisie (vérifiées en JS, formulaire en novalidate) ---
    Placées après :focus pour que le filet reste rouge même quand le champ a le focus */
 .contact-input[aria-invalid="true"],
-.contact-select-button[aria-invalid="true"] { box-shadow: inset 0 -2px 0 var(--erreur); }
-.contact-field-error { margin-top: 10px; font-size: 13px; color: var(--erreur); }
+.contact-select-champ[aria-invalid="true"] { box-shadow: inset 0 -2px 0 var(--erreur); }
+.contact-field-error { margin-top: 10px; font-size: var(--t-meta); color: var(--erreur); }
 
 /* --- Envoi : même dessin que .offre-cta --- */
 .contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
@@ -150,12 +142,12 @@ textarea.contact-input { min-height: 96px; resize: vertical; }
     transition: background .35s var(--ease), color .35s var(--ease);
 }
 
-.contact-note { font-size: 12px; color: var(--mute); }
+.contact-note { font-size: var(--t-meta); color: var(--mute); }
 .contact-error { font-size: 14px; color: var(--mute); }
 .contact-success { font-size: 17px; line-height: 1.55; color: var(--accent-texte); }
 
 /* === RESPONSIVE === */
 @media (max-width: 900px) {
-    .contact { padding: 100px 20px; }
+    .contact { padding: 100px var(--marge); }
     .contact-form { grid-template-columns: 1fr; }
 }

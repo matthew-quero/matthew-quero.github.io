@@ -6,6 +6,21 @@
     height: 100vh;
     height: 100svh;
     overflow: hidden;
+
+    /* --- Alignement sur le titre ---
+       Mesuré dans le navigateur : « DÉVELOPPEUR WEB » en Unbounded 500
+       occupe 11,85 fois sa taille de police. Le titre est centré et tient
+       sur une ligne, ses extrémités tombent donc toujours à --titre-bord
+       du bord de l'écran, quelle que soit la largeur. C'est là-dessus que
+       se calent les boutons et la phrase, et non sur la colonne de page :
+       ils étaient sinon rentrés de 300px par rapport au titre.
+       Les deux valeurs sont liées, changer la taille recale le reste. */
+    --titre-taille: 8.2vw;
+    --titre-bord: calc((100vw - var(--titre-taille) * 11.85) / 2);
+
+    /* Permet de dimensionner le titre sur la largeur du conteneur plutôt
+       que sur celle de la fenêtre, barre de défilement comprise. */
+    container-type: inline-size;
 }
 
 .site-header {
@@ -17,7 +32,10 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 26px 44px;
+    /* Même gouttière que le reste de la page. C'était 44px en dur ici, ce
+       qui laissait le logo décalé de presque 300px par rapport au contenu
+       des sections sur un écran large. */
+    padding: 26px var(--marge);
 }
 
 .hero h1 {
@@ -29,7 +47,7 @@
     text-align: center;
     font-family: var(--font-title);
     font-weight: 500;
-    font-size: 8.2vw;
+    font-size: var(--titre-taille);
     line-height: 1;
     letter-spacing: -.03em;
     text-transform: uppercase;
@@ -37,43 +55,196 @@
     z-index: 0;
 }
 
-.hero canvas { position: absolute; inset: 0; z-index: 2; display: block; width: 100%; height: 100%; }
+/* --- Le nom : SVG d'abord, relief ensuite ---
+   Les deux occupent la même place. Le SVG reproduit la position calculée
+   par la caméra de hero-3d.js : à 32° de champ et 9 unités de recul, le
+   mot mesure 1,1265 fois la hauteur du hero, plafonné à 88,3 % de sa
+   largeur sur un écran étroit, et son centre tombe 16,67 % plus bas que
+   celui de l'écran. D'où les trois valeurs ci-dessous. */
+.hero-nom {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: min(112.65svh, 88.3vw);
+    height: auto;
+    transform: translate(-50%, -50%) translateY(16.67svh);
+    transition: opacity .6s var(--ease);
+}
+
+/* --- L'emplacement du nom ---
+   Sur ordinateur il recouvre le hero entier : le relief est cadré par la
+   caméra, pas par une boîte CSS. Il ne reçoit aucun clic, sinon il
+   mangerait les boutons posés par-dessus. */
+.hero-nom-zone { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+
+/* Le tirage 3D ne sert que sous 900px, là où la composition est en colonne. */
+.hero-nom-3d { display: none; }
+
+.hero canvas {
+    position: absolute; inset: 0; display: block;
+    width: 100%; height: 100%;
+    opacity: 0;
+    transition: opacity .6s var(--ease);
+}
+
+/* Trois états, posés par hero-3d.js.
+   Par défaut le SVG est visible : c'est la version qui s'affiche sans
+   JavaScript, sur téléphone, en mouvement réduit et si WebGL manque.
+   .attend-relief : la 3D est en route, on efface le SVG sans attendre
+   plutôt que de le montrer une seconde pour rien. hero-3d.js retire cette
+   classe si le relief n'arrive pas dans les temps.
+   .en-relief : première image réellement peinte, le canvas apparaît. */
+/* transition: none à l'aller, volontairement. hero-3d.js pose cette classe
+   dès l'exécution du script : avec le fondu de 0,6 s, le SVG restait
+   visible pendant toute sa disparition, soit précisément ce qu'on veut
+   éviter. Il s'efface donc d'un coup, avant la première peinture.
+   Au retour (classe retirée parce que le relief n'arrive pas), la
+   transition de .hero-nom reprend et le SVG réapparaît en fondu. */
+.hero.attend-relief .hero-nom { opacity: 0; transition: none; }
+.hero.en-relief canvas { opacity: 1; }
+.hero.en-relief .hero-nom { opacity: 0; }
 
 .pitch {
     position: absolute;
-    right: 44px;
+    right: var(--titre-bord);
     top: 50%;
     transform: translateY(-100%);
     margin-top: calc(-6.4vw - 25px);
     z-index: 5;
     width: 270px;
     text-align: right;
-    font-size: 13.5px;
-    line-height: 1.55;
+    font-size: 15px;
+    line-height: 1.6;
     color: var(--mute);
 }
 
-.hero-status { position: absolute; left: 52px; bottom: 40px; z-index: 5; }
-.hero-status small { display: block; font-size: 10px; color: var(--mute); margin-bottom: 6px; }
-.hero-status b { font-weight: 400; font-size: 16px; }
+/* --- Bas du hero : les deux entrées ---
+   Calé sur l'extrémité gauche du titre, pas sur la colonne de page : le
+   hero est une composition à lui seul, le titre y fait la mesure. */
+.hero-bas { position: absolute; left: var(--titre-bord); bottom: 40px; z-index: 5; }
 
-/* === RESPONSIVE === */
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Deux niveaux, pas deux boutons identiques : le plein appelle à voir le
+   travail, le second propose d'écrire. 44px de haut dans les deux cas. */
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-size: var(--t-meta);
+    font-weight: 500;
+    transition: background .38s var(--ease), border-color .38s var(--ease),
+                color .38s var(--ease);
+}
+.hero-cta:hover { border-color: var(--ink); }
+
+/* L'accent en aplat avec du texte encre dessus : c'est l'usage prévu par
+   la charte, le vert clair n'est interdit qu'en texte sur du blanc. */
+.hero-cta-fort { background: var(--accent); border-color: var(--accent); font-weight: 600; }
+.hero-cta-fort:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+/* === RESPONSIVE ===
+   Sous 900px, la 3D ne se charge pas et le nom reste en SVG : le hero n'a
+   plus besoin d'être un empilement de blocs absolus calés les uns sur les
+   autres. Il redevient une colonne, et on retrouve un ordre de lecture :
+   le titre, le nom, la phrase, les deux entrées. Avant, la phrase se
+   retrouvait tout en haut et le reste flottait au milieu du vide. */
 @media (max-width: 900px) {
-    .pitch { position: static; transform: none; width: auto; text-align: left; padding: 0 20px; margin-top: 110px; }
+    .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 22px;
+        height: auto;
+        min-height: 100svh;
+        /* Calage haut et bas équivalents : le bloc se centre alors au
+           milieu de l'écran. Avec 40px en bas, il tombait 32px trop haut,
+           et les boutons poussés tout en bas laissaient un trou de trois
+           cents pixels entre eux et le nom. */
+        padding: 104px var(--marge) calc(96px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .hero h1 {
+        position: static;
+        transform: none;
+        text-align: left;
+        /* Mesuré dans le navigateur : en Unbounded 500, « DÉVELOPPEUR »
+           occupe 8,95 fois la taille de police. Le diviseur 9,1 garde une
+           marge. C'est le mot le plus long du titre, donc celui qui décide.
+           100cqw et non 100vw : c'est la largeur réellement disponible dans
+           le hero, calage compris, sans la barre de défilement. Le mot ne
+           peut donc plus dépasser, quelle que soit la fenêtre. */
+        font-size: min(calc(100cqw / 9.1), 64px);
+        white-space: normal;
+    }
+
+    /* Le SVG cède la place au tirage du rendu 3D, puis au vrai relief
+       quand celui-ci arrive. L'emplacement devient un bloc de la colonne,
+       à la proportion exacte de l'image : rien ne bouge au moment du
+       remplacement, le relief prend la place que l'image occupait. */
+    .hero-nom { display: none; }
+    .hero-nom-zone {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        /* Un peu plus haut que l'image (1200 x 328) : le relief tourne de
+           vingt degrés d'un bord à l'autre, et les lettres qui s'avancent
+           dépassaient en haut et en bas d'un cadre taillé au plus juste.
+           L'image, elle, garde sa proportion grâce à object-fit. */
+        aspect-ratio: 1200 / 400;
+        margin-top: clamp(14px, 2.4vh, 30px);
+    }
+    .hero-nom-3d {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity .6s var(--ease);
+        /* Balancement de secours : si le relief ne charge pas, l'image
+           bouge quand même un peu. Ce n'est qu'une image qui pivote, pas
+           un objet qui tourne, d'où l'amplitude modeste. Composé par la
+           carte graphique : ni mise en page ni repeinture. */
+        transform-origin: 50% 72%;
+        animation: balancement 7s ease-in-out infinite;
+    }
+    @keyframes balancement {
+        0%, 100% { transform: perspective(900px) rotateY(-5deg) rotateZ(-.8deg); }
+        50%      { transform: perspective(900px) rotateY(5deg) rotateZ(.8deg); }
+    }
+    /* Le relief peint : l'image s'efface et cesse de bouger, c'est la
+       scène qui tourne maintenant. */
+    .hero.en-relief .hero-nom-3d { opacity: 0; animation: none; }
+
+    /* Ordre de lecture : la phrase, le titre, le nom, puis les deux
+       entrées tout en bas. La phrase ouvre le hero, elle n'attend pas
+       d'être arrivé au bas de l'écran pour dire de quoi il s'agit. */
+    .pitch {
+        order: -1;
+        position: static;
+        transform: none;
+        margin-top: 0;
+        width: auto;
+        max-width: 46ch;
+        text-align: left;
+        padding: 0;
+    }
+
+    /* Les quatre blocs restent groupés et se centrent ensemble : pas de
+       marge automatique, qui enverrait les boutons au bas de l'écran et
+       ouvrirait un vide au milieu. */
+    .hero-bas { position: static; margin-top: 0; padding-top: clamp(34px, 6.4vh, 76px); }
+    .hero-cta { flex: 1 1 auto; justify-content: center; }
 }
 
 @media (max-width: 760px) {
     /* Nav masquée : deux colonnes, sinon le bouton tombe dans la colonne du milieu */
-    .site-header { padding: 18px 20px; grid-template-columns: 1fr auto; }
+    .site-header { padding: 18px var(--marge); grid-template-columns: 1fr auto; }
     .site-nav { display: none; }
-    .hero-status { left: 20px; bottom: 90px; }
-    .hero h1 { font-size: 10vw; white-space: normal; }
     .logo { font-size: 11px; }
-}
-
-@media (max-width: 380px) {
-    /* Place pour GitHub/LinkedIn sur la même ligne */
-    .hero-status b { font-size: 14px; }
 }
 
 /* Lien vers la page de parcours, sous le texte de la section "Qui je suis" */

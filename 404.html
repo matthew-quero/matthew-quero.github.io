@@ -11,12 +11,13 @@
     <link rel="icon" href="/img/site/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="/img/site/apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Unbounded est demandé ici sur tout son axe de graisse (200 à 900),
-         et pas sur deux valeurs fixes comme sur les autres pages :
-         c'est ce qui permet au chiffre de se déformer en continu. -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+    <!-- Polices servies depuis le site (@font-face dans CSS/base-2026.css).
+         Prechargees : le navigateur les demande sans attendre d'avoir lu la CSS. -->
+    <link rel="preload" href="/fonts/unbounded-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Unbounded est maintenant servi en version variable : son axe de
+         graisse complet (200 à 900) arrive dans le même fichier que le
+         reste du site, c'est ce qui permet au chiffre de se déformer. -->
     <link rel="stylesheet" href="/CSS/base-2026.css">
     <link rel="stylesheet" href="/CSS/projet-2026.css">
     <link rel="stylesheet" href="/CSS/404-2026.css">
@@ -26,6 +27,11 @@
 </head>
 
 <body>
+
+    <!-- Premier élément focalisable de la page : invisible tant qu'on ne
+         tabule pas, il évite de retraverser toute la navigation à chaque
+         visite quand on se déplace au clavier. -->
+    <a class="saut-contenu" href="#contenu">Aller au contenu</a>
 
     <header class="page-header">
         <div class="logo"><a href="/index.html"><img src="/img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></a></div>
@@ -51,7 +57,7 @@
     </div>
 
 
-    <main class="wrap">
+    <main class="wrap" id="contenu">
 
         <section class="erreur">
             <h1 class="erreur-chiffre" id="chiffre" aria-label="Erreur 404"><b aria-hidden="true">4</b><b aria-hidden="true">0</b><b aria-hidden="true">4</b></h1>
@@ -69,9 +75,9 @@
     <footer class="site-footer">
         <div class="footer-name"><img src="/img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
         <nav class="footer-nav" aria-label="Pied de page">
-            <a href="/index.html#offre">Un projet&nbsp;?</a>
-            <a href="/index.html#parcours">Qui je suis</a>
             <a href="/index.html#projets">Projets</a>
+            <a href="/index.html#parcours">Qui je suis</a>
+            <a href="/index.html#offre">Un projet&nbsp;?</a>
             <a href="/index.html#contact">Me contacter</a>
         </nav>
         <div class="footer-meta">
@@ -104,6 +110,6 @@
          l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
          Rien a declarer, aucune banniere a afficher. -->
     <script data-goatcounter="https://matthewquero.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+            async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

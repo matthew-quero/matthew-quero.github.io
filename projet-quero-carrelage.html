@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quéro Carrelage, site vitrine d'artisan | Matthew Quéro</title>
+    <meta name="description" content="Site vitrine d'un carreleur des Côtes-d'Armor : six pages en HTML et CSS, pages de prestations, zones d'intervention et formulaire de devis.">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://matthew-quero.github.io/projet-quero-carrelage.html">
+    <meta property="og:title" content="Quéro Carrelage, site vitrine d'artisan">
+    <meta property="og:description" content="Six pages en HTML et CSS pour un carreleur des Côtes-d'Armor, avec formulaire de devis.">
+    <meta property="og:image" content="https://matthew-quero.github.io/img/og-image.jpg">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="canonical" href="https://matthew-quero.github.io/projet-quero-carrelage.html">
+    <link rel="icon" href="img/site/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="img/site/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="img/site/apple-touch-icon.png">
+
+    <!-- Polices servies depuis le site (@font-face dans CSS/base-2026.css).
+         Prechargees : le navigateur les demande sans attendre d'avoir lu la CSS. -->
+    <link rel="preload" href="fonts/unbounded-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="CSS/base-2026.css">
+    <link rel="stylesheet" href="CSS/projet-2026.css">
+    <link rel="stylesheet" href="CSS/footer-2026.css">
+    <link rel="stylesheet" href="CSS/cote-2026.css">
+    <link rel="stylesheet" href="CSS/projet-commun-2026.css">
+    <link rel="stylesheet" href="CSS/visionneuse-2026.css">
+    <link rel="stylesheet" href="CSS/menu-2026.css">
+</head>
+
+<body>
+
+    <!-- Premier élément focalisable de la page : invisible tant qu'on ne
+         tabule pas, il évite de retraverser toute la navigation à chaque
+         visite quand on se déplace au clavier. -->
+    <a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+    <header class="page-header">
+        <div class="logo"><a href="index.html"><img src="img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></a></div>
+        <nav class="site-nav" aria-label="Navigation principale">
+            <a href="index.html#projets">Projets</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#offre">Un projet&nbsp;?</a>
+        </nav>
+        <a class="cta" href="index.html#contact">Me contacter</a>
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span></button>
+    </header>
+    <div class="menu-mobile" id="menu-mobile" hidden>
+        <nav aria-label="Navigation mobile">
+            <a href="index.html#projets">Projets</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#offre">Un projet&nbsp;?</a>
+            <a href="index.html#contact">Me contacter</a>
+        </nav>
+        <div class="menu-pied">
+            <a href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </div>
+
+
+    <main class="wrap" id="contenu">
+
+        <section class="projet-intro">
+            <h1>Quéro Carrelage</h1>
+            <p class="projet-role">Conception et développement, 2026</p>
+            <p class="projet-acces">
+                <a class="projet-acces-lien" href="https://matthew-quero.github.io/quero-carrelage/" target="_blank" rel="noopener">Voir le site</a>
+            </p>
+            <p class="projet-texte">Site vitrine pour un carreleur installé à Châtelaudren-Plouagat, dans les Côtes-d'Armor. L'entreprise travaillait au bouche-à-oreille et n'avait aucune adresse à donner quand on lui demandait où voir son travail. Le site répond à ça&nbsp;: dire ce qu'il fait, où il se déplace, et permettre de demander un devis sans décrocher le téléphone.</p>
+            <p class="projet-texte"><strong>Six pages en HTML et CSS écrits à la main</strong>, sans gestionnaire de contenu&nbsp;: le contenu d'un artisan bouge peu, et un site statique n'a ni mise à jour à suivre ni base de données à sauvegarder. Une page d'accueil, trois pages de prestations, et les pages légales.</p>
+
+            <!-- Fiche du projet. Ces informations étaient sur la carte de
+                 l'accueil : elles alourdissaient une liste qui sert à
+                 choisir, pas à tout lire. Elles sont à leur place ici. -->
+            <dl class="projet-meta">
+                <div><dt>Année</dt><dd>2026</dd></div>
+                <div><dt>Contexte</dt><dd>Entreprise familiale</dd></div>
+                <div><dt>Rôle</dt><dd>Conception, développement, mise en ligne</dd></div>
+                <div><dt>Outils</dt><dd>HTML, CSS, JavaScript</dd></div>
+            </dl>
+
+            <figure class="projet-couverture">
+                <img src="img/projets/quero-carrelage/accueil.webp" alt="Haut de la page d'accueil du site Quéro Carrelage" width="1600" height="1000">
+            </figure>
+        </section>
+
+        <section class="ecrans">
+            <h2 class="bloc-titre colonne">Les écrans</h2>
+
+            <figure class="ecran">
+                <figcaption class="ecran-txt">
+                    <h3>L'accueil</h3>
+                    <p>Le métier et le lieu dans les trois premières secondes, puis le bouton de devis. La photo de pose occupe la moitié gauche, coupée en diagonale.</p>
+                </figcaption>
+                <div class="ecran-vue"><picture><source media="(max-width: 900px)" srcset="img/projets/quero-carrelage/mobile-accueil.webp" width="900" height="1948"><img src="img/projets/quero-carrelage/accueil.webp" alt="Page d'accueil du site Quéro Carrelage" width="1600" height="1000" loading="lazy"></picture></div>
+            </figure>
+
+            <figure class="ecran">
+                <figcaption class="ecran-txt">
+                    <h3>Les prestations</h3>
+                    <p>Six entrées listées à droite du titre&nbsp;: carrelage intérieur, faïence murale, douche à l'italienne, terrasse et dallage, mosaïque, rénovation et neuf. Chacune mène à sa page.</p>
+                </figcaption>
+                <div class="ecran-vue"><picture><source media="(max-width: 900px)" srcset="img/projets/quero-carrelage/mobile-prestations.webp" width="780" height="1810"><img src="img/projets/quero-carrelage/prestations.webp" alt="Section des prestations sur la page d'accueil" width="1600" height="1000" loading="lazy"></picture></div>
+            </figure>
+
+            <figure class="ecran">
+                <figcaption class="ecran-txt">
+                    <h3>Une page de prestation</h3>
+                    <p>Une page par type de travaux, avec les communes desservies écrites en toutes lettres&nbsp;: c'est ce qu'un voisin tape dans son moteur de recherche.</p>
+                </figcaption>
+                <div class="ecran-vue"><picture><source media="(max-width: 900px)" srcset="img/projets/quero-carrelage/mobile-prestation.webp" width="900" height="1948"><img src="img/projets/quero-carrelage/prestation.webp" alt="Page dédiée au carrelage intérieur" width="1600" height="1000" loading="lazy"></picture></div>
+            </figure>
+
+            <figure class="ecran-admin ecran-admin--debout colonne">
+                <div class="navigateur">
+                    <div class="navigateur-barre"><span class="navigateur-url">matthew-quero.github.io/quero-carrelage</span></div>
+                    <!-- Cadrage volontaire sur le formulaire seul : la
+                         colonne de droite affiche le téléphone et l'e-mail
+                         de Pascal en clair, et ça n'a rien à faire sur un
+                         portfolio. Le bouton d'envoi et sa mention, eux,
+                         sont bien là. -->
+                    <picture><source media="(max-width: 900px)" srcset="img/projets/quero-carrelage/mobile-devis.webp" width="780" height="1770"><img src="img/projets/quero-carrelage/devis.webp" alt="Formulaire de demande de devis, sur fond noir" width="900" height="1294" loading="lazy"></picture>
+                </div>
+                <figcaption class="ecran-txt">
+                    <h3>La demande de devis</h3>
+                    <p>Cinq champs seulement, dont un facultatif. La commune et le type de travaux sont demandés d'emblée&nbsp;: ce sont les deux réponses sans lesquelles il faut rappeler avant de pouvoir chiffrer.</p>
+                </figcaption>
+            </figure>
+        </section>
+
+
+
+        <!-- Invitation de contact : une page projet ne doit pas être un
+             cul-de-sac. Le bouton renvoie au formulaire de l'accueil. -->
+        <section class="projet-suite">
+            <p class="projet-suite-q">Vous avez un projet similaire&nbsp;?</p>
+            <a class="projet-suite-cta" href="index.html#contact">
+                <span>Discutons-en</span>
+                <span class="projet-suite-rond" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+                </span>
+            </a>
+        </section>
+
+        <section class="projet-liens">
+            <a href="https://matthew-quero.github.io/quero-carrelage/" target="_blank" rel="noopener">Voir le site</a>
+            <a href="index.html#projets">Retour aux projets</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-name"><img src="img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
+        <nav class="footer-nav" aria-label="Pied de page">
+            <a href="index.html#projets">Projets</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#offre">Un projet&nbsp;?</a>
+            <a href="index.html#contact">Me contacter</a>
+        </nav>
+        <div class="footer-meta">
+            <a href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+            <a href="mentions-legales.html">Mentions légales</a>
+            <span>©&nbsp;<span id="footer-year"></span></span>
+        </div>
+    </footer>
+
+    <aside class="cote">
+        <a class="cote-lien" href="https://github.com/matthew-quero" target="_blank" rel="noopener">GitHub</a>
+        <a class="cote-lien" href="https://www.linkedin.com/in/matthew-qu%C3%A9ro/" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="cote-haut" type="button" aria-label="Revenir en haut de la page">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 13.5V2.5M8 2.5 3 7.5M8 2.5l5 5" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </aside>
+
+    <div class="ring" aria-hidden="true"></div>
+
+    <script src="JS/visionneuse.js" defer></script>
+    <script src="JS/curseur.js" defer></script>
+    <script src="JS/menu-2026.js" defer></script>
+    <script src="JS/cote-2026.js" defer></script>
+    <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+    <!-- Mesure d'audience GoatCounter : sans cookie, sans empreinte,
+         l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
+         Rien a declarer, aucune banniere a afficher. -->
+    <script data-goatcounter="https://matthewquero.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

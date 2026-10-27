@@ -42,3 +42,16 @@
     .legal-bloc { padding-top: 52px; }
     .legal-bloc p { font-size: 15px; }
 }
+
+/* L'adresse de contact est un lien mailto : au doigt, il faisait 40px de
+   haut. Le calque invisible l'amene a 44 sans deplacer le paragraphe. */
+#legal-email { position: relative; }
+#legal-email::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 44px;
+}

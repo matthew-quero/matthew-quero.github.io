@@ -7,6 +7,14 @@
    sur fond encre et qu'ils y seraient illisibles. Le bouton, lui, reste :
    il a son propre fond. */
 
+/* Le conteneur ne capte rien : il n'a ni fond ni contenu propre, mais une
+   boite fixe capte les clics meme transparente. Sur mobile, ou le bouton
+   est souvent masque, cela laissait une zone morte de 44 par 44 en bas a
+   droite qui avalait les taps destines au texte en dessous. Mesure faite :
+   elle tombait entre autres sur le lien "Me contacter" de l'accueil. */
+.cote { pointer-events: none; }
+.cote > * { pointer-events: auto; }
+
 .cote {
     position: fixed;
     right: 22px;
@@ -56,9 +64,6 @@
 .cote-haut:hover { background: var(--accent); border-color: var(--accent); }
 .cote-haut svg { width: 15px; height: 15px; display: block; }
 
-@media (prefers-reduced-motion: reduce) {
-    .cote-lien, .cote-haut { transition: none; }
-}
 
 /* Sous 1280px la colonne verticale passe sur le texte : mesure faite,
    la colonne de droite d'"Autres travaux" la touche a 1024 et 1152 px.
@@ -73,4 +78,15 @@
         gap: 0;
     }
     .cote-lien { display: none; }
+
+    /* 44px : le bouton n'est plus vise a la souris mais au pouce.
+       L'ombre, parce qu'il flotte desormais au-dessus du texte : sans
+       elle, un rond blanc sur fond blanc se lit comme un trou dans la
+       page. Elle remplace le cadre que la charte interdit. */
+    .cote-haut {
+        width: 44px;
+        height: 44px;
+        box-shadow: 0 2px 14px rgba(10, 10, 10, .14);
+    }
+    .cote-haut svg { width: 16px; height: 16px; }
 }

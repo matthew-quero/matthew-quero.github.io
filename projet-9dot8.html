@@ -19,17 +19,25 @@
     <link rel="icon" href="img/site/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="img/site/apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Polices servies depuis le site (@font-face dans CSS/base-2026.css).
+         Prechargees : le navigateur les demande sans attendre d'avoir lu la CSS. -->
+    <link rel="preload" href="fonts/unbounded-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="CSS/base-2026.css">
     <link rel="stylesheet" href="CSS/projet-2026.css">
     <link rel="stylesheet" href="CSS/footer-2026.css">
     <link rel="stylesheet" href="CSS/cote-2026.css">
+    <link rel="stylesheet" href="CSS/projet-commun-2026.css">
+    <link rel="stylesheet" href="CSS/visionneuse-2026.css">
     <link rel="stylesheet" href="CSS/menu-2026.css">
 </head>
 
 <body>
+
+    <!-- Premier élément focalisable de la page : invisible tant qu'on ne
+         tabule pas, il évite de retraverser toute la navigation à chaque
+         visite quand on se déplace au clavier. -->
+    <a class="saut-contenu" href="#contenu">Aller au contenu</a>
 
     <header class="page-header">
         <div class="logo"><a href="index.html"><img src="img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></a></div>
@@ -55,13 +63,23 @@
     </div>
 
 
-    <main class="wrap">
+    <main class="wrap" id="contenu">
 
         <section class="projet-intro">
             <h1>9dot8</h1>
             <p class="projet-role">Développement et intégration, 2026</p>
-            <p class="projet-texte">Site vitrine pour une association de glisse urbaine rennaise, réalisé à deux dans le cadre d'un projet de groupe à MyDigitalSchool. Titouan s'est occupé des maquettes et de la relation avec l'association. J'ai pris tout le reste : le <strong>thème WordPress sur mesure</strong>, l'intégration des maquettes page par page, et un <strong>back-office en PHP écrit à la main</strong> pour que l'association gère ses contenus sans toucher au code.</p>
-            <p class="projet-texte">Le tout livré en une semaine et demie. Le site n'a pas encore été mis en ligne par l'association, ce que vous voyez ici tourne sur une démonstration statique hébergée sur mon GitHub.</p>
+            <p class="projet-acces">
+                <a class="projet-acces-lien" href="https://matthew-quero.github.io/9dot8/" target="_blank" rel="noopener">Voir le site</a>
+            </p>
+            <p class="projet-texte">Site vitrine pour une association de glisse urbaine rennaise, réalisé à deux dans le cadre d'un projet de groupe à MyDigitalSchool. Titouan s'est occupé des maquettes et de la relation avec l'association. Le reste du chantier tenait en trois pièces : le <strong>thème WordPress sur mesure</strong>, l'intégration des maquettes page par page, et un <strong>back-office en PHP écrit à la main</strong> pour que l'association gère ses contenus sans toucher au code.</p>
+            <p class="projet-texte">Le tout livré en une semaine et demie. Le site n'a pas encore été mis en ligne par l'association, ce que vous voyez ici tourne sur une démonstration statique hébergée sur GitHub.</p>
+
+            <dl class="projet-meta">
+                <div><dt>Année</dt><dd>2026</dd></div>
+                <div><dt>Contexte</dt><dd>Projet de groupe, MyDigitalSchool</dd></div>
+                <div><dt>Rôle</dt><dd>Thème WordPress, intégration, back-office</dd></div>
+                <div><dt>Outils</dt><dd>WordPress, PHP, HTML, CSS</dd></div>
+            </dl>
 
             <figure class="projet-couverture">
                 <img src="img/projets/9dot8/couverture.webp" alt="Skateur en plein trick au-dessus d'une rampe, photo de l'accueil du site" width="1152" height="1123">
@@ -76,7 +94,7 @@
                     <h3>L'accueil</h3>
                     <p>Le bloc jaune et la photo se partagent l'écran en deux, les chiffres de l'association tiennent dans le bas du bloc. Les actualités et la présentation s'enchaînent ensuite sur fond noir.</p>
                 </figcaption>
-                <div class="ecran-vue"><img src="img/projets/9dot8/accueil.webp" alt="Page d'accueil du site 9dot8" width="1920" height="5281" loading="lazy"></div>
+                <div class="ecran-vue"><picture><source media="(max-width: 900px)" srcset="img/projets/9dot8/mobile/accueil.webp" width="900" height="1948"><img src="img/projets/9dot8/accueil.webp" alt="Page d'accueil du site 9dot8" width="1920" height="5281" loading="lazy"></picture></div>
             </figure>
 
             <figure class="ecran">
@@ -84,7 +102,7 @@
                     <h3>L'association</h3>
                     <p>Un titre en trois temps posé sur une photo plein écran assombrie, qui reprend le slogan de l'asso.</p>
                 </figcaption>
-                <div class="ecran-vue"><img src="img/projets/9dot8/association.webp" alt="Page de présentation de l'association" width="1920" height="6274" loading="lazy"></div>
+                <div class="ecran-vue"><picture><source media="(max-width: 900px)" srcset="img/projets/9dot8/mobile/association.webp" width="900" height="1948"><img src="img/projets/9dot8/association.webp" alt="Page de présentation de l'association" width="1920" height="6274" loading="lazy"></picture></div>
             </figure>
 
             <figure class="ecran">
@@ -92,7 +110,7 @@
                     <h3>L'agenda</h3>
                     <p>La partie la plus travaillée. Le calendrier se parcourt mois par mois, et plus haut sur la page les sessions qui reviennent chaque semaine sont séparées des événements ponctuels.</p>
                 </figcaption>
-                <div class="ecran-vue"><img src="img/projets/9dot8/agenda.webp" alt="Calendrier mensuel de la page agenda" width="1920" height="1843" loading="lazy"></div>
+                <div class="ecran-vue"><picture><source media="(max-width: 900px)" srcset="img/projets/9dot8/mobile/agenda.webp" width="900" height="1948"><img src="img/projets/9dot8/agenda.webp" alt="Calendrier mensuel de la page agenda" width="1920" height="1843" loading="lazy"></picture></div>
             </figure>
 
             <figure class="ecran">
@@ -100,7 +118,7 @@
                     <h3>Le contact</h3>
                     <p>Formulaire avec case de consentement, et la carte du gymnase qui ne se charge qu'une fois les cookies tiers acceptés.</p>
                 </figcaption>
-                <div class="ecran-vue"><img src="img/projets/9dot8/contact.webp" alt="Page contact avec formulaire" width="1920" height="2392" loading="lazy"></div>
+                <div class="ecran-vue"><picture><source media="(max-width: 900px)" srcset="img/projets/9dot8/mobile/contact.webp" width="900" height="1948"><img src="img/projets/9dot8/contact.webp" alt="Page contact avec formulaire" width="1920" height="2392" loading="lazy"></picture></div>
             </figure>
 
             <figure class="ecran-admin colonne">
@@ -115,6 +133,19 @@
             </figure>
         </section>
 
+
+        <!-- Invitation de contact : une page projet ne doit pas être un
+             cul-de-sac. Le bouton renvoie au formulaire de l'accueil. -->
+        <section class="projet-suite">
+            <p class="projet-suite-q">Vous avez un projet similaire&nbsp;?</p>
+            <a class="projet-suite-cta" href="index.html#contact">
+                <span>Discutons-en</span>
+                <span class="projet-suite-rond" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+                </span>
+            </a>
+        </section>
+
         <section class="projet-liens">
             <a href="https://matthew-quero.github.io/9dot8/" target="_blank" rel="noopener">Voir le site</a>
             <a href="index.html#projets">Retour aux projets</a>
@@ -125,9 +156,9 @@
     <footer class="site-footer">
         <div class="footer-name"><img src="img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
         <nav class="footer-nav" aria-label="Pied de page">
-            <a href="index.html#offre">Un projet&nbsp;?</a>
-            <a href="index.html#parcours">Qui je suis</a>
             <a href="index.html#projets">Projets</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#offre">Un projet&nbsp;?</a>
             <a href="index.html#contact">Me contacter</a>
         </nav>
         <div class="footer-meta">
@@ -151,6 +182,7 @@
 
     <div class="ring" aria-hidden="true"></div>
 
+    <script src="JS/visionneuse.js" defer></script>
     <script src="JS/curseur.js" defer></script>
     <script src="JS/menu-2026.js" defer></script>
     <script src="JS/cote-2026.js" defer></script>
@@ -159,6 +191,6 @@
          l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
          Rien a declarer, aucune banniere a afficher. -->
     <script data-goatcounter="https://matthewquero.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+            async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

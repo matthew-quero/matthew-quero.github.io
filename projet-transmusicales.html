@@ -19,17 +19,25 @@
     <link rel="icon" href="img/site/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="img/site/apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Polices servies depuis le site (@font-face dans CSS/base-2026.css).
+         Prechargees : le navigateur les demande sans attendre d'avoir lu la CSS. -->
+    <link rel="preload" href="fonts/unbounded-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="CSS/base-2026.css">
     <link rel="stylesheet" href="CSS/projet-2026.css">
     <link rel="stylesheet" href="CSS/footer-2026.css">
     <link rel="stylesheet" href="CSS/cote-2026.css">
+    <link rel="stylesheet" href="CSS/projet-commun-2026.css">
+    <link rel="stylesheet" href="CSS/visionneuse-2026.css">
     <link rel="stylesheet" href="CSS/menu-2026.css">
 </head>
 
 <body>
+
+    <!-- Premier élément focalisable de la page : invisible tant qu'on ne
+         tabule pas, il évite de retraverser toute la navigation à chaque
+         visite quand on se déplace au clavier. -->
+    <a class="saut-contenu" href="#contenu">Aller au contenu</a>
 
     <header class="page-header">
         <div class="logo"><a href="index.html"><img src="img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></a></div>
@@ -55,13 +63,23 @@
     </div>
 
 
-    <main class="wrap">
+    <main class="wrap" id="contenu">
 
         <section class="projet-intro">
             <h1>Transmusicales</h1>
             <p class="projet-role">Site WordPress, 2026</p>
+            <p class="projet-acces">
+                <a class="projet-acces-lien" href="https://transmusicales.matthew-quero.mds-rennes.yt/" target="_blank" rel="noopener">Voir le site</a>
+            </p>
             <p class="projet-texte">Exercice à MyDigitalSchool : refaire le site des Transmusicales de Rennes, avec une direction artistique imposée et une date de rendu. Cinq pages sous WordPress : l'accueil, la présentation du festival, la programmation, les actualités et le contact.</p>
             <p class="projet-texte">Noir et rouge sur toute la longueur, des titres très gras qui tiennent la page, et les photos de concert comme seule respiration.</p>
+
+            <dl class="projet-meta">
+                <div><dt>Année</dt><dd>2026</dd></div>
+                <div><dt>Contexte</dt><dd>Exercice de formation, MyDigitalSchool</dd></div>
+                <div><dt>Rôle</dt><dd>Intégration des cinq pages</dd></div>
+                <div><dt>Outils</dt><dd>WordPress</dd></div>
+            </dl>
 
             <figure class="projet-couverture">
                 <img src="img/projets/transmusicales/couverture.webp" alt="Haut de la page d'accueil du site des Transmusicales" width="1920" height="900">
@@ -112,6 +130,19 @@
             </figure>
         </section>
 
+
+        <!-- Invitation de contact : une page projet ne doit pas être un
+             cul-de-sac. Le bouton renvoie au formulaire de l'accueil. -->
+        <section class="projet-suite">
+            <p class="projet-suite-q">Vous avez un projet similaire&nbsp;?</p>
+            <a class="projet-suite-cta" href="index.html#contact">
+                <span>Discutons-en</span>
+                <span class="projet-suite-rond" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+                </span>
+            </a>
+        </section>
+
         <section class="projet-liens">
             <a href="https://transmusicales.matthew-quero.mds-rennes.yt/" target="_blank" rel="noopener">Voir le site</a>
             <a href="index.html#projets">Retour aux projets</a>
@@ -122,9 +153,9 @@
     <footer class="site-footer">
         <div class="footer-name"><img src="img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
         <nav class="footer-nav" aria-label="Pied de page">
-            <a href="index.html#offre">Un projet&nbsp;?</a>
-            <a href="index.html#parcours">Qui je suis</a>
             <a href="index.html#projets">Projets</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#offre">Un projet&nbsp;?</a>
             <a href="index.html#contact">Me contacter</a>
         </nav>
         <div class="footer-meta">
@@ -148,6 +179,7 @@
 
     <div class="ring" aria-hidden="true"></div>
 
+    <script src="JS/visionneuse.js" defer></script>
     <script src="JS/curseur.js" defer></script>
     <script src="JS/menu-2026.js" defer></script>
     <script src="JS/cote-2026.js" defer></script>
@@ -156,6 +188,6 @@
          l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
          Rien a declarer, aucune banniere a afficher. -->
     <script data-goatcounter="https://matthewquero.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+            async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

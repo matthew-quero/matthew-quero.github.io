@@ -19,17 +19,25 @@
     <link rel="icon" href="img/site/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="img/site/apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Polices servies depuis le site (@font-face dans CSS/base-2026.css).
+         Prechargees : le navigateur les demande sans attendre d'avoir lu la CSS. -->
+    <link rel="preload" href="fonts/unbounded-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="CSS/base-2026.css">
     <link rel="stylesheet" href="CSS/asgc-2026.css">
     <link rel="stylesheet" href="CSS/footer-2026.css">
     <link rel="stylesheet" href="CSS/cote-2026.css">
+    <link rel="stylesheet" href="CSS/projet-commun-2026.css">
+    <link rel="stylesheet" href="CSS/visionneuse-2026.css">
     <link rel="stylesheet" href="CSS/menu-2026.css">
 </head>
 
 <body>
+
+    <!-- Premier élément focalisable de la page : invisible tant qu'on ne
+         tabule pas, il évite de retraverser toute la navigation à chaque
+         visite quand on se déplace au clavier. -->
+    <a class="saut-contenu" href="#contenu">Aller au contenu</a>
 
     <header class="page-header">
         <div class="logo"><a href="index.html"><img src="img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></a></div>
@@ -55,7 +63,7 @@
     </div>
 
 
-    <main class="wrap">
+    <main class="wrap" id="contenu">
 
         <section class="projet-intro">
             <div class="projet-titre">
@@ -64,11 +72,33 @@
             </div>
             <p class="projet-role">Chargé de communication, septembre 2025 à août 2026</p>
 
-            <p class="projet-texte">Pendant un an, j'ai tenu la communication digitale d'un club de football de Saint-Brieuc. Visuels jour de match, annonces de coupe, résultats du week-end, valorisation des partenaires : tout ce qui sortait sur Instagram et Facebook passait par moi. Le week-end, j'étais au stade avec l'équipe première, appareil ou téléphone en main, et j'ai couvert sa montée en fin de saison.</p>
+            <p class="projet-texte">Un an de communication digitale pour un club de football de Saint-Brieuc. Visuels jour de match, annonces de coupe, résultats du week-end, valorisation des partenaires : tout ce qui sortait sur Instagram et Facebook passait par là. Le week-end, direction le stade avec l'équipe première, appareil ou téléphone en main, jusqu'à la montée décrochée en fin de saison.</p>
+
+            <!-- Comptes officiels du club. Ce sont les pages sur lesquelles
+                 les publications sont parties ; les URL viennent d'une
+                 recherche publique, pas d'une supposition. -->
+            <p class="projet-acces">
+                Les comptes du club&nbsp;:
+                <a class="projet-acces-lien" href="https://www.instagram.com/asginglincesson/" target="_blank" rel="noopener">Instagram</a>
+                <a class="projet-acces-lien" href="https://www.facebook.com/asginglincesson" target="_blank" rel="noopener">Facebook</a>
+            </p>
+
+            <!-- Fiche du projet. Ces informations étaient sur la carte de
+                 l'accueil : elles alourdissaient une liste qui sert à
+                 choisir, pas à tout lire. Les chiffres de la saison ne
+                 sont pas repris ici, la section suivante leur est
+                 entièrement consacrée. -->
+            <dl class="projet-meta">
+                <div><dt>Période</dt><dd>Septembre 2025 · Août 2026</dd></div>
+                <div><dt>Contexte</dt><dd>Alternance, chargé de communication</dd></div>
+                <div><dt>Rôle</dt><dd>Visuels, réseaux sociaux, photo et vidéo</dd></div>
+                <div><dt>Outils</dt><dd>Photoshop, Premiere&nbsp;Pro, After&nbsp;Effects</dd></div>
+            </dl>
         </section>
 
         <section class="bilan">
             <h2 class="bloc-titre">Ce que ça a donné</h2>
+            <p class="bilan-cadre">Saison 2025/2026, résultats 100&nbsp;% organiques, sans publicité payante.</p>
             <div class="reseaux">
                 <div>
                     <div class="reseau-nom">Facebook</div>
@@ -94,26 +124,38 @@
         <section class="visuels">
             <h2 class="bloc-titre">Les visuels</h2>
 
-            <div class="scene">
+            <!-- role="group" + aria-roledescription : les aides techniques
+                 annoncent un carrousel et non une suite d'images sans lien.
+                 tabindex="0" parce que les flèches ne doivent agir que
+                 lorsqu'on est dedans, pas sur toute la page. -->
+            <div class="scene" id="scene" role="group" tabindex="0"
+                 aria-roledescription="carrousel" aria-label="Affiches de la saison"
+                 aria-describedby="aff-aide">
                 <div class="piste" id="piste">
-                    <figure class="aff"><img src="img/asgc/affiches/plabennec.webp" alt="Stade Plabennecois VS ASGC" width="1080" height="1080"></figure>
-                    <figure class="aff"><img src="img/asgc/affiches/auray_retour.webp" alt="Match Retour - Auray FC" width="1080" height="1080"></figure>
-                    <figure class="aff"><img src="img/asgc/affiches/montagnarde_retour.webp" alt="Match Retour" width="1080" height="1080"></figure>
-                    <figure class="aff"><img src="img/asgc/affiches/plougastel_retour.webp" alt="Natha face à la Panthère" width="1080" height="1080"></figure>
-                    <figure class="aff"><img src="img/asgc/affiches/plouvorn_retour.webp" alt="La Piste aux Étoiles" width="1080" height="1080" loading="lazy"></figure>
-                    <figure class="aff"><img src="img/asgc/affiches/saint_renan_aller.webp" alt="Natha et Norbert face au Cheval" width="1080" height="1080" loading="lazy"></figure>
-                    <figure class="aff"><img src="img/asgc/affiches/concarneau_championnat.webp" alt="Le Match de la Montée" width="1080" height="1080" loading="lazy"></figure>
-                    <figure class="aff"><img src="img/asgc/com/tournoi_aiglons.webp" alt="Tournoi des Aiglons" width="1080" height="1080" loading="lazy"></figure>
-                    <figure class="aff"><img src="img/asgc/com/reprise_championnat.webp" alt="Reprise du Championnat" width="1080" height="1080" loading="lazy"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="1 sur 9"><img src="img/asgc/affiches/plabennec.webp" alt="Stade Plabennecois VS ASGC" width="1080" height="1080" fetchpriority="high"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="2 sur 9"><img src="img/asgc/affiches/auray_retour.webp" alt="Match Retour - Auray FC" width="1080" height="1080" loading="lazy"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="3 sur 9"><img src="img/asgc/affiches/montagnarde_retour.webp" alt="Match Retour" width="1080" height="1080" loading="lazy"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="4 sur 9"><img src="img/asgc/affiches/plougastel_retour.webp" alt="Natha face à la Panthère" width="1080" height="1080" loading="lazy"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="5 sur 9"><img src="img/asgc/affiches/plouvorn_retour.webp" alt="La Piste aux Étoiles" width="1080" height="1080" loading="lazy"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="6 sur 9"><img src="img/asgc/affiches/saint_renan_aller.webp" alt="Natha et Norbert face au Cheval" width="1080" height="1080" loading="lazy"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="7 sur 9"><img src="img/asgc/affiches/concarneau_championnat.webp" alt="Le Match de la Montée" width="1080" height="1080" loading="lazy"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="8 sur 9"><img src="img/asgc/com/tournoi_aiglons.webp" alt="Tournoi des Aiglons" width="1080" height="1080" loading="lazy"></figure>
+                    <figure class="aff" role="group" aria-roledescription="diapositive" aria-label="9 sur 9"><img src="img/asgc/com/reprise_championnat.webp" alt="Reprise du Championnat" width="1080" height="1080" loading="lazy"></figure>
                 </div>
             </div>
+
+            <!-- Deux consignes, une seule affichée : parler des flèches du
+                 clavier à quelqu'un qui n'en a pas sous la main n'aide
+                 personne. Le choix se fait sur le type de pointeur. -->
+            <p class="aff-aide" id="aff-aide"><span class="aide-pointeur">Faites glisser, ou utilisez les flèches du clavier.</span><span class="aide-tactile">Faites glisser pour voir les autres affiches.</span></p>
+            <p class="aff-position" id="aff-position" aria-live="polite"></p>
 
             <div class="legendes" id="legendes">
                 <div class="legende est-active">
                     <div class="legende-club"><img src="img/asgc/logos/plabennec.webp" alt="" width="26" height="26" loading="lazy"><span>Stade Plabennecois</span></div>
                     <h3>Stade Plabennecois VS ASGC</h3>
                     <p class="legende-desc">Pindi en reprise acrobatique au-dessus des nuages face au lion de Plabennec, dans une scène mystique et surréaliste.</p>
-                    <p class="legende-recul">Simple et percutant, c&#x27;est exactement ce que je cherchais. Une des meilleures affiches de la saison, pour moi.</p>
+                    <p class="legende-recul">Simple et percutant, exactement la cible. Une des meilleures affiches de la saison.</p>
                 </div>
                 <div class="legende">
                     <div class="legende-club"><img src="img/asgc/logos/auray_fc.webp" alt="" width="26" height="26" loading="lazy"><span>Auray FC</span></div>
@@ -125,19 +167,19 @@
                     <div class="legende-club"><img src="img/asgc/logos/montagnarde.webp" alt="" width="26" height="26" loading="lazy"><span>US Montagnarde</span></div>
                     <h3>Match Retour</h3>
                     <p class="legende-desc">Quentin, Jean-Marie et Samba face à la montagne. Brouillard et lumières bleues pour la tension d&#x27;un match à quatre équipes en trois points.</p>
-                    <p class="legende-recul">Le rendu final me plaît beaucoup. Les éléments se complètent et chaque joueur est bien intégré. Seul point négatif : la pixelisation des jambes au premier plan, par manque de matière source.</p>
+                    <p class="legende-recul">Le rendu final tient très bien. Les éléments se complètent et chaque joueur est bien intégré. Seul point négatif : la pixelisation des jambes au premier plan, par manque de matière source.</p>
                 </div>
                 <div class="legende">
                     <div class="legende-club"><img src="img/asgc/logos/plougastel.webp" alt="" width="26" height="26" loading="lazy"><span>Plougastel FC</span></div>
                     <h3>Natha face à la Panthère</h3>
                     <p class="legende-desc">Natha s&#x27;apprête à tomber sur la Panthère de Plougastel dans un décor forestier très détaillé.</p>
-                    <p class="legende-recul">Beaucoup de temps passé dessus, et le résultat me convient. Le travail sur la lumière qui arrive d&#x27;entre les arbres aurait pu être mieux fait, mais là arrivent mes limites techniques.</p>
+                    <p class="legende-recul">Beaucoup de temps passé dessus, pour un résultat qui tient. Le travail sur la lumière qui arrive d&#x27;entre les arbres aurait pu être mieux fait : c&#x27;est là que la maîtrise technique s&#x27;arrêtait, à ce moment-là.</p>
                 </div>
                 <div class="legende">
                     <div class="legende-club"><img src="img/asgc/logos/plouvorn.webp" alt="" width="26" height="26" loading="lazy"><span>AG Plouvorn</span></div>
                     <h3>La Piste aux Étoiles</h3>
                     <p class="legende-desc">Pindi, Kévin et Laurent sur une vague déformée, étoiles et grain pour une affiche inspirée de la course au titre.</p>
-                    <p class="legende-recul">Celui-ci m&#x27;a été inspiré par un TikTok. Je me suis bien creusé la tête pour trouver comment donner la forme voulue à ce flux lumineux.</p>
+                    <p class="legende-recul">Celui-ci vient d&#x27;un TikTok. Donner au flux lumineux la forme voulue a demandé pas mal de tâtonnement.</p>
                 </div>
                 <div class="legende">
                     <div class="legende-club"><img src="img/asgc/logos/saint_renan.webp" alt="" width="26" height="26" loading="lazy"><span>EA Saint Renan</span></div>
@@ -149,7 +191,7 @@
                     <div class="legende-club"><img src="img/asgc/logos/concarneau.webp" alt="" width="26" height="26" loading="lazy"><span>US Concarneau</span></div>
                     <h3>Le Match de la Montée</h3>
                     <p class="legende-desc">Pindi, Norbert et Kévin dans un visuel mystique pour le dernier match de championnat, avec tourbillons, lights, l&#x27;aigle de Ginglin et l&#x27;ancre des thonniers.</p>
-                    <p class="legende-recul">Content de celui-là. Peut-être que l&#x27;ombre de Kévin est à revoir, la lumière vient du même côté. Les logos tout en blanc auraient pu être plus intéressants.</p>
+                    <p class="legende-recul">Celui-là tient bien. Peut-être que l&#x27;ombre de Kévin est à revoir, la lumière vient du même côté. Les logos tout en blanc auraient pu être plus intéressants.</p>
                 </div>
                 <div class="legende">
                     <h3>Tournoi des Aiglons</h3>
@@ -167,6 +209,19 @@
             </div>
         </section>
 
+
+        <!-- Invitation de contact : une page projet ne doit pas être un
+             cul-de-sac. Le bouton renvoie au formulaire de l'accueil. -->
+        <section class="projet-suite">
+            <p class="projet-suite-q">Vous avez un projet similaire&nbsp;?</p>
+            <a class="projet-suite-cta" href="index.html#contact">
+                <span>Discutons-en</span>
+                <span class="projet-suite-rond" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
+                </span>
+            </a>
+        </section>
+
         <section class="retour">
             <a href="index.html#projets">Retour aux projets</a>
         </section>
@@ -176,9 +231,9 @@
     <footer class="site-footer">
         <div class="footer-name"><img src="img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
         <nav class="footer-nav" aria-label="Pied de page">
-            <a href="index.html#offre">Un projet&nbsp;?</a>
-            <a href="index.html#parcours">Qui je suis</a>
             <a href="index.html#projets">Projets</a>
+            <a href="index.html#parcours">Qui je suis</a>
+            <a href="index.html#offre">Un projet&nbsp;?</a>
             <a href="index.html#contact">Me contacter</a>
         </nav>
         <div class="footer-meta">
@@ -202,6 +257,7 @@
 
     <div class="ring" aria-hidden="true"></div>
 
+    <script src="JS/visionneuse.js" defer></script>
     <script src="JS/curseur.js" defer></script>
     <script src="JS/menu-2026.js" defer></script>
     <script src="JS/cote-2026.js" defer></script>
@@ -211,6 +267,6 @@
          l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
          Rien a declarer, aucune banniere a afficher. -->
     <script data-goatcounter="https://matthewquero.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+            async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /* === PIED DE PAGE 2026 ===
    Seul bloc du site sur fond encre : c'est le changement de fond qui sépare,
-   aucun filet. Même colonne centrée de 1120px que les sections. */
+   aucun filet. Même colonne de page que les sections (--marge). */
 
 .site-footer {
     --footer-mute: #8B9197; /* gris lisible sur encre, --mute l'est trop peu */
@@ -8,7 +8,9 @@
     justify-content: space-between;
     align-items: center;
     gap: 24px 40px;
-    padding: 34px max(44px, calc((100% - 1120px) / 2));
+    /* 34px de haut donnaient une barre, pas un pied de page : le bloc
+       arrivait collé au contenu et se lisait comme une ligne de plus. */
+    padding: 56px var(--marge);
     background: var(--ink);
     color: var(--bg);
 }
@@ -17,14 +19,14 @@
 .footer-name { line-height: 0; }
 .footer-name img { display: block; height: 34px; width: auto; }
 
-.footer-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 14px; }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: var(--t-meta); }
 
 .footer-meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 12px 24px;
-    font-size: 12.5px;
+    font-size: var(--t-meta);
     color: var(--footer-mute);
 }
 
@@ -42,12 +44,61 @@
     background: var(--accent);
     transition: right .4s var(--ease);
 }
+/* --accent-texte est le vert sombre prévu pour être lu sur du blanc.
+   Posé ici, sur l'encre, il donnait du vert foncé sur du presque noir.
+   Le pied de page est le seul bloc sur fond sombre : c'est le vert clair
+   qui y est lisible, et il n'y a pas de risque de contraste faible. */
 .footer-nav a:hover,
-.footer-meta a:hover { color: var(--accent-texte); }
+.footer-meta a:hover { color: var(--accent); }
 .footer-nav a:hover::after,
 .footer-meta a:hover::after { right: 0; }
 
-/* === RESPONSIVE === */
-@media (max-width: 860px) {
-    .site-footer { flex-direction: column; align-items: flex-start; padding: 30px 20px 34px; }
+/* === RESPONSIVE ===
+   En colonne, les trois blocs se suivaient à 24px d'écart et formaient un
+   pavé compact. On leur donne de l'air, et la navigation passe sur deux
+   colonnes : quatre entrées à la file faisaient une liste plus haute que
+   large, pour rien. */
+@media (max-width: 900px) {
+    .site-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 44px;
+        padding: 58px var(--marge) 40px;
+    }
+    .footer-name img { height: 40px; }
+
+    .footer-nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px 24px;
+        font-size: 17px;
+    }
+
+    /* La ligne de mentions se détache du reste : c'est de l'administratif,
+       pas de la navigation. */
+    .footer-meta {
+        gap: 6px 22px;
+        font-size: var(--t-etiquette);
+        letter-spacing: .06em;
+    }
+
+    /* Les liens du pied faisaient 17 à 19 px de haut, soit moins de la
+       moitié d'une pulpe de pouce. On agrandit la zone sensible sans
+       toucher à la mise en page : un calque invisible centré sur le
+       texte, plutôt qu'un calage qui décalerait tout et emporterait le
+       soulignement avec lui. */
+    .footer-nav a::before,
+    .footer-meta a::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 44px;
+    }
+
+    /* Place pour le bouton de retour en haut, qui flotte en bas à droite
+       et viendrait sinon se poser sur la dernière ligne du pied. */
+    .site-footer { padding-bottom: calc(34px + 56px + env(safe-area-inset-bottom, 0px)); }
 }

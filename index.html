@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Matthew Quéro, développeur web</title>
-    <meta name="description" content="Portfolio de Matthew Quéro, développeur web formé sur le terrain de la communication sportive. Je code des sites et je gère la communication qui va avec.">
+    <meta name="description" content="Portfolio de Matthew Quéro, développeur web en Côtes-d'Armor. Conception et développement de sites pour des petites structures, avec la communication qui va avec.">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://matthew-quero.github.io/">
     <meta property="og:title" content="Matthew Quéro, développeur web">
-    <meta property="og:description" content="Développeur web, formé sur le terrain de la communication sportive. Je code des sites et je gère la communication qui va avec.">
+    <meta property="og:description" content="Conception et développement de sites. Et la communication qui va avec.">
     <meta property="og:image" content="https://matthew-quero.github.io/img/og-image.jpg">
     <meta property="og:locale" content="fr_FR">
     <meta name="twitter:card" content="summary_large_image">
@@ -19,9 +19,17 @@
     <link rel="icon" href="img/site/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="img/site/apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Polices servies depuis le site (@font-face dans CSS/base-2026.css).
+         Prechargees : le navigateur les demande sans attendre d'avoir lu la CSS. -->
+    <link rel="preload" href="fonts/unbounded-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Three.js démarre son téléchargement en parallèle de la page, mais en
+         priorité basse : il ne passe pas devant les polices ni la CSS. Le
+         media le réserve aux écrans larges, les seuls où hero-3d.js s'en
+         servira ; un téléphone ne le demande toujours pas. C'est ce qui
+         raccourcit l'attente avant que le relief remplace le SVG. -->
+    <link rel="preload" href="vendor/three.min.js" as="script" fetchpriority="low" media="(min-width: 900px)">
     <link rel="stylesheet" href="CSS/base-2026.css">
     <link rel="stylesheet" href="CSS/accueil-2026.css">
     <link rel="stylesheet" href="CSS/projets-2026.css">
@@ -35,17 +43,22 @@
 
 <body>
 
-    <section class="hero">
-        <header class="site-header">
-            <div class="logo"><img src="img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></div>
-            <nav class="site-nav" aria-label="Navigation principale">
-                <a href="#projets">Projets</a>
-                <a href="#parcours">Qui je suis</a>
-                <a href="#offre">Un projet&nbsp;?</a>
-            </nav>
-            <a class="cta" href="#contact">Me contacter</a>
+    <!-- Premier élément focalisable de la page : invisible tant qu'on ne
+         tabule pas, il évite de retraverser toute la navigation à chaque
+         visite quand on se déplace au clavier. -->
+    <a class="saut-contenu" href="#contenu">Aller au contenu</a>
+
+    <header class="site-header">
+        <div class="logo"><img src="img/site/mq-logo.svg" alt="Matthew Quéro" width="1058" height="420"></div>
+        <nav class="site-nav" aria-label="Navigation principale">
+            <a href="#projets">Projets</a>
+            <a href="#parcours">Qui je suis</a>
+            <a href="#offre">Un projet&nbsp;?</a>
+        </nav>
+        <a class="cta" href="#contact">Me contacter</a>
         <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile"><span></span><span></span></button>
-        </header>
+    </header>
+
     <div class="menu-mobile" id="menu-mobile" hidden>
         <nav aria-label="Navigation mobile">
             <a href="#projets">Projets</a>
@@ -59,17 +72,124 @@
         </div>
     </div>
 
+    <!-- L'en-tête et le menu sont sortis du hero : ils ne font pas partie
+         du contenu de la page, et les six autres pages étaient déjà
+         construites ainsi. -->
+    <main id="contenu">
 
+    <section class="hero">
         <h1>Développeur web</h1>
-        <canvas id="hero-3d" aria-hidden="true"></canvas>
-        <p class="pitch">Développeur web, formé sur le terrain de la communication sportive. Je code des sites et je gère la communication qui va avec.</p>
 
-        <div class="hero-status"><small>Bretagne</small><b>Côtes-d'Armor et Rennes</b></div>
+        <!-- Le nom, tracé à partir des mêmes contours que la version 3D.
+             Il s'affiche tout de suite, sans requête ni JavaScript, et reste
+             la version définitive sur les appareils où JS/hero-3d.js renonce
+             à charger Three.js (tactile, mouvement réduit, écran étroit). -->
+        <svg class="hero-nom" viewBox="0 0 4306.2 1030.6" role="img" aria-label="QUÉRO" preserveAspectRatio="xMidYMid meet">
+            <defs><linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+                <!-- Dégradé assombri par rapport au rendu 3D : le relief se
+                     détache du blanc par ses ombres et son contour, un aplat
+                     non. Le haut était à #f2f8f5, soit du blanc sur blanc. -->
+                <stop offset="0" stop-color="#c2d6cd"/><stop offset=".3" stop-color="#9ebaaf"/>
+                <stop offset=".52" stop-color="#5f7d72"/><stop offset=".54" stop-color="#b0c9c0"/>
+                <stop offset=".78" stop-color="#7d9a8f"/><stop offset="1" stop-color="#46625a"/>
+            </linearGradient></defs>
+            <g transform="translate(-36.8 974.4) scale(1 -1)">
+                <path fill="url(#chrome)" d="M353.2 305.2L600.6 305.2L927 -56.2L673.6 -56.2ZM482.4 -16.4Q349 -16.4 248.7 32.6Q148.4 81.6 92.6 169.7Q36.8 257.8 36.8 375Q36.8 492.2 92.6 580.3Q148.4 668.4 248.7 717.4Q349 766.4 482.4 766.4Q615.8 766.4 716.1 717.4Q816.4 668.4 872.2 580.3Q928 492.2 928 375Q928 257.8 872.2 169.7Q816.4 81.6 716.1 32.6Q615.8 -16.4 482.4 -16.4ZM482.4 168.8Q555.4 168.8 608.2 193.7Q661 218.6 689.7 264.9Q718.4 311.2 718.4 375Q718.4 438.8 689.7 485.1Q661 531.4 608.2 556.3Q555.4 581.2 482.4 581.2Q409.8 581.2 356.8 556.3Q303.8 531.4 275.1 485.1Q246.4 438.8 246.4 375Q246.4 311.2 275.1 264.9Q303.8 218.6 356.8 193.7Q409.8 168.8 482.4 168.8ZM1214.2 335.2Q1214.2 283.8 1233.7 246.5Q1253.2 209.2 1291.4 189Q1329.6 168.8 1385.8 168.8Q1443 168.8 1481 188.7Q1519 208.6 1538.2 246.2Q1557.4 283.8 1557.4 335.2L1557.4 750L1765 750L1765 324.8Q1765 222.2 1717.6 145.6Q1670.2 69 1585.1 26.3Q1500 -16.4 1385.8 -16.4Q1272.6 -16.4 1187.3 26.3Q1102 69 1054.3 145.6Q1006.6 222.2 1006.6 324.8L1006.6 750L1214.2 750ZM2517.6 450.4L2517.6 299.6L1969 299.6L1969 450.4ZM2110 375L2061.2 73.6L1977.2 168L2551.4 168L2551.4 0L1854.2 0L1911.2 375L1854.2 750L2546.4 750L2546.4 582L1977.2 582L2061.2 676.4ZM2230.4 974.4L2462.4 974.4L2288.8 805.6L2083.2 805.6ZM2796.2 422.2L3069.4 422.2Q3118.6 422.2 3146.6 445Q3174.6 467.8 3174.6 509Q3174.6 550.6 3146.6 573.2Q3118.6 595.8 3069.4 595.8L2767 595.8L2860.2 695L2860.2 0L2652.6 0L2652.6 750L3098.2 750Q3183.8 750 3248.1 719.7Q3312.4 689.4 3348.3 635.6Q3384.2 581.8 3384.2 509Q3384.2 438.2 3348.3 384.1Q3312.4 330 3248.1 300Q3183.8 270 3098.2 270L2796.2 270ZM2908.2 351L3141.2 351L3409.8 0L3169.6 0ZM3897.4 -16.4Q3764 -16.4 3663.7 32.6Q3563.4 81.6 3507.6 169.7Q3451.8 257.8 3451.8 375Q3451.8 492.2 3507.6 580.3Q3563.4 668.4 3663.7 717.4Q3764 766.4 3897.4 766.4Q4030.8 766.4 4131.1 717.4Q4231.4 668.4 4287.2 580.3Q4343 492.2 4343 375Q4343 257.8 4287.2 169.7Q4231.4 81.6 4131.1 32.6Q4030.8 -16.4 3897.4 -16.4ZM3897.4 168.8Q3970.4 168.8 4023.2 193.7Q4076 218.6 4104.7 264.9Q4133.4 311.2 4133.4 375Q4133.4 438.8 4104.7 485.1Q4076 531.4 4023.2 556.3Q3970.4 581.2 3897.4 581.2Q3824.8 581.2 3771.8 556.3Q3718.8 531.4 3690.1 485.1Q3661.4 438.8 3661.4 375Q3661.4 311.2 3690.1 264.9Q3718.8 218.6 3771.8 193.7Q3824.8 168.8 3897.4 168.8Z"/>
+            </g>
+        </svg>
+
+        <!-- L'emplacement du nom. Sur ordinateur il recouvre tout le hero
+             et porte le relief. Sur téléphone il devient un bloc de la
+             colonne, à la proportion de l'image, et le relief s'y installe
+             à la place de celle-ci quand il arrive. -->
+        <div class="hero-nom-zone">
+            <!-- Tirage du vrai rendu 3D, exporté depuis la scène elle-même :
+                 c'est ce qui s'affiche tout de suite, et ce qui reste si le
+                 relief ne charge pas (mouvement réduit, économiseur de
+                 données, appareil juste, WebGL absent). 57 Ko, aucun
+                 JavaScript. Le SVG au-dessus est le dernier filet. -->
+            <img class="hero-nom-3d" src="img/site/quero-3d.webp" alt="QUÉRO"
+                 width="1200" height="328" fetchpriority="high">
+            <canvas id="hero-3d" aria-hidden="true"></canvas>
+        </div>
+
+        <p class="pitch">Conception et développement de sites. Et la communication qui va avec.</p>
+
+        <div class="hero-bas">
+            <div class="hero-actions">
+                <a class="hero-cta hero-cta-fort" href="#projets">Voir les projets</a>
+                <a class="hero-cta" href="#contact">Me contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projets">
+        <div class="projects-head">
+            <h2>Les projets</h2>
+            <p>Deux réalisations détaillées, les autres travaux en dessous.</p>
+        </div>
+
+        <article class="project">
+            <div class="project-main">
+                <div class="project-media">
+                    <img src="img/projets/quero-carrelage/cover.webp" alt="Page d'accueil du site Quéro Carrelage" width="1600" height="900" loading="lazy">
+                </div>
+                <h3 class="project-title">Quéro Carrelage</h3>
+                <a class="project-link" href="projet-quero-carrelage.html">Voir le projet</a>
+            </div>
+        </article>
+
+        <article class="project">
+            <div class="project-main">
+                <div class="project-media">
+                    <img src="img/site/photo_matthew.webp" alt="Matthew Quéro filmant une célébration de but derrière la main courante du stade" width="1400" height="932" loading="lazy">
+                </div>
+                <h3 class="project-title">AS Ginglin Cesson</h3>
+                <a class="project-link" href="as-ginglin-cesson.html">Voir les travaux</a>
+            </div>
+        </article>
+
+        <div class="others">
+            <h3 class="others-title">Autres travaux</h3>
+            <a class="others-row" href="projet-9dot8.html">
+                <span class="others-context">Projet de groupe</span>
+                <span class="others-name">9dot8</span>
+                <span class="others-kind">Thème WordPress et back-office</span>
+            </a>
+            <a class="others-row" href="projet-transmusicales.html">
+                <span class="others-context">Formation</span>
+                <span class="others-name">Transmusicales de Rennes</span>
+                <span class="others-kind">Site WordPress multi-pages</span>
+            </a>
+            <a class="others-row" href="projet-bxlnation.html">
+                <span class="others-context">Appel d'offres</span>
+                <span class="others-name">BXL Nation</span>
+                <span class="others-kind">Identité de marque</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="parcours" id="parcours">
+        <div class="parcours-grid">
+            <div class="parcours-text">
+                <h2>Qui je suis</h2>
+                <p class="parcours-intro">Des sites conçus et développés sur mesure, avec l'identité visuelle qui va avec.</p>
+                <div class="parcours-suite">
+                    <p>Charte graphique, déclinaisons, contenus pour les réseaux sociaux. Pendant un an, chargé de communication à l'AS Ginglin Cesson, club de football de Saint-Brieuc, en alternance de mon Bachelor webmarketing et social media à MyDigitalSchool Rennes.</p>
+                    <p>J'ai couvert la saison de l'équipe première et accompagné sa montée sur les réseaux. Je suis le football depuis l'enfance, ce qui a aidé&nbsp;: on écrit mieux pour un public dont on connaît déjà les codes.</p>
+                </div>
+            </div>
+            <div class="parcours-tools">
+                <h3 class="parcours-tools-title">Les outils</h3>
+                <p class="parcours-tools-list">HTML&nbsp;<span>·</span> CSS&nbsp;<span>·</span> JavaScript&nbsp;<span>·</span> PHP&nbsp;<span>·</span> WordPress&nbsp;<span>·</span> Git&nbsp;<span>·</span> Photoshop&nbsp;<span>·</span> Premiere&nbsp;Pro&nbsp;<span>·</span> After&nbsp;Effects</p>
+            </div>
+        </div>
     </section>
 
     <section class="offre" id="offre">
         <div class="offre-sticky">
             <h2 class="offre-title">Un projet&nbsp;?<br>Discutons-en.</h2>
+            <p class="offre-cible">Pour des petites structures&nbsp;: artisans, associations, commerces. Du premier échange à la mise en ligne.</p>
 
             <div class="offre-window">
                 <div class="offre-rail">
@@ -136,88 +256,10 @@
         </div>
     </section>
 
-    <section class="parcours" id="parcours">
-        <div class="parcours-grid">
-            <div class="parcours-text">
-                <h2>Qui je suis</h2>
-                <p class="parcours-intro">Je conçois et développe des sites, et l'identité visuelle qui va avec.</p>
-                <div class="parcours-suite">
-                    <p>Charte graphique, déclinaisons, contenus pour les réseaux sociaux. Pendant un an, chargé de communication à l'AS Ginglin Cesson, club de football de Saint-Brieuc, en alternance de mon Bachelor webmarketing et social media à MyDigitalSchool Rennes.</p>
-                    <p>J'ai couvert la saison de l'équipe première et accompagné sa montée sur les réseaux. Je suis le football depuis l'enfance, ce qui a aidé&nbsp;: on écrit mieux pour un public dont on connaît déjà les codes.</p>
-                </div>
-            </div>
-            <div class="parcours-tools">
-                <h3 class="parcours-tools-title">Les outils</h3>
-                <p class="parcours-tools-list">HTML&nbsp;<span>·</span> CSS&nbsp;<span>·</span> JavaScript&nbsp;<span>·</span> PHP&nbsp;<span>·</span> WordPress&nbsp;<span>·</span> Git&nbsp;<span>·</span> Photoshop&nbsp;<span>·</span> Premiere&nbsp;Pro&nbsp;<span>·</span> After&nbsp;Effects</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="projects" id="projets">
-        <div class="projects-head">
-            <h2>Les projets</h2>
-            <p>Deux réalisations détaillées, le reste de la production en dessous.</p>
-        </div>
-
-        <article class="project">
-            <div class="project-main">
-                <div class="project-media">
-                    <img src="img/projets/9dot8/cover.webp" alt="Page d'accueil du site 9dot8" width="1600" height="900" loading="lazy">
-                </div>
-                <h3 class="project-title">9dot8</h3>
-                <p class="project-text">Site vitrine complet pour une association de glisse urbaine rennaise. Maquettes par Titouan, le reste pour moi : thème WordPress sur mesure, intégration page par page et back-office PHP. Livré en une semaine et demie.</p>
-            </div>
-            <dl class="project-info">
-                <div class="project-info-row"><dt>Année</dt><dd>2026</dd></div>
-                <div class="project-info-row"><dt>Contexte</dt><dd>Projet de groupe, MyDigitalSchool Rennes</dd></div>
-                <div class="project-info-row"><dt>Mon rôle</dt><dd>Thème WordPress, intégration, back-office PHP</dd></div>
-                <div class="project-info-row"><dt>Outils</dt><dd>WordPress, PHP, HTML, CSS</dd></div>
-                <div class="project-info-row"><dt>Lien</dt><dd><a class="project-link" href="projet-9dot8.html">Voir le projet</a></dd></div>
-            </dl>
-        </article>
-
-        <article class="project">
-            <div class="project-main">
-                <div class="project-media">
-                    <img src="img/site/photo_matthew.webp" alt="Matthew Quéro filmant une célébration de but derrière la main courante du stade" width="1400" height="932" loading="lazy">
-                </div>
-                <h3 class="project-title">AS Ginglin Cesson</h3>
-                <p class="project-text">Un an de communication digitale pour un club de football de Saint-Brieuc. Visuels jour de match, réseaux sociaux, couverture photo et vidéo des rencontres, valorisation des partenaires.</p>
-            </div>
-            <dl class="project-info">
-                <div class="project-info-row"><dt>Période</dt><dd>Septembre 2025 · Août 2026</dd></div>
-                <div class="project-info-row"><dt>Contexte</dt><dd>Alternance, chargé de communication</dd></div>
-                <div class="project-info-row"><dt>Mon rôle</dt><dd>Visuels, réseaux sociaux, photo et vidéo</dd></div>
-                <div class="project-info-row"><dt>Outils</dt><dd>Photoshop, Premiere&nbsp;Pro, After&nbsp;Effects</dd></div>
-                <div class="project-info-row"><dt>Résultat</dt><dd>5,7&nbsp;M de vues cumulées Facebook et Instagram, 1&nbsp;450 abonnés gagnés</dd></div>
-                <div class="project-info-row"><dt>Lien</dt><dd><a class="project-link" href="as-ginglin-cesson.html">Voir les travaux</a></dd></div>
-            </dl>
-        </article>
-
-        <div class="others">
-            <h3 class="others-title">Autres travaux</h3>
-            <div class="others-row">
-                <span class="others-context">Entreprise familiale</span>
-                <span class="others-name">Quéro Carrelage</span>
-                <span class="others-kind">Site vitrine, en cours</span>
-            </div>
-            <a class="others-row" href="projet-transmusicales.html">
-                <span class="others-context">Formation</span>
-                <span class="others-name">Transmusicales de Rennes</span>
-                <span class="others-kind">Site WordPress multi-pages</span>
-            </a>
-            <a class="others-row" href="projet-bxlnation.html">
-                <span class="others-context">Appel d'offre</span>
-                <span class="others-name">BXL Nation</span>
-                <span class="others-kind">Identité de marque</span>
-            </a>
-        </div>
-    </section>
-
     <section class="contact" id="contact">
         <div class="contact-head">
             <h2>Me contacter</h2>
-            <p>Dites-moi en deux mots ce que vous avez en tête, je reviens vers vous sous 48 heures.</p>
+            <p>Dites en deux mots ce que vous avez en tête. Réponse sous 48&nbsp;heures.</p>
         </div>
 
         <form class="contact-form" id="contact-form" novalidate>
@@ -227,21 +269,26 @@
             <input type="hidden" name="replyto" value="">
             <input type="checkbox" name="botcheck" class="contact-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
+            <!-- Menu déroulant natif. C'était un <ul role="listbox"> maison
+                 dont chaque option portait tabindex="0" : la tabulation
+                 traversait les quatre choix un par un au lieu des flèches,
+                 ce qui n'est pas le fonctionnement qu'annonce ce rôle, et
+                 les aides techniques s'y perdaient. Un <select> apporte
+                 gratuitement le clavier, le sélecteur natif du téléphone et
+                 l'annonce correcte. L'apparence à lignes est conservée. -->
             <div class="contact-field contact-field-full">
-                <span class="contact-label" id="contact-demande-label">Votre demande</span>
+                <label class="contact-label" for="contact-demande">Votre demande</label>
                 <div class="contact-select">
-                    <button type="button" class="contact-select-button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="contact-demande-label contact-demande-value" aria-describedby="contact-demande-error">
-                        <span class="contact-select-value" id="contact-demande-value">Choisissez</span>
-                        <svg class="contact-select-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg>
-                    </button>
-                    <ul class="contact-select-list" role="listbox" aria-labelledby="contact-demande-label" hidden>
-                        <li role="option" tabindex="0" aria-selected="false">Site vitrine</li>
-                        <li role="option" tabindex="0" aria-selected="false">Refonte</li>
-                        <li role="option" tabindex="0" aria-selected="false">Intégration</li>
-                        <li role="option" tabindex="0" aria-selected="false">Autre</li>
-                    </ul>
+                    <select class="contact-select-champ" id="contact-demande" name="demande" required aria-describedby="contact-demande-error">
+                        <option value="">Choisissez</option>
+                        <option>Site vitrine</option>
+                        <option>Refonte</option>
+                        <option>Intégration</option>
+                        <option>Je ne sais pas encore</option>
+                        <option>Autre</option>
+                    </select>
+                    <svg class="contact-select-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg>
                 </div>
-                <input type="hidden" name="demande" value="">
                 <p class="contact-field-error" id="contact-demande-error" hidden></p>
             </div>
 
@@ -272,20 +319,22 @@
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.6"/></svg>
                     </span>
                 </button>
-                <p class="contact-note">Vos informations servent uniquement à vous répondre.</p>
+                <p class="contact-note">Ces informations servent uniquement à vous répondre.</p>
             </div>
-            <p class="contact-error contact-field-full" role="alert" hidden>L'envoi a échoué. Réessayez, ou écrivez-moi directement.</p>
+            <p class="contact-error contact-field-full" role="alert" hidden>Le message n'a pas pu être envoyé. Vérifiez votre connexion et réessayez dans quelques instants.</p>
         </form>
 
-        <p class="contact-success" role="status" hidden>Merci, votre message est parti. Je vous réponds sous 48 heures.</p>
+        <p class="contact-success" role="status" hidden>Merci, votre message est parti. Réponse sous 48&nbsp;heures.</p>
     </section>
+
+    </main>
 
     <footer class="site-footer">
         <div class="footer-name"><img src="img/site/mq-logo-blanc.svg" alt="Matthew Quéro" width="1058" height="420"></div>
         <nav class="footer-nav" aria-label="Pied de page">
-            <a href="#offre">Un projet&nbsp;?</a>
-            <a href="#parcours">Qui je suis</a>
             <a href="#projets">Projets</a>
+            <a href="#parcours">Qui je suis</a>
+            <a href="#offre">Un projet&nbsp;?</a>
             <a href="#contact">Me contacter</a>
         </nav>
         <div class="footer-meta">
@@ -309,7 +358,8 @@
 
     <div class="ring" aria-hidden="true"></div>
 
-    <script src="vendor/three.min.js" defer></script>
+    <!-- Three.js n'est plus appelé ici : hero-3d.js le charge lui-même,
+         après l'affichage de la page, et seulement s'il sert. -->
     <script src="JS/hero-3d.js" defer></script>
     <script src="JS/curseur.js" defer></script>
     <script src="JS/menu-2026.js" defer></script>
@@ -321,6 +371,6 @@
          l'IP est hachee avec un sel qui tourne chaque jour puis jetee.
          Rien a declarer, aucune banniere a afficher. -->
     <script data-goatcounter="https://matthewquero.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+            async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

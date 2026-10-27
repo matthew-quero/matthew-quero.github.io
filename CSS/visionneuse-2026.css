@@ -1,0 +1,68 @@
+/* === VISIONNEUSE D'IMAGES (JS/visionneuse.js) ===
+   Un <dialog> plein écran. L'image y tient en entier quelle que soit sa
+   forme : une capture de page très haute comme une affiche carrée. */
+
+.visionneuse {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: clamp(16px, 3.4vw, 48px);
+    border: 0;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow: auto;
+}
+.visionneuse::backdrop { background: rgba(10, 10, 10, .9); }
+.visionneuse:not([open]) { display: none; }
+
+/* object-fit: contain plutôt qu'un recadrage : l'image doit être
+   consultable en entier, c'est tout l'intérêt de l'agrandir. */
+.visionneuse-img {
+    max-width: 100%;
+    max-height: calc(100% - 72px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.visionneuse-legende {
+    flex: none;
+    max-width: 70ch;
+    text-align: center;
+    font-size: var(--t-meta);
+    color: var(--mute);
+}
+.visionneuse-legende[hidden] { display: none; }
+
+/* Le bouton de fermeture est posé au-dessus de l'image, jamais dans le
+   flux : sur une capture très haute il resterait sinon hors de l'écran. */
+.visionneuse-fermer {
+    position: fixed;
+    top: clamp(12px, 2vw, 28px);
+    right: clamp(12px, 2vw, 28px);
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--ink);
+    transition: background .3s var(--ease), border-color .3s var(--ease);
+}
+.visionneuse-fermer:hover { background: var(--accent); border-color: var(--accent); }
+.visionneuse-fermer svg { width: 15px; height: 15px; display: block; }
+
+/* Les visuels agrandissables se signalent au pointeur et au clavier. */
+.est-agrandissable { cursor: zoom-in; }
+.aff.est-loin .est-agrandissable { cursor: pointer; }

@@ -57,7 +57,7 @@
     line-height: 1;
     letter-spacing: -.03em;
 }
-.chiffre span { display: block; margin-top: 12px; font-size: 13px; color: var(--mute); }
+.chiffre span { display: block; margin-top: 12px; font-size: var(--t-meta); color: var(--mute); }
 
 /* --- Visuels : carrousel en perspective (JS/asgc-2026.js) ---
    Les affiches sont posées sur un axe qui s'enfonce dans l'écran. Celle du
@@ -76,7 +76,12 @@
     width: 100vw;
     overflow: hidden;
     perspective: 1500px;
+    /* Le navigateur garde le défilement vertical, on ne prend que
+       l'horizontal : sur téléphone, glisser sur le carrousel ne doit pas
+       empêcher de faire défiler la page. */
+    touch-action: pan-y;
 }
+.scene:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
 .piste { position: absolute; inset: 0; transform-style: preserve-3d; }
 
 .aff {
@@ -90,7 +95,13 @@
     transition: transform .72s var(--ease), opacity .72s var(--ease);
 }
 .piste.est-prete .aff { cursor: pointer; }
-.piste.est-prete .aff:not(.est-loin) { cursor: default; }
+.piste.est-prete .aff:not(.est-loin) { cursor: grab; }
+/* Pendant le geste, la transition est coupée : sinon les affiches
+   traînent derrière le doigt d'un trois quarts de seconde. */
+.piste.en-glissement .aff,
+.piste.en-glissement .aff::after { transition: none; }
+.piste.en-glissement .aff,
+.piste.en-glissement .aff:not(.est-loin) { cursor: grabbing; }
 /* contain et non cover : toutes les affiches ne sont pas carrées, celle du
    tournoi est en 1080x1350. Elles gardent la même hauteur, la portrait est
    simplement moins large, et aucune n'est recadrée. */
@@ -110,13 +121,19 @@
 .aff.est-loin::after { opacity: .5; }
 
 /* Légendes : une seule affichée à la fois, en fondu */
-.legendes { position: relative; margin-top: 34px; min-height: 340px; }
+/* Les légendes étaient en absolu dans un bloc de 340px de haut fixes :
+   une légende plus longue, un zoom ou une taille de police augmentée la
+   faisaient passer par-dessus les commandes du carrousel. Empilées en
+   grille, elles occupent toutes la même case, et la case prend la hauteur
+   de la plus longue : plus rien ne peut déborder, à n'importe quel zoom. */
+.legendes {
+    display: grid;
+    justify-items: center;
+    margin-top: 34px;
+}
 .legende {
-    position: absolute;
-    top: 0;
-    left: 50%;
+    grid-area: 1 / 1;
     width: min(820px, 100%);
-    transform: translateX(-50%);
     text-align: center;
     opacity: 0;
     pointer-events: none;
@@ -129,7 +146,7 @@
     align-items: center;
     gap: 12px;
     margin-bottom: 14px;
-    font-size: 11px;
+    font-size: var(--t-etiquette);
     letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--mute);
@@ -234,4 +251,33 @@
 
 @media (max-width: 560px) {
     .chiffres { gap: 30px 22px; }
+}
+
+/* Mode d'emploi du carrousel, et annonce de la position pour les aides
+   techniques. La seconde n'a rien à montrer à l'écran, mais elle doit
+   rester dans le flux : display:none n'est pas lu. */
+/* Sur un écran tactile il n'y a pas de flèches de clavier à proposer :
+   la consigne ne garde que le geste qui existe vraiment. La seconde
+   version reste dans le HTML, ce qui change est laquelle s'affiche. */
+.aide-tactile { display: none; }
+@media (hover: none) and (pointer: coarse) {
+    .aide-pointeur { display: none; }
+    .aide-tactile { display: inline; }
+}
+
+.aff-aide {
+    margin-top: 18px;
+    text-align: center;
+    font-size: var(--t-etiquette);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--mute);
+}
+.aff-position {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
 }

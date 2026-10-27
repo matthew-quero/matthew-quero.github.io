@@ -1,7 +1,7 @@
 /* === PARCOURS 2026 (accueil, section #parcours "Qui je suis") === */
 
 /* Même colonne centrée de 1120px que .projects */
-.parcours { padding: 140px max(44px, calc((100% - 1120px) / 2)) 0; }
+.parcours { padding: 140px var(--marge) 0; }
 
 /* Une seule grille : texte et outils à gauche, photo à droite sur les deux lignes,
    pour que les deux colonnes se terminent au même endroit */
@@ -50,7 +50,7 @@
 .parcours-tools-title {
     font-family: var(--font-title);
     font-weight: 500;
-    font-size: 11.5px;
+    font-size: var(--t-etiquette);
     letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--mute);
@@ -68,7 +68,7 @@
 
 /* === RESPONSIVE === */
 @media (max-width: 900px) {
-    .parcours { padding: 100px 20px 0; }
+    .parcours { padding: 100px var(--marge) 0; }
 
     .parcours-grid { row-gap: 36px; }
     .parcours-suite { columns: 1; }
