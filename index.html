@@ -24,12 +24,11 @@
     <link rel="preload" href="fonts/unbounded-latin-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/manrope-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 
-    <!-- Three.js démarre son téléchargement en parallèle de la page, mais en
-         priorité basse : il ne passe pas devant les polices ni la CSS. Le
-         media le réserve aux écrans larges, les seuls où hero-3d.js s'en
-         servira ; un téléphone ne le demande toujours pas. C'est ce qui
-         raccourcit l'attente avant que le relief remplace le SVG. -->
-    <link rel="preload" href="vendor/three.min.js" as="script" fetchpriority="low" media="(min-width: 900px)">
+    <!-- Plus rien à précharger pour le nom : la boucle vidéo est demandée
+         par JS/hero-nom.js une fois la page affichée, et ne doit passer
+         devant rien. vendor/three.min.js n'est plus chargé par le site ;
+         le fichier reste dans le dépôt, c'est le chemin du retour si le
+         relief calculé devait revenir un jour. -->
     <link rel="stylesheet" href="CSS/base-2026.css">
     <link rel="stylesheet" href="CSS/accueil-2026.css">
     <link rel="stylesheet" href="CSS/projets-2026.css">
@@ -80,37 +79,23 @@
     <section class="hero">
         <h1>Développeur web</h1>
 
-        <!-- Le nom, tracé à partir des mêmes contours que la version 3D.
-             Il s'affiche tout de suite, sans requête ni JavaScript, et reste
-             la version définitive sur les appareils où JS/hero-3d.js renonce
-             à charger Three.js (tactile, mouvement réduit, écran étroit). -->
-        <svg class="hero-nom" viewBox="0 0 4306.2 1030.6" role="img" aria-label="QUÉRO" preserveAspectRatio="xMidYMid meet">
-            <defs><linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
-                <!-- Dégradé assombri par rapport au rendu 3D : le relief se
-                     détache du blanc par ses ombres et son contour, un aplat
-                     non. Le haut était à #f2f8f5, soit du blanc sur blanc. -->
-                <stop offset="0" stop-color="#c2d6cd"/><stop offset=".3" stop-color="#9ebaaf"/>
-                <stop offset=".52" stop-color="#5f7d72"/><stop offset=".54" stop-color="#b0c9c0"/>
-                <stop offset=".78" stop-color="#7d9a8f"/><stop offset="1" stop-color="#46625a"/>
-            </linearGradient></defs>
-            <g transform="translate(-36.8 974.4) scale(1 -1)">
-                <path fill="url(#chrome)" d="M353.2 305.2L600.6 305.2L927 -56.2L673.6 -56.2ZM482.4 -16.4Q349 -16.4 248.7 32.6Q148.4 81.6 92.6 169.7Q36.8 257.8 36.8 375Q36.8 492.2 92.6 580.3Q148.4 668.4 248.7 717.4Q349 766.4 482.4 766.4Q615.8 766.4 716.1 717.4Q816.4 668.4 872.2 580.3Q928 492.2 928 375Q928 257.8 872.2 169.7Q816.4 81.6 716.1 32.6Q615.8 -16.4 482.4 -16.4ZM482.4 168.8Q555.4 168.8 608.2 193.7Q661 218.6 689.7 264.9Q718.4 311.2 718.4 375Q718.4 438.8 689.7 485.1Q661 531.4 608.2 556.3Q555.4 581.2 482.4 581.2Q409.8 581.2 356.8 556.3Q303.8 531.4 275.1 485.1Q246.4 438.8 246.4 375Q246.4 311.2 275.1 264.9Q303.8 218.6 356.8 193.7Q409.8 168.8 482.4 168.8ZM1214.2 335.2Q1214.2 283.8 1233.7 246.5Q1253.2 209.2 1291.4 189Q1329.6 168.8 1385.8 168.8Q1443 168.8 1481 188.7Q1519 208.6 1538.2 246.2Q1557.4 283.8 1557.4 335.2L1557.4 750L1765 750L1765 324.8Q1765 222.2 1717.6 145.6Q1670.2 69 1585.1 26.3Q1500 -16.4 1385.8 -16.4Q1272.6 -16.4 1187.3 26.3Q1102 69 1054.3 145.6Q1006.6 222.2 1006.6 324.8L1006.6 750L1214.2 750ZM2517.6 450.4L2517.6 299.6L1969 299.6L1969 450.4ZM2110 375L2061.2 73.6L1977.2 168L2551.4 168L2551.4 0L1854.2 0L1911.2 375L1854.2 750L2546.4 750L2546.4 582L1977.2 582L2061.2 676.4ZM2230.4 974.4L2462.4 974.4L2288.8 805.6L2083.2 805.6ZM2796.2 422.2L3069.4 422.2Q3118.6 422.2 3146.6 445Q3174.6 467.8 3174.6 509Q3174.6 550.6 3146.6 573.2Q3118.6 595.8 3069.4 595.8L2767 595.8L2860.2 695L2860.2 0L2652.6 0L2652.6 750L3098.2 750Q3183.8 750 3248.1 719.7Q3312.4 689.4 3348.3 635.6Q3384.2 581.8 3384.2 509Q3384.2 438.2 3348.3 384.1Q3312.4 330 3248.1 300Q3183.8 270 3098.2 270L2796.2 270ZM2908.2 351L3141.2 351L3409.8 0L3169.6 0ZM3897.4 -16.4Q3764 -16.4 3663.7 32.6Q3563.4 81.6 3507.6 169.7Q3451.8 257.8 3451.8 375Q3451.8 492.2 3507.6 580.3Q3563.4 668.4 3663.7 717.4Q3764 766.4 3897.4 766.4Q4030.8 766.4 4131.1 717.4Q4231.4 668.4 4287.2 580.3Q4343 492.2 4343 375Q4343 257.8 4287.2 169.7Q4231.4 81.6 4131.1 32.6Q4030.8 -16.4 3897.4 -16.4ZM3897.4 168.8Q3970.4 168.8 4023.2 193.7Q4076 218.6 4104.7 264.9Q4133.4 311.2 4133.4 375Q4133.4 438.8 4104.7 485.1Q4076 531.4 4023.2 556.3Q3970.4 581.2 3897.4 581.2Q3824.8 581.2 3771.8 556.3Q3718.8 531.4 3690.1 485.1Q3661.4 438.8 3661.4 375Q3661.4 311.2 3690.1 264.9Q3718.8 218.6 3771.8 193.7Q3824.8 168.8 3897.4 168.8Z"/>
-            </g>
-        </svg>
 
         <!-- L'emplacement du nom. Sur ordinateur il recouvre tout le hero
              et porte le relief. Sur téléphone il devient un bloc de la
              colonne, à la proportion de l'image, et le relief s'y installe
              à la place de celle-ci quand il arrive. -->
         <div class="hero-nom-zone">
-            <!-- Tirage du vrai rendu 3D, exporté depuis la scène elle-même :
-                 c'est ce qui s'affiche tout de suite, et ce qui reste si le
-                 relief ne charge pas (mouvement réduit, économiseur de
-                 données, appareil juste, WebGL absent). 57 Ko, aucun
-                 JavaScript. Le SVG au-dessus est le dernier filet. -->
+            <!-- Première pose de la boucle, tirée du même rendu et cadrée
+                 au même pixel : c'est ce qui s'affiche tout de suite, et
+                 ce qui reste si la boucle ne démarre pas (mouvement
+                 réduit, économiseur de données, lecture refusée). 47 Ko.
+                 Le SVG au-dessus est le dernier filet, sans JavaScript. -->
             <img class="hero-nom-3d" src="img/site/quero-3d.webp" alt="QUÉRO"
-                 width="1200" height="328" fetchpriority="high">
-            <canvas id="hero-3d" aria-hidden="true"></canvas>
+                 width="1200" height="345" fetchpriority="high">
+            <!-- Sans src ni autoplay : JS/hero-nom.js choisit le fichier
+                 selon la largeur et ne le demande qu'après la page. -->
+            <video class="hero-nom-boucle" aria-hidden="true" muted loop playsinline
+                   disablepictureinpicture preload="none" width="1400" height="402"></video>
         </div>
 
         <p class="pitch">Conception et développement de sites. Et la communication qui va avec.</p>
@@ -358,9 +343,7 @@
 
     <div class="ring" aria-hidden="true"></div>
 
-    <!-- Three.js n'est plus appelé ici : hero-3d.js le charge lui-même,
-         après l'affichage de la page, et seulement s'il sert. -->
-    <script src="JS/hero-3d.js" defer></script>
+    <script src="JS/hero-nom.js" defer></script>
     <script src="JS/curseur.js" defer></script>
     <script src="JS/menu-2026.js" defer></script>
     <script src="JS/cote-2026.js" defer></script>

@@ -1,6 +1,6 @@
 /* === ACCUEIL 2026 === */
 
-/* --- Hero : nom QUÉRO en 3D (JS/hero-3d.js) --- */
+/* --- Hero : nom QUÉRO en relief (JS/hero-nom.js) --- */
 .hero {
     position: relative;
     height: 100vh;
@@ -52,58 +52,52 @@
     letter-spacing: -.03em;
     text-transform: uppercase;
     white-space: nowrap;
-    z-index: 0;
+    /* Au-dessus du nom, et c'est volontaire. L'ancien relief était peint
+       sur un canvas transparent : là où il ne touchait pas le titre, le
+       titre restait visible. La boucle, elle, est une vidéo, et une vidéo
+       n'a pas de transparence : son cadre est un rectangle blanc opaque.
+       Sur une fenêtre large et basse, le titre grandit avec la largeur
+       pendant que la place disponible diminue, les deux se croisent, et
+       le rectangle venait trancher « DÉVELOPPEUR WEB » en deux. En
+       passant le titre devant, le croisement redevient ce qu'il était :
+       un simple recouvrement, sans rien de rogné. */
+    z-index: 3;
 }
 
-/* --- Le nom : SVG d'abord, relief ensuite ---
-   Les deux occupent la même place. Le SVG reproduit la position calculée
-   par la caméra de hero-3d.js : à 32° de champ et 9 unités de recul, le
-   mot mesure 1,1265 fois la hauteur du hero, plafonné à 88,3 % de sa
-   largeur sur un écran étroit, et son centre tombe 16,67 % plus bas que
-   celui de l'écran. D'où les trois valeurs ci-dessous. */
-.hero-nom {
+/* --- L'emplacement du nom ---
+   Un bloc à la proportion exacte de la boucle, posé là où la caméra de
+   l'ancien rendu plaçait le mot : centré, et descendu d'un sixième de la
+   hauteur du hero, le titre occupant le dessus. La largeur est calée pour
+   que le mot fasse la même taille qu'avant, mesure à l'appui. Il ne reçoit
+   aucun clic, sinon il mangerait les boutons posés par-dessus. */
+.hero-nom-zone {
     position: absolute;
     left: 50%;
     top: 50%;
     z-index: 1;
-    width: min(112.65svh, 88.3vw);
-    height: auto;
-    transform: translate(-50%, -50%) translateY(16.67svh);
-    transition: opacity .6s var(--ease);
+    width: min(157svh, 73vw);
+    aspect-ratio: 1400 / 402;
+    transform: translate(-50%, -50%) translateY(16.4svh);
+    pointer-events: none;
 }
 
-/* --- L'emplacement du nom ---
-   Sur ordinateur il recouvre le hero entier : le relief est cadré par la
-   caméra, pas par une boîte CSS. Il ne reçoit aucun clic, sinon il
-   mangerait les boutons posés par-dessus. */
-.hero-nom-zone { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-
-/* Le tirage 3D ne sert que sous 900px, là où la composition est en colonne. */
-.hero-nom-3d { display: none; }
-
-.hero canvas {
-    position: absolute; inset: 0; display: block;
-    width: 100%; height: 100%;
-    opacity: 0;
-    transition: opacity .6s var(--ease);
+/* L'image et la boucle sont tirées du même rendu et cadrées au même
+   pixel : elles se superposent exactement, et l'échange ne se voit pas. */
+.hero-nom-3d,
+.hero-nom-boucle {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
+.hero-nom-3d { transition: opacity .6s var(--ease); }
+.hero-nom-boucle { opacity: 0; transition: opacity .6s var(--ease); }
 
-/* Trois états, posés par hero-3d.js.
-   Par défaut le SVG est visible : c'est la version qui s'affiche sans
-   JavaScript, sur téléphone, en mouvement réduit et si WebGL manque.
-   .attend-relief : la 3D est en route, on efface le SVG sans attendre
-   plutôt que de le montrer une seconde pour rien. hero-3d.js retire cette
-   classe si le relief n'arrive pas dans les temps.
-   .en-relief : première image réellement peinte, le canvas apparaît. */
-/* transition: none à l'aller, volontairement. hero-3d.js pose cette classe
-   dès l'exécution du script : avec le fondu de 0,6 s, le SVG restait
-   visible pendant toute sa disparition, soit précisément ce qu'on veut
-   éviter. Il s'efface donc d'un coup, avant la première peinture.
-   Au retour (classe retirée parce que le relief n'arrive pas), la
-   transition de .hero-nom reprend et le SVG réapparaît en fondu. */
-.hero.attend-relief .hero-nom { opacity: 0; transition: none; }
-.hero.en-relief canvas { opacity: 1; }
-.hero.en-relief .hero-nom { opacity: 0; }
+/* La boucle a réellement commencé à jouer : elle prend la place. */
+.hero.en-relief .hero-nom-boucle { opacity: 1; }
+.hero.en-relief .hero-nom-3d { opacity: 0; }
 
 .pitch {
     position: absolute;
@@ -148,11 +142,9 @@
 .hero-cta-fort:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 
 /* === RESPONSIVE ===
-   Sous 900px, la 3D ne se charge pas et le nom reste en SVG : le hero n'a
-   plus besoin d'être un empilement de blocs absolus calés les uns sur les
-   autres. Il redevient une colonne, et on retrouve un ordre de lecture :
-   le titre, le nom, la phrase, les deux entrées. Avant, la phrase se
-   retrouvait tout en haut et le reste flottait au milieu du vide. */
+   Sous 900px, le hero n'a plus besoin d'être un empilement de blocs
+   absolus calés les uns sur les autres : il redevient une colonne, avec
+   un ordre de lecture, et le nom y prend simplement sa place. */
 @media (max-width: 900px) {
     .hero {
         display: flex;
@@ -182,42 +174,16 @@
         white-space: normal;
     }
 
-    /* Le SVG cède la place au tirage du rendu 3D, puis au vrai relief
-       quand celui-ci arrive. L'emplacement devient un bloc de la colonne,
-       à la proportion exacte de l'image : rien ne bouge au moment du
-       remplacement, le relief prend la place que l'image occupait. */
-    .hero-nom { display: none; }
+    /* L'emplacement du nom redevient un bloc de la colonne : il n'a plus
+       à reproduire le cadrage d'une caméra, il suit la largeur du hero. */
     .hero-nom-zone {
         position: relative;
-        inset: auto;
+        left: auto;
+        top: auto;
         width: 100%;
-        /* Un peu plus haut que l'image (1200 x 328) : le relief tourne de
-           vingt degrés d'un bord à l'autre, et les lettres qui s'avancent
-           dépassaient en haut et en bas d'un cadre taillé au plus juste.
-           L'image, elle, garde sa proportion grâce à object-fit. */
-        aspect-ratio: 1200 / 400;
+        transform: none;
         margin-top: clamp(14px, 2.4vh, 30px);
     }
-    .hero-nom-3d {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: opacity .6s var(--ease);
-        /* Balancement de secours : si le relief ne charge pas, l'image
-           bouge quand même un peu. Ce n'est qu'une image qui pivote, pas
-           un objet qui tourne, d'où l'amplitude modeste. Composé par la
-           carte graphique : ni mise en page ni repeinture. */
-        transform-origin: 50% 72%;
-        animation: balancement 7s ease-in-out infinite;
-    }
-    @keyframes balancement {
-        0%, 100% { transform: perspective(900px) rotateY(-5deg) rotateZ(-.8deg); }
-        50%      { transform: perspective(900px) rotateY(5deg) rotateZ(.8deg); }
-    }
-    /* Le relief peint : l'image s'efface et cesse de bouger, c'est la
-       scène qui tourne maintenant. */
-    .hero.en-relief .hero-nom-3d { opacity: 0; animation: none; }
 
     /* Ordre de lecture : la phrase, le titre, le nom, puis les deux
        entrées tout en bas. La phrase ouvre le hero, elle n'attend pas
